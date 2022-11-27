@@ -11,7 +11,7 @@ function Calendar(name, score) {
 
 }
 
-let familyArr = ["Doris", "Ernie", "Kenda", "Steven", "Annie", "Jeff", "Chris", "Brian", "Ashley", "Jonah", "Ethan", "Darrah", "Elliot", "Hannah", "Oliver"];
+let familyArr = ["Doris", "Ernie", "Kenda", "Steven", "Annie", "Jeff", "Chris", "Brian", "Jonah", "Ethan", "Darrah", "Elliot", "Hannah", "Oliver"];
 
 
 
