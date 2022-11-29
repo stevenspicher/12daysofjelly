@@ -1,7 +1,7 @@
-var express = require('express');
- var path = require('path');
- var app = express();
- var PORT = 5000;
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = 5000;
 
  fs = require('fs');
  app.use(express.json())
