@@ -166,7 +166,7 @@ let pillDrop = (e) => {
 //file upload/download
 
 const calendarDownload = () => {
-  fetch('/get')
+  fetch("https://daysofjelly-default-rtdb.firebaseio.com/calendar.json")
     .then(response => response.json())
     .then(data => {
       setCalendar(data)
@@ -175,9 +175,18 @@ const calendarDownload = () => {
     )
 }
 
+const dbTest = () => {
+  fetch("https://daysofjelly-default-rtdb.firebaseio.com/calendar.json")
+      .then(response => response.json())
+      .then(data => {
+            console.log(data)
+          }
+      )
+}
+
 const calendarUpload = () => {
   calArr = updatedCalArr
-  fetch('/post', {
+  fetch("https://daysofjelly-default-rtdb.firebaseio.com/calendar.json", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -190,7 +199,7 @@ const calendarUpload = () => {
 
 const resetCalendar = () => {
   calArr = updatedCalArr
-  fetch('/clear', {
+  fetch("https://daysofjelly-default-rtdb.firebaseio.com/calendar.json", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -212,6 +221,7 @@ let setCalendar = (data) => {
 }
 const init = () => {
   calendarDownload()
+  dbTest()
 }
 
 init();
