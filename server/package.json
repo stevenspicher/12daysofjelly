@@ -12,6 +12,7 @@
   "directories": {
     "serve": "../public"
   },
+  "public": "../public",
   "files": ["../public", "index.js"],
   "keywords": [],
   "author": "",
