@@ -105,6 +105,7 @@ for (let i = 0; i < jellyArr.length; i++) {
   <td id="${jellyArr[i].id}-s"</td>
   <td id="${jellyArr[i].id}-t"></td>
   </tr>
+  
   `
 
   frame.appendChild(jellyTable)
@@ -195,7 +196,15 @@ const calendarUpload = () => {
   })
 }
 
-
+const familyUpload = () => {
+  fetch("https://daysofjelly-default-rtdb.firebaseio.com/familyList.json", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(familyArr)
+  })
+}
 
 const resetCalendar = () => {
   calArr = updatedCalArr
@@ -222,6 +231,7 @@ let setCalendar = (data) => {
 const init = () => {
   calendarDownload()
   dbTest()
+
 }
 
 init();
