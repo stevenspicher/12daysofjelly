@@ -89,9 +89,23 @@ table {
   text-align: center;
 }
 
+.title-signup{
+  font-family: "Sofia", sans-serif;
+  color: black;
+  text-align: center;
+}
+
 .subtitle {
   font-family: "Sofia", sans-serif;
   color: white;
+
+  text-align: center;
+
+}
+
+.subtitle-signup {
+  font-family: "Sofia", sans-serif;
+  color: black;
 
   text-align: center;
 
