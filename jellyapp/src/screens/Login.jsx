@@ -115,13 +115,13 @@ const Login = (props) => {
 
                 <Row>
 <Col xs={6}></Col>
-                    <Col>
-                        <Badge bg="success" onClick={() => {
-                            navigate("/signup", getState(location, loginDetails, undefined))
-                        }}>
-                            Sign up
-                        </Badge>
-                    </Col>
+                    {/*<Col>*/}
+                    {/*    <Badge bg="success" onClick={() => {*/}
+                    {/*        navigate("/signup", getState(location, loginDetails, undefined))*/}
+                    {/*    }}>*/}
+                    {/*        Sign up*/}
+                    {/*    </Badge>*/}
+                    {/*</Col>*/}
 
                 </Row>
             </Container>
