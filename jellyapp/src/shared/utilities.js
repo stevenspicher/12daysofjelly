@@ -14,7 +14,6 @@ export const getUsers = (setUserList) => {
                         wishes: data[key].wishes,
                     }
                 ))
-                console.log("got users")
                 setUserList(list)
             }
         })
@@ -40,7 +39,7 @@ export const editUser = (userData, state, id) => {
 }
 
 export const getConsole = (location, currentUserDetails, userList) => {
-    console.clear()
+    // console.clear()
     let user = {name: undefined};
     if (location.pathname !== "/login") {
         if (location.state.currentUserDetails !== undefined) {

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {Container} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
 
@@ -25,18 +25,15 @@ const User = (props) => {
         } else {
             editUser(editUserDetails, props.state, location.state.id);
         }
-            props.state.setCurrentUserDetails(editUserDetails)
-        canEdit ? navigate("/table", getState(location, editUserDetails, location.state.id)) :
-            navigate("/table", getState(location, props.state.currentUserDetails, location.state.id))
+        props.state.setCurrentUserDetails(editUserDetails)
+        canEdit ? navigate("/table", getState(location, editUserDetails, location.state.id)) : navigate("/table", getState(location, props.state.currentUserDetails, location.state.id))
     }
 
     const userUpload = (userDetails) => {
         fetch("https://daysofjelly-default-rtdb.firebaseio.com/userList.json", {
-            method: 'POST',
-            headers: {
+            method: 'POST', headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userDetails)
+            }, body: JSON.stringify(userDetails)
         })
     }
 
@@ -49,11 +46,21 @@ const User = (props) => {
 
     }, []);
 
-    return (
-        <div>
+    return (<div>
             <Container className="pt-5">
                 <h1 className="title">12 Days of Spreads</h1>
                 <h2 className="subtitle">User Info</h2>
+                <Row>
+                    <Col xs={6}></Col>
+                    <Col>
+                        <Button className={"mt-5"} variant="secondary" onClick={() => {
+                            navigate("/login", getState(location, undefined, location.state.id))
+                        }}>
+                            Logout
+                        </Button>
+
+                    </Col>
+                </Row>
             </Container>
             <Container className='mt-5'>
                 <Form>
@@ -114,26 +121,17 @@ const User = (props) => {
                             value={editUserDetails.wishes}
                         />
                     </FloatingLabel>
-                    {canEdit ?
-                        <Button variant="primary" onClick={onSubmit}>
-                            Submit
-                        </Button>
-                        : <></>}
+                    {canEdit ? <Button variant="primary" onClick={onSubmit}>
+                        Submit
+                    </Button> : <></>}
                     <Button variant="secondary" onClick={(e) => {
                         navigate("/table", getState(location, location.state.currentUserDetails, location.state.id))
-                    }
-                    }>
+                    }}>
                         Cancel
                     </Button>
                 </Form>
             </Container>
-            <Button className={"mt-5"} variant="secondary" onClick={() => {
-                navigate("/login", getState(location, location.state.currentUserDetails, location.state.id))
-            }}>
-                Logout
-            </Button>
-        </div>
-    )
+        </div>)
 };
 
 export default User;
