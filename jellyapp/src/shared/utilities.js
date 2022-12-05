@@ -111,3 +111,15 @@ export const getState = (location, currentUser, id, user, index) => {
 
     }
 }
+
+export const blink = () => {
+    setInterval(
+        function () {
+
+            let blinks = document.querySelectorAll('.blink')
+            for (let i = 0; i < blinks.length; i++) {
+                var color = Math.floor(Math.random() * 16777215).toString(16);
+                blinks[i].style.color = "#" + color;
+            }
+        }, 1000);
+}
