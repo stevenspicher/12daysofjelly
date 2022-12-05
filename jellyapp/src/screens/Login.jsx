@@ -30,7 +30,7 @@ const Login = () => {
             navigate("/table", getState(location, userList, loginDetails, id))
         }
          else {
-            navigate("/invalidlogin", getState(location, userList, loginDetails, id))
+            navigate("/invalid", getState(location, userList, loginDetails, id))
         }
     }
 
