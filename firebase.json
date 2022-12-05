@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "jellyapp/public",
+    "public": "jellyapp/build",
     "ignore": [
       "firebase.json",
       "**/.*",
