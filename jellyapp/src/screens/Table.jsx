@@ -2,8 +2,9 @@ import React, {useEffect, useState} from "react";
 import {Container} from "react-bootstrap";
 import {Button, Card, Col, Row, Modal, Badge} from "react-bootstrap";
 import {useLocation, useNavigate} from 'react-router-dom';
-import {getConsole, getState, getUsers} from "../shared/utilities";
-import {current} from "@reduxjs/toolkit";
+
+import {getConsole, getState, getUsers, blink} from "../shared/utilities";
+
 
 
 const UserTable = (props) => {
@@ -21,10 +22,11 @@ const [show, setShow] = useState(false);
     }, []);
 
     useEffect(() => {
-        if (location.state.prevPath === "/user") {
-            getUsers(props.state.setUserList)
-        }
-    }, []);
+
+   if (location.state.prevPath === "/user") {
+        getUsers(props.state.setUserList)
+       blink()
+   }
 
     useEffect(() => {
         if (props.state.currentUserDetails.favColor === undefined || props.state.currentUserDetails.wishes === undefined || props.state.currentUserDetails.sizes === undefined) {
@@ -34,8 +36,31 @@ const [show, setShow] = useState(false);
 
     return (
         <>
-            <Container className={"pt-5"}>
-                <h1 className="title">12 Days of Spreads</h1>
+            <Container className={"pt-4"} >
+                <div>
+
+                    <h1 className="title">
+                        <b className="blink">1</b>
+                        <b className="blink">2</b>
+                        <b> </b>
+                        <b className="blink">D</b>
+                        <b className="blink">a</b>
+                        <b className="blink">y</b>
+                        <b className="blink">'</b>
+                        <b className="blink">s</b>
+                        <b> </b>
+                        <b className="blink">o</b>
+                        <b className="blink">f</b>
+                        <b> </b>
+                        <b className="blink">S</b>
+                        <b className="blink">p</b>
+                        <b className="blink">r</b>
+                        <b className="blink">e</b>
+                        <b className="blink">a</b>
+                        <b className="blink">d</b>
+                        <b className="blink">s</b>
+                    </h1>
+                </div>
                 <h2 className="subtitle">Family List</h2>
                 <Row>
                     <Col xs={6}></Col>
@@ -45,6 +70,7 @@ const [show, setShow] = useState(false);
                 }}>
                     Logout
                 </Button>
+
 
                     </Col>
                 </Row>
