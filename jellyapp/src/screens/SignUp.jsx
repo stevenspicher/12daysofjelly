@@ -3,38 +3,38 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import {Container} from "react-bootstrap";
-import {useNavigate, Link, useLocation} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
+import {getConsole, getState} from "../shared/utilities";
 
-const SignUp = (props) => {
+const SignUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [nameIsUsed, setNameIsUsed] = useState(false);
+    const [userList, setUserList] = useState([]);
+    const [newUserDetails, setNewUserDetails] =useState({name: undefined})
 
-    const onSubmit = () => {
-        // if (props.userList.find((user) => user.name === props.currentUserDetails.name)) {
-        //     const id = props.userList.find((user) => user.name === props.currentUserDetails.name) && Object.values(props.userList).find((user) => user.password === props.currentUserDetails.password).id
-        //     const list = props.userList.find((user) => user.name === props.currentUserDetails.name) && Object.values(props.userList).find((user) => user.password === props.currentUserDetails.password)
-        //     localStorage.setItem('userId', JSON.stringify(id))
-        //     props.setCurrentUserDetails(list)
-        //     navigate("/table", {
-        //         state: {
-        //             prevPath: location.pathname,
-        //             id: id,
-        //             currentUserDetails: props.currentUserDetails,
-        //             setCurrentUserDetails: props.setCurrentUserDetails
-        //         }
-        //     })
-        // }
+    const onChange = (e) => {
+        const newUser = e.target.value;
+        const name = e.target.name;
+        nameCheck(newUser)
+        if (!nameIsUsed) {
+        newUserDetails[name] = newUser
+        setNewUserDetails({...newUserDetails})
+        }
     }
 
-    const nameCheck = () => {
-        // console.log(props.userList)
-        // console.log(props.currentUserDetails)
-        // console.log(location.state.currentUserDetails)
-        if (props.userList.find((user) => user.name === props.currentUserDetails.name)) {
-            return true
-            console.log(props.userList.find((user) => user.name === location.state.currentUserDetails))
+    const onSubmit = () => {
+        if (!nameIsUsed) {
+        //TODO: add family quiz
+            userUpload(newUserDetails)
+            navigate("/login", getState(location, userList, newUserDetails, newUserDetails.name))
         }
+    }
+
+    const nameCheck = (name) => {
+        if (location.state.userList.find((user) => user.name === name)) {
+            setNameIsUsed(true)
+        } else {setNameIsUsed(false)}
     }
     const userUpload = (userDetails) => {
         fetch("https://daysofjelly-default-rtdb.firebaseio.com/userList.json", {
@@ -47,19 +47,20 @@ const SignUp = (props) => {
     }
 
     useEffect(() => {
-       console.log(nameCheck())
-    }, [nameIsUsed]);
+        getConsole(location)
+    }, []);
 
     return (
         <>
             <Container className={"pt-5"}>
                 <h1 className="title">12 Days of Spreads</h1>
-                <h2 className="subtitle">Sign Up</h2>
+                {nameIsUsed ? <h2 className="subtitle-signup">OOPs</h2> :
+                    <h2 className="subtitle-signup">Sign up</h2>}
             </Container>
             <Container className='mt-5'>
                 <Form>
                     <>
-                        {nameCheck ? <h2 className="subtitle-signup">That name is taken</h2> :
+                        {nameIsUsed ? <h2 className="subtitle-signup">That name is taken</h2> :
                             <h2 className="subtitle-signup">Please enter your name:</h2>}
                         <FloatingLabel
                             controlId="floatingInput"
@@ -68,20 +69,8 @@ const SignUp = (props) => {
                         >
                             <Form.Control type="text"
                                           name="name"
-                                          onChange={(e) => {
-                                              nameCheck()
-                                              if (!nameCheck)
-                                              props.onChange(e)
-                                          }}
+                                          onChange={onChange}
                                           placeholder="your name here"/>
-                        </FloatingLabel>
-                        <h2 className="subtitle-signup">Please enter your password:</h2>
-                        <FloatingLabel controlId="floatingPassword" name="password" label="Password">
-                            <Form.Control type="password"
-                                          name="password"
-                                          onChange={props.onChange}
-                                          placeholder="Password"/>
-
                         </FloatingLabel>
                     </>
                     <Container className="mt-3">

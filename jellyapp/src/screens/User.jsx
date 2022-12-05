@@ -3,26 +3,32 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Container} from "react-bootstrap";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
+import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
 
-const User = (props) => {
+const User = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [canEdit, setCanEdit] = useState(false)
+    const [currentUserDetails, setCurrentUserDetails] = useState({});
+    const [userList, setUserList] = useState([undefined]);
+
+    const onChange = (e) => {
+        const name = e.target.name
+        currentUserDetails[name] = e.target.value
+        setCurrentUserDetails({...currentUserDetails})
+    }
 
     const onSubmit = () => {
-        if (location.state.prevPath === "/login") {
-            userUpload(props.currentUserDetails);
+        if (location.state.prevPath === "/signup") {
+            userUpload(currentUserDetails);
         } else {
-            console.log("existing user, need to edit")
+            editUser(currentUserDetails, location.state.id);
+            console.log("edit")
         }
-        navigate("/table", {
-            state: {
-                prevPath: location.pathname,
-                currentUserDetails: location.state.currentUserDetails,
-                setCurrentUserDetails:  "submit - setuserdetails"
-            }
-        })
+        getUsers(setUserList);
+        setCurrentUserDetails(currentUserDetails)
+        navigate("/table", getState(location, userList, currentUserDetails, location.state.id))
     }
 
     const userUpload = (userDetails) => {
@@ -36,12 +42,12 @@ const User = (props) => {
     }
 
     useEffect(() => {
-
-        if (location.state.currentUserDetails.id === props.currentUserDetails.id || location.state.prevPath === "/login") {
+        getConsole(location, currentUserDetails)
+        if (location.state.id === location.state.user.id) {
             setCanEdit(true)
-        } else {
-            setCanEdit(false)
         }
+        setCurrentUserDetails(location.state.currentUserDetails)
+
 
     }, []);
 
@@ -58,70 +64,77 @@ const User = (props) => {
                         label="Name"
                         className="mb-3"
                     >
-                        <Form.Control type="text" placeholder="rudolph" name="name" disabled={!canEdit}
-                                      onChange={props.onChange}
-                                      value={location.state.currentUserDetails.name}
+                        <Form.Control
+                            type="text"
+                            placeholder="rudolph"
+                            name="name"
+                            disabled={!canEdit}
+                            onChange={onChange}
+                            value={currentUserDetails.name}
                         />
                     </FloatingLabel>
-                    {canEdit ?
-                        <FloatingLabel controlId="floatingPassword" label="Password" className="mb-3" name="password">
-                            <Form.Control type="password" placeholder="Password"
-                                          name="password" onChange={props.onChange}
-                                          disabled={!canEdit}
-                                          value={location.state.currentUserDetails.password}/>
-                        </FloatingLabel> :
-                        <></>}
 
                     <FloatingLabel
                         controlId="floatingTextarea1"
                         label="Favorite Color"
                         className="mb-3"
-                        name="favColor"
                     >
-                        <Form.Control as="textarea" disabled={!canEdit} placeholder="Favorite Colors?" name="favColor"
-                                      onChange={props.onChange}
-                                      value={location.state.currentUserDetails.favColor}/>
+                        <Form.Control
+                            as="textarea"
+                            disabled={!canEdit}
+                            placeholder="Favorite Colors?"
+                            name="favColor"
+                            onChange={onChange}
+                            value={currentUserDetails.favColor}
+                        />
                     </FloatingLabel>
                     <FloatingLabel
                         controlId="floatingTextarea2"
                         label="Clothing Sizes?"
                         className="mb-3"
                     >
-                        <Form.Control as="textarea" placeholder="Clothing Sizes?" disabled={!canEdit}
-                                      onChange={props.onChange} name="sizes"
-                                      value={location.state.currentUserDetails.sizes}/>
+                        <Form.Control
+                            as="textarea"
+                            placeholder="Clothing Sizes?"
+                            disabled={!canEdit}
+                            onChange={onChange}
+                            name="sizes"
+                            value={currentUserDetails.sizes}
+                        />
                     </FloatingLabel>
-                    <FloatingLabel controlId="floatingTextarea3" label="Wish List" className="mb-3">
+                    <FloatingLabel
+                        controlId="floatingTextarea3"
+                        label="Wish List"
+                        className="mb-3">
                         <Form.Control
                             as="textarea"
                             placeholder="What would you like for Christmas?"
                             style={{height: '100px'}}
-                            onChange={props.onChange}
+                            onChange={onChange}
                             name={"wishes"}
                             disabled={!canEdit}
-                            value={location.state.currentUserDetails.wishes}
+                            value={currentUserDetails.wishes}
                         />
                     </FloatingLabel>
-                    {canEdit ? <Button variant="primary" onClick={onSubmit}>
-                        Submit
-                    </Button> : <></>}
-                    <Button variant="secondary" onClick={() => {
-                        {
-                            location.state.prevPath === "/login" ? navigate("/login") :
-                                navigate("/table", {
-                                    state: {
-                                        prevPath: location.pathname,
-                                        currentUserDetails: location.state.currentUserDetails,
-                                        setCurrentUserDetails: "cancel - setuserdetails"
-                                    }
-                                })
-                        }
+                    {canEdit ?
+                        <Button variant="primary" onClick={onSubmit}>
+                            Submit
+                        </Button>
+                        : <></>}
+                    <Button variant="secondary" onClick={(e) => {
+                        e.preventDefault()
+                        navigate("/table", getState(location, userList, location.state.currentUserDetails, location.state.id))
                     }
                     }>
                         Cancel
                     </Button>
                 </Form>
             </Container>
+            <Button className={"mt-5"} variant="secondary" onClick={() => {
+                navigate("/login", getState(location, userList, location.state.currentUserDetails, location.state.id))
+            }}>
+                Logout
+            </Button>
         </div>
     )
 };
