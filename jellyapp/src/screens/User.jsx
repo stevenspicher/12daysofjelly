@@ -3,7 +3,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Container} from "react-bootstrap";
-import { useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
 
 const User = () => {
@@ -122,7 +122,6 @@ const User = () => {
                         </Button>
                         : <></>}
                     <Button variant="secondary" onClick={(e) => {
-                        e.preventDefault()
                         navigate("/table", getState(location, userList, location.state.currentUserDetails, location.state.id))
                     }
                     }>
