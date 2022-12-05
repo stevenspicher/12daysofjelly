@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import Button from 'react-bootstrap/Button';
-import {Container} from "react-bootstrap";
+import {Container, Row, Col, Badge} from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { useLocation} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {useNavigate} from "react-router-dom";
 import {emptyUserDetails} from "../shared/containers";
 import {getUsers, getConsole, getState} from "../shared/utilities";
@@ -23,12 +23,19 @@ const Login = (props) => {
     const onSubmit = () => {
         //*****      LoginCheck - add family quiz question
         //TODO: add family quiz
+        let answer = prompt("What is keya's real (first) name?")
+        if (answer === "kenda" || answer === "Kenda") {
 
-        if (props.state.userList.find((user) => user.name === loginDetails.name)) {
-            const id = (props.state.userList.find((user) => user.name === loginDetails.name).id);
-            navigate("/table", getState(location, loginDetails, id))
-        }
-         else {
+            if (props.state.userList.find((user) => user.name === loginDetails.name)) {
+                const id = (props.state.userList.find((user) => user.name === loginDetails.name).id);
+                const userDetails = (props.state.userList.find((user) => user.name === loginDetails.name));
+                props.state.setCurrentUserDetails(userDetails)
+                navigate("/table", getState(location, props.state.currentUserDetails, id))
+            } else {
+                navigate("/invalid", getState(location, loginDetails, id))
+            }
+        } else
+        {
             navigate("/invalid", getState(location, loginDetails, id))
         }
     }
@@ -36,6 +43,14 @@ const Login = (props) => {
 
     useEffect(() => {
         getConsole(location)
+    }, []);
+
+
+    useEffect(() => {
+        if (location.state !== null)
+            if (location.state.prevPath === "/signup") {
+                getUsers(props.state.setUserList)
+            }
     }, []);
 
     return (
@@ -65,34 +80,51 @@ const Login = (props) => {
                         <b className="blink">s</b>
                     </h1>
                 </div>
-               <h2 className="subtitle-signup">Login</h2>
+                <h2 className="subtitle-signup">Login</h2>
+                <Row>
+                    <Col xs={6}></Col>
+                    <Col>
+                <Button className={"mt-5"} variant="primary" onClick={onSubmit}>
+                    Login
+                </Button>
+                    </Col>
+                </Row>
+
             </Container>
             <Container className='mt-5'>
                 <Form>
                     <h2 className="subtitle-signup">Please enter your name:</h2>
                     <FloatingLabel
                         controlId="floatingInput"
-                        label="Name"
-                        className="mb-3"
+                        // label="Name"
+                        className="m-5"
                         name="name"
                     >
 
-                        <Form.Control type="text" name="name"
-                                      onChange={onChange}
-                                      placeholder="your name here"/>
+                                <Form.Control type="text"
+                                              name="name"
+                                              onChange={onChange}
+                                              placeholder="your name here"/>
+
+
                     </FloatingLabel>
-                    <Container className="mt-3">
-                        <Button variant="primary" onClick={onSubmit}>
-                            Login
-                        </Button>
-                        <Button variant="secondary" onClick={() => {
-                            const id = (props.state.userList.find((user) => user.name === loginDetails.name).id);
-                            navigate("/signup", getState(location, loginDetails, id))
+
+                </Form>
+
+            </Container>
+            <Container className="m-5 ">
+
+                <Row>
+<Col xs={6}></Col>
+                    <Col>
+                        <Badge bg="success" onClick={() => {
+                            navigate("/signup", getState(location, loginDetails, undefined))
                         }}>
                             Sign up
-                        </Button>
-                    </Container>
-                </Form>
+                        </Badge>
+                    </Col>
+
+                </Row>
             </Container>
         </>
     )
