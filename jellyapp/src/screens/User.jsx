@@ -6,6 +6,7 @@ import {Container} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
 
+
 const User = () => {
     const navigate = useNavigate();
     const location = useLocation();
