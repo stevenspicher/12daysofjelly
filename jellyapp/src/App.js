@@ -15,7 +15,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Navigate replace to="login"/>}/>
                 <Route path="login" element={<Login/>}/>
-                <Route path="invalidlogin" element={<InvalidLogin/>}/>
+                <Route path="invalid" element={<InvalidLogin/>}/>
                 <Route path="signup" element={<SignUp/>}/>
                 <Route path="user" element={<User/>}/>
                 <Route path="table" element={<UserTable/>}/>
