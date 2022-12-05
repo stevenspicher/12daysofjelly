@@ -117,7 +117,7 @@ const [show, setShow] = useState(false);
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => {
                         const index = props.state.userList.indexOf(props.state.userList.find((user) => user.id === location.state.id).id)
-                        navigate("/user", getState(location, currentUserDetails, location.state.id, currentUserDetails, index))
+                        navigate("/user", getState(location, props.state.currentUserDetails, location.state.id, props.state.currentUserDetails, index))
                     }}>
                         Fill it
                     </Button>
