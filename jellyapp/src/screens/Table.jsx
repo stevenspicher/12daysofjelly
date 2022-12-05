@@ -5,27 +5,21 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {getConsole, getState, getUsers} from "../shared/utilities";
 
 
-const UserTable = () => {
+const UserTable = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [id, setId] = useState(undefined);
-    const [userList, setUserList] = useState([undefined]);
     const [currentUserDetails, setCurrentUserDetails] = useState()
 
 
 
     useEffect(() => {
-        getUsers(setUserList);
         getConsole(location, currentUserDetails)
         setCurrentUserDetails(location.state.currentUserDetails)
-        setId(location.state.id)
-
     }, []);
 
     useEffect(() => {
-   if (location.state.prevPath === "/signup") {
-
-       // setId(userList.find((user) => user.name === location.state.currentUserDetails.id).id)
+   if (location.state.prevPath === "/user") {
+        getUsers(props.state.setUserList)
    }
     }, []);
 
@@ -36,14 +30,14 @@ const UserTable = () => {
                 <h2 className="subtitle">Naughty or Nice?</h2>
 
             </Container>
-            {userList[0] === undefined ? <></> :
+            {props.state.userList[0] === undefined ? <></> :
                 <Container className='mt-5'>
-                    {userList.map((user, index) => {
+                    {props.state.userList.map((user, index) => {
                         return (
                             <Card key={index} className="cards"
                                   onClick={() => {
-                                      getUsers(setUserList)
-                                      navigate("/user", getState(location, userList, user, location.state.id, user))
+                                      getUsers(props.state.setUserList)
+                                      navigate("/user", getState(location, currentUserDetails, location.state.id, user, index))
                                   }}
                             >
                                 {user.name}
@@ -53,7 +47,7 @@ const UserTable = () => {
                 </Container>
             }
             <Button className={"mt-5"} variant="secondary" onClick={() => {
-                navigate("/login", getState(location, userList, currentUserDetails, id))
+                navigate("/login", getState(location, currentUserDetails, location.state.id))
             }}>
                 Logout
             </Button>

@@ -5,20 +5,34 @@ import User from "./screens/User";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import {Container} from "react-bootstrap";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import InvalidLogin from "./screens/InvalidLogin";
+import {getUsers, editUser} from "./shared/utilities";
+import {emptyUserDetails} from "./shared/containers";
 
 function App() {
+    const [userList, setUserList] = useState([undefined]);
+    const [currentUserDetails, setCurrentUserDetails] = useState(emptyUserDetails)
+    const statePackage = {
+        userList: userList,
+        setUserList: setUserList,
+        currentUserDetails: currentUserDetails,
+        setCurrentUserDetails: setCurrentUserDetails
+    }
+
+    useEffect(() => {
+        getUsers(setUserList);
+    }, [currentUserDetails]);
 
     return (
         <Container fluid className="frame">
             <Routes>
                 <Route path="/" element={<Navigate replace to="login"/>}/>
-                <Route path="login" element={<Login/>}/>
-                <Route path="invalid" element={<InvalidLogin/>}/>
-                <Route path="signup" element={<SignUp/>}/>
-                <Route path="user" element={<User/>}/>
-                <Route path="table" element={<UserTable/>}/>
+                <Route path="login" element={<Login state={statePackage}/>}/>
+                <Route path="invalid" element={<InvalidLogin state={statePackage}/>}/>
+                <Route path="signup" element={<SignUp state={statePackage}/>}/>
+                <Route path="user" element={<User state={statePackage}/>}/>
+                <Route path="table" element={<UserTable state={statePackage}/>}/>
             </Routes>
         </Container>
     );

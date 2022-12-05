@@ -7,7 +7,7 @@ import {useNavigate, useLocation} from 'react-router-dom';
 import {emptyUserDetails} from "../shared/containers";
 import {getConsole, getState} from "../shared/utilities";
 
-const InvalidLogin = () => {
+const InvalidLogin = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -27,7 +27,7 @@ const InvalidLogin = () => {
         //         const userData = userList.find((user) => user.name === loginDetails.name) &&
         //             Object.values(userList).find((user) => user.password === loginDetails.password)
         //         // localStorage.setItem('userId', JSON.stringify(id))
-        navigate("/table", getState(location, location.state.userList, loginDetails, location.state.id))
+        navigate("/table", getState(location, props.userList, loginDetails, location.state.id))
         //     } else {
         //         setIsLoginCorrect(false)
         //     }
@@ -50,7 +50,7 @@ const InvalidLogin = () => {
                     <h2 className="subtitle-signup">Please try again</h2>
                     <Container className="mt-3">
                         <Button variant="secondary" onClick={() => {
-                            navigate("/login", getState(location, location.state.userList, loginDetails, location.state.id))
+                            navigate("/login", getState(location, props.userList, loginDetails, location.state.id))
                         }}>
                             Retry
                         </Button>

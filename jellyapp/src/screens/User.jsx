@@ -7,29 +7,27 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
 
 
-const User = () => {
+const User = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [canEdit, setCanEdit] = useState(false)
-    const [currentUserDetails, setCurrentUserDetails] = useState({});
-    const [userList, setUserList] = useState([undefined]);
+    const [editUserDetails, setEditUserDetails] = useState(location.state.user);
 
     const onChange = (e) => {
         const name = e.target.name
-        currentUserDetails[name] = e.target.value
-        setCurrentUserDetails({...currentUserDetails})
+        editUserDetails[name] = e.target.value
+        setEditUserDetails({...editUserDetails})
     }
 
     const onSubmit = () => {
         if (location.state.prevPath === "/signup") {
-            userUpload(currentUserDetails);
+            userUpload(editUserDetails);
         } else {
-            editUser(currentUserDetails, location.state.id);
-            console.log("edit")
+            editUser(editUserDetails, props.state, location.state.id);
         }
-        getUsers(setUserList);
-        setCurrentUserDetails(currentUserDetails)
-        navigate("/table", getState(location, userList, currentUserDetails, location.state.id))
+            props.state.setCurrentUserDetails(editUserDetails)
+        canEdit ? navigate("/table", getState(location, editUserDetails, location.state.id)) :
+            navigate("/table", getState(location, props.state.currentUserDetails, location.state.id))
     }
 
     const userUpload = (userDetails) => {
@@ -43,11 +41,10 @@ const User = () => {
     }
 
     useEffect(() => {
-        getConsole(location, currentUserDetails)
+        getConsole(location, props.state.currentUserDetails)
         if (location.state.id === location.state.user.id) {
             setCanEdit(true)
         }
-        setCurrentUserDetails(location.state.currentUserDetails)
 
 
     }, []);
@@ -71,7 +68,7 @@ const User = () => {
                             name="name"
                             disabled={!canEdit}
                             onChange={onChange}
-                            value={currentUserDetails.name}
+                            value={editUserDetails.name}
                         />
                     </FloatingLabel>
 
@@ -86,7 +83,7 @@ const User = () => {
                             placeholder="Favorite Colors?"
                             name="favColor"
                             onChange={onChange}
-                            value={currentUserDetails.favColor}
+                            value={editUserDetails.favColor}
                         />
                     </FloatingLabel>
                     <FloatingLabel
@@ -100,7 +97,7 @@ const User = () => {
                             disabled={!canEdit}
                             onChange={onChange}
                             name="sizes"
-                            value={currentUserDetails.sizes}
+                            value={editUserDetails.sizes}
                         />
                     </FloatingLabel>
                     <FloatingLabel
@@ -114,7 +111,7 @@ const User = () => {
                             onChange={onChange}
                             name={"wishes"}
                             disabled={!canEdit}
-                            value={currentUserDetails.wishes}
+                            value={editUserDetails.wishes}
                         />
                     </FloatingLabel>
                     {canEdit ?
@@ -123,7 +120,7 @@ const User = () => {
                         </Button>
                         : <></>}
                     <Button variant="secondary" onClick={(e) => {
-                        navigate("/table", getState(location, userList, location.state.currentUserDetails, location.state.id))
+                        navigate("/table", getState(location, location.state.currentUserDetails, location.state.id))
                     }
                     }>
                         Cancel
@@ -131,7 +128,7 @@ const User = () => {
                 </Form>
             </Container>
             <Button className={"mt-5"} variant="secondary" onClick={() => {
-                navigate("/login", getState(location, userList, location.state.currentUserDetails, location.state.id))
+                navigate("/login", getState(location, location.state.currentUserDetails, location.state.id))
             }}>
                 Logout
             </Button>

@@ -8,14 +8,12 @@ import {useNavigate} from "react-router-dom";
 import {emptyUserDetails} from "../shared/containers";
 import {getUsers, getConsole, getState} from "../shared/utilities";
 
-const Login = () => {
+const Login = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
-
+    const [id, setId] = useState(undefined)
     const [isLoginCorrect, setIsLoginCorrect] = useState(true);
     const [loginDetails, setLoginDetails] = useState(emptyUserDetails);
-    const [userList, setUserList] = useState();
-    const [id, setId] = useState(undefined);
     const onChange = (e) => {
         const name = e.target.name
         loginDetails[name] = e.target.value
@@ -25,18 +23,18 @@ const Login = () => {
     const onSubmit = () => {
         //*****      LoginCheck - add family quiz question
         //TODO: add family quiz
-        if (userList.find((user) => user.name === loginDetails.name)) {
-            const id = (userList.find((user) => user.name === loginDetails.name).id);
-            navigate("/table", getState(location, userList, loginDetails, id))
+
+        if (props.state.userList.find((user) => user.name === loginDetails.name)) {
+            const id = (props.state.userList.find((user) => user.name === loginDetails.name).id);
+            navigate("/table", getState(location, loginDetails, id))
         }
          else {
-            navigate("/invalid", getState(location, userList, loginDetails, id))
+            navigate("/invalid", getState(location, loginDetails, id))
         }
     }
 
 
     useEffect(() => {
-        getUsers(setUserList)
         getConsole(location)
     }, []);
 
@@ -44,13 +42,11 @@ const Login = () => {
         <>
             <Container className={"pt-5"}>
                 <h1 className="title">12 Days of Spreads</h1>
-                {isLoginCorrect ? <h2 className="subtitle-signup">Login</h2> :
-                    <h2 className="subtitle-signup">Uh oh</h2>}
+               <h2 className="subtitle-signup">Login</h2>
             </Container>
             <Container className='mt-5'>
                 <Form>
-                    {isLoginCorrect ? <h2 className="subtitle-signup">Please enter your name:</h2> :
-                        <h2 className="subtitle-signup">That's not Correct</h2>}
+                    <h2 className="subtitle-signup">Please enter your name:</h2>
                     <FloatingLabel
                         controlId="floatingInput"
                         label="Name"
@@ -67,7 +63,8 @@ const Login = () => {
                             Login
                         </Button>
                         <Button variant="secondary" onClick={() => {
-                            navigate("/signup", getState(location, userList, loginDetails, id))
+                            const id = (props.state.userList.find((user) => user.name === loginDetails.name).id);
+                            navigate("/signup", getState(location, loginDetails, id))
                         }}>
                             Sign up
                         </Button>

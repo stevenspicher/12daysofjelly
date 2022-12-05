@@ -6,7 +6,7 @@ import {Container} from "react-bootstrap";
 import {useNavigate, useLocation} from 'react-router-dom';
 import {getConsole, getState} from "../shared/utilities";
 
-const SignUp = () => {
+const SignUp = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [nameIsUsed, setNameIsUsed] = useState(false);
@@ -27,12 +27,12 @@ const SignUp = () => {
         if (!nameIsUsed) {
         //TODO: add family quiz
             userUpload(newUserDetails)
-            navigate("/login", getState(location, userList, newUserDetails, newUserDetails.name))
+            navigate("/login", getState(location, props.userList, newUserDetails, newUserDetails.name))
         }
     }
 
     const nameCheck = (name) => {
-        if (location.state.userList.find((user) => user.name === name)) {
+        if (props.userList.find((user) => user.name === name)) {
             setNameIsUsed(true)
         } else {setNameIsUsed(false)}
     }
