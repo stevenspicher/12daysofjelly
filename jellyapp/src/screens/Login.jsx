@@ -6,7 +6,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import {useLocation} from 'react-router-dom';
 import {useNavigate} from "react-router-dom";
 import {emptyUserDetails} from "../shared/containers";
-import {getUsers, getConsole, getState} from "../shared/utilities";
+import {getUsers, getConsole, getState, loginQuiz} from "../shared/utilities";
 
 const Login = (props) => {
     const navigate = useNavigate();
@@ -23,21 +23,19 @@ const Login = (props) => {
     const onSubmit = () => {
         //*****      LoginCheck - add family quiz question
         //TODO: add family quiz
-        let answer = prompt("What is keya's real (first) name?")
-        if (answer === "kenda" || answer === "Kenda") {
 
-            if (props.state.userList.find((user) => user.name === loginDetails.name)) {
-                const id = (props.state.userList.find((user) => user.name === loginDetails.name).id);
-                const userDetails = (props.state.userList.find((user) => user.name === loginDetails.name));
+
+            if (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase())) {
+                const id = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()).id);
+                const userDetails = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()));
                 props.state.setCurrentUserDetails(userDetails)
-                navigate("/table", getState(location, props.state.currentUserDetails, id))
+                if (loginQuiz(userDetails, props.state, id)) {
+                    navigate("/table", getState(location, props.state.currentUserDetails, id))
+                } else {alert('nope')}
             } else {
                 navigate("/invalid", getState(location, loginDetails, id))
             }
-        } else
-        {
-            navigate("/invalid", getState(location, loginDetails, id))
-        }
+
     }
 
 
@@ -130,3 +128,4 @@ const Login = (props) => {
 };
 
 export default Login;
+

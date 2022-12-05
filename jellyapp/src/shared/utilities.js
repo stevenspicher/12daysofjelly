@@ -12,6 +12,7 @@ export const getUsers = (setUserList) => {
                         favColor: data[key].favColor,
                         sizes: data[key].sizes,
                         wishes: data[key].wishes,
+                        quiz1: data[key].quiz1
                     }
                 ))
                 setUserList(list)
@@ -28,7 +29,8 @@ export const editUser = (userData, state, id) => {
             name: userData.name,
             favColor: userData.favColor,
             sizes: userData.sizes,
-            wishes: userData.wishes
+            wishes: userData.wishes,
+            quiz1: userData.quiz1
         })
     };
     //TODO: add error catching
@@ -121,4 +123,15 @@ export const blink = () => {
                 blinks[i].style.color = "#" + color;
             }
         }, 1000);
+}
+
+export const loginQuiz  = (userDetails, state, id) => {
+    if (userDetails.quiz1 !== true) {
+    let answer = prompt("What is keya's real (first) name?")
+    if (answer === "kenda" || answer === "Kenda") {
+        userDetails.quiz1 = true
+        editUser(userDetails, state, id)
+        return true
+    }}
+    else {return true}
 }
