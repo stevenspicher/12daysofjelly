@@ -3,4 +3,5 @@ export const emptyUserDetails = {
     favColor: undefined,
     sizes: undefined,
     wishes: undefined,
+    quiz1: undefined,
 }
