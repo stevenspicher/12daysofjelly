@@ -72,36 +72,37 @@ const User = (props) => {
                         <b className="blink">s</b>
                     </h1>
                 </div>
-                <h2 className="subtitle">User Info</h2>
                 <Row>
-                    <Col xs={6}></Col>
                     <Col>
-                        <Button className={"mt-5"} variant="secondary" onClick={() => {
+                <h2 className="subtitle">{editUserDetails.name}'s Info</h2>
+                    </Col>
+                    <Col>
+                        <Button  variant="secondary" onClick={() => {
                             navigate("/login", getState(location, undefined, location.state.id))
                         }}>
                             Logout
                         </Button>
-
                     </Col>
                 </Row>
             </Container>
             <Container className='mt-5'>
                 <Form>
-                    <FloatingLabel
-                        controlId="floatingInput"
-                        label="Name"
-                        className="mb-3"
-                    >
-                        <Form.Control
-                            type="text"
-                            placeholder="rudolph"
-                            name="name"
-                            disabled={!canEdit}
-                            onChange={onChange}
-                            value={editUserDetails.name}
-                        />
-                    </FloatingLabel>
-
+                    {/*<FloatingLabel*/}
+                    {/*    controlId="floatingInput"*/}
+                    {/*    label="Name"*/}
+                    {/*    className="mb-3"*/}
+                    {/*>*/}
+                    {/*    <Form.Control*/}
+                    {/*        type="text"*/}
+                    {/*        placeholder="rudolph"*/}
+                    {/*        name="name"*/}
+                    {/*        disabled={!canEdit}*/}
+                    {/*        onChange={onChange}*/}
+                    {/*        value={editUserDetails.name}*/}
+                    {/*    />*/}
+                    {/*</FloatingLabel>*/}
+                    <Row>
+                        <Col>
                     <FloatingLabel
                         controlId="floatingTextarea1"
                         label="Favorite Color"
@@ -116,6 +117,9 @@ const User = (props) => {
                             value={editUserDetails.favColor}
                         />
                     </FloatingLabel>
+
+                        </Col>
+                        <Col>
                     <FloatingLabel
                         controlId="floatingTextarea2"
                         label="Clothing Sizes?"
@@ -130,6 +134,10 @@ const User = (props) => {
                             value={editUserDetails.sizes}
                         />
                     </FloatingLabel>
+
+                        </Col>
+                    </Row>
+
                     <FloatingLabel
                         controlId="floatingTextarea3"
                         label="Wish List"

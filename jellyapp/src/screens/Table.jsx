@@ -27,6 +27,7 @@ const [show, setShow] = useState(false);
         getUsers(props.state.setUserList)
        blink()
    }
+    }, []);
 
     useEffect(() => {
         if (props.state.currentUserDetails.favColor === undefined || props.state.currentUserDetails.wishes === undefined || props.state.currentUserDetails.sizes === undefined) {
@@ -61,17 +62,16 @@ const [show, setShow] = useState(false);
                         <b className="blink">s</b>
                     </h1>
                 </div>
-                <h2 className="subtitle">Family List</h2>
                 <Row>
-                    <Col xs={6}></Col>
                     <Col>
-                <Button className={"mt-5"} variant="secondary" onClick={() => {
-                    navigate("/login", getState(location, currentUserDetails, location.state.id))
-                }}>
-                    Logout
-                </Button>
-
-
+                        <h2 className="subtitle">Family List</h2>
+                    </Col>
+                    <Col>
+                        <Button  variant="secondary" onClick={() => {
+                            navigate("/login", getState(location, currentUserDetails, location.state.id))
+                        }}>
+                            Logout
+                        </Button>
                     </Col>
                 </Row>
             </Container>
@@ -82,7 +82,6 @@ const [show, setShow] = useState(false);
                             <Card key={index} className="cards">
                                 <Card.Header as="h5">
                                     <Row>
-
                                         <Col xs={4} >{user.name}</Col>
                                             <Col xs={4}></Col>
                                         <Col>

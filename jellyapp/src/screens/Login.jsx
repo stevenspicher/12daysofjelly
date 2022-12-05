@@ -57,7 +57,6 @@ const Login = (props) => {
         <>
             <Container className={"pt-4"} >
                 <div>
-
                     <h1 className="title">
                         <b className="blink">1</b>
                         <b className="blink">2</b>
@@ -80,13 +79,14 @@ const Login = (props) => {
                         <b className="blink">s</b>
                     </h1>
                 </div>
-                <h2 className="subtitle-signup">Login</h2>
                 <Row>
-                    <Col xs={6}></Col>
                     <Col>
-                <Button className={"mt-5"} variant="primary" onClick={onSubmit}>
-                    Login
-                </Button>
+                        <h2 className="subtitle">Welcome!</h2>
+                    </Col>
+                    <Col>
+                        <Button  variant="primary" onClick={onSubmit}>
+                            Login
+                        </Button>
                     </Col>
                 </Row>
 
