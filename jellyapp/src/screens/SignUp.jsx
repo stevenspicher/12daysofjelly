@@ -10,7 +10,6 @@ const SignUp = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [nameIsUsed, setNameIsUsed] = useState(false);
-    const [userList, setUserList] = useState([]);
     const [newUserDetails, setNewUserDetails] =useState({name: undefined})
 
     const onChange = (e) => {
@@ -27,12 +26,12 @@ const SignUp = (props) => {
         if (!nameIsUsed) {
         //TODO: add family quiz
             userUpload(newUserDetails)
-            navigate("/login", getState(location, props.userList, newUserDetails, newUserDetails.name))
+            navigate("/login", getState(location, newUserDetails, undefined))
         }
     }
 
     const nameCheck = (name) => {
-        if (props.userList.find((user) => user.name === name)) {
+        if (props.state.userList.find((user) => user.name === name)) {
             setNameIsUsed(true)
         } else {setNameIsUsed(false)}
     }
