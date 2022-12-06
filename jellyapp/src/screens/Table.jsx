@@ -81,7 +81,7 @@ const [show, setShow] = useState(false);
                             <Card key={index} className="cards">
                                 <Card.Header as="h5">
                                     <Row>
-                                        <Col xs={4} >{user.name}</Col>
+                                        <Col xs={4} >{user.name}{user.quiz1 === true ? <Badge>quiz 1</Badge>: <></>}</Col>
                                             <Col xs={4}></Col>
                                         <Col>
                                             {location.state.id === user.id ?
@@ -103,6 +103,7 @@ const [show, setShow] = useState(false);
                                     <Card.Text>
                                         Wish List: {user.wishes !== undefined ? user.wishes : <Badge bg="success">need</Badge>}
                                     </Card.Text>
+
                                 </Card.Body>
                             </Card>
                         )
