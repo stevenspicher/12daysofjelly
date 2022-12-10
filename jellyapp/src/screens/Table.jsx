@@ -29,11 +29,11 @@ const [show, setShow] = useState(false);
    }
     }, []);
 
-    useEffect(() => {
-        if (props.state.currentUserDetails.favColor === undefined || props.state.currentUserDetails.wishes === undefined || props.state.currentUserDetails.sizes === undefined) {
-            setShow(true)
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (props.state.currentUserDetails.favColor === undefined || props.state.currentUserDetails.wishes === undefined || props.state.currentUserDetails.sizes === undefined) {
+    //         setShow(true)
+    //     }
+    // }, []);
 
     return (
         <>
@@ -70,6 +70,11 @@ const [show, setShow] = useState(false);
                             navigate("/login", getState(location, currentUserDetails, location.state.id))
                         }}>
                             Logout
+                        </Button>
+                        <Button  variant="secondary" onClick={() => {
+                            navigate("/jellies", getState(location, currentUserDetails, location.state.id))
+                        }}>
+                            Jellies
                         </Button>
                     </Col>
                 </Row>
@@ -110,23 +115,23 @@ const [show, setShow] = useState(false);
                     })}
                 </Container>
             }
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Welcome!</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Items on your list are empty!</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => {
-                        const index = props.state.userList.indexOf(props.state.userList.find((user) => user.id === location.state.id).id)
-                        navigate("/user", getState(location, props.state.currentUserDetails, location.state.id, props.state.currentUserDetails, index))
-                    }}>
-                        Fill it
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Do it Later
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            {/*<Modal show={show} onHide={handleClose}>*/}
+            {/*    <Modal.Header closeButton>*/}
+            {/*        <Modal.Title>Welcome!</Modal.Title>*/}
+            {/*    </Modal.Header>*/}
+            {/*    <Modal.Body>Items on your list are empty!</Modal.Body>*/}
+            {/*    <Modal.Footer>*/}
+            {/*        <Button variant="secondary" onClick={() => {*/}
+            {/*            const index = props.state.userList.indexOf(props.state.userList.find((user) => user.id === location.state.id).id)*/}
+            {/*            navigate("/user", getState(location, props.state.currentUserDetails, location.state.id, props.state.currentUserDetails, index))*/}
+            {/*        }}>*/}
+            {/*            Fill it*/}
+            {/*        </Button>*/}
+            {/*        <Button variant="primary" onClick={handleClose}>*/}
+            {/*            Do it Later*/}
+            {/*        </Button>*/}
+            {/*    </Modal.Footer>*/}
+            {/*</Modal>*/}
         </>
     )
 };

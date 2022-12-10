@@ -9,6 +9,8 @@ import React, {useEffect, useState} from "react";
 import InvalidLogin from "./screens/InvalidLogin";
 import {getUsers, editUser} from "./shared/utilities";
 import {emptyUserDetails} from "./shared/containers";
+import JellyList from "./screens/JellyList";
+import Jellies from "./screens/Jellies";
 
 function App() {
     const [userList, setUserList] = useState([undefined]);
@@ -33,6 +35,8 @@ function App() {
                 <Route path="signup" element={<SignUp state={statePackage}/>}/>
                 <Route path="user" element={<User state={statePackage}/>}/>
                 <Route path="table" element={<UserTable state={statePackage}/>}/>
+                <Route path="jellies" element={<JellyList state={statePackage}/>}/>
+                <Route path="jelly" element={<Jellies state={statePackage}/>}/>
             </Routes>
         </Container>
     );

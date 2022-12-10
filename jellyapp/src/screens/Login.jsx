@@ -6,7 +6,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import {useLocation} from 'react-router-dom';
 import {useNavigate} from "react-router-dom";
 import {emptyUserDetails} from "../shared/containers";
-import {getUsers, getConsole, getState, loginQuiz} from "../shared/utilities";
+import {getUsers, getConsole, getState, loginQuiz, blink} from "../shared/utilities";
 
 const Login = (props) => {
     const navigate = useNavigate();
@@ -41,6 +41,7 @@ const Login = (props) => {
 
     useEffect(() => {
         getConsole(location)
+        blink()
     }, []);
 
 
@@ -89,7 +90,7 @@ const Login = (props) => {
 
             </Container>
             <Container className='mt-5'>
-                <Form>
+                <Form onSubmit={onSubmit}>
                     <h2 className="subtitle-signup">Please enter your name:</h2>
                     <FloatingLabel
                         controlId="floatingInput"
