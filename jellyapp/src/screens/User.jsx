@@ -136,6 +136,7 @@ const User = (props) => {
 
                         </Col>
                     </Row>
+<Row >
 
                     <FloatingLabel
                         controlId="floatingTextarea3"
@@ -143,14 +144,16 @@ const User = (props) => {
                         className="mb-3">
                         <Form.Control
                             as="textarea"
+                            rows={10}
                             placeholder="What would you like for Christmas?"
-                            style={{height: '100px'}}
+                            style={{height: '400px'}}
                             onChange={onChange}
                             name={"wishes"}
                             disabled={!canEdit}
                             value={editUserDetails.wishes}
                         />
                     </FloatingLabel>
+</Row>
                     {canEdit ? <Button variant="primary" onClick={onSubmit}>
                         Submit
                     </Button> : <></>}

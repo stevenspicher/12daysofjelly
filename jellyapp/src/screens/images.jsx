@@ -2,28 +2,42 @@ import React, {useEffect, useState} from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {Container, Row, Col} from "react-bootstrap";
+import {Container, Row, Col, Card, Badge} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
+import {jellyList} from "../shared/containers";
+import {imageList} from "../shared/containers";
 
 
-const Jellies = (props) => {
+const Images = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [canEdit, setCanEdit] = useState(false)
-    const [jellyDetails, setJellyDetails]= useState(location.state.user);
-    const [editUserDetails, setEditUserDetails] = useState(location.state.user);
 
-    const onChange = (e) => {
-        const name = e.target.name
-        editUserDetails[name] = e.target.value
-        setEditUserDetails({...editUserDetails})
-    }
 
-    const onSubmit = () => {
-            editUser(editUserDetails, props.state, location.state.id);
-        props.state.setCurrentUserDetails(editUserDetails)
-    }
+    // const onChange = (e) => {
+    //     const name = e.target.name
+    //     editUserDetails[name] = e.target.value
+    //     setEditUserDetails({...editUserDetails})
+    // }
+
+    // const onSubmit = () => {
+    //     if (location.state.prevPath === "/signup") {
+    //         userUpload(editUserDetails);
+    //     } else {
+    //         editUser(editUserDetails, props.state, location.state.id);
+    //     }
+    //     props.state.setCurrentUserDetails(editUserDetails)
+    //     canEdit ? navigate("/table", getState(location, editUserDetails, location.state.id)) : navigate("/table", getState(location, props.state.currentUserDetails, location.state.id))
+    // }
+
+    // const userUpload = (userDetails) => {
+    //     fetch("https://daysofjelly-default-rtdb.firebaseio.com/userList.json", {
+    //         method: 'POST', headers: {
+    //             'Content-Type': 'application/json'
+    //         }, body: JSON.stringify(userDetails)
+    //     })
+    // }
 
     useEffect(() => {
         getConsole(location, props.state.currentUserDetails)
@@ -55,9 +69,10 @@ const Jellies = (props) => {
                         <b className="blink">s</b>
                     </h1>
                 </div>
+
                 <Row>
                     <Col>
-                <h2 className="subtitle">{jellyDetails.name} </h2>
+                <h2 className="title-signup">images were generated using an AI with these descriptions and styles:</h2>
                     </Col>
                     <Col>
                         <Button variant="secondary" onClick={() => {
@@ -72,33 +87,28 @@ const Jellies = (props) => {
                         </Button>
                     </Col>
                 </Row>
+                        <Container className='mt-5'>
+                            {imageList.map((jelly, index) => {
+                                return (
+                                    <Card key={index} className="cards">
+                                        <Card.Header as="h5">
+                                            <p className={"title-signup"}>{jelly.name}</p>
+                                        </Card.Header>
+                                        <Card.Body>
+                                            <Card.Img src={jelly.image}></Card.Img>
+
+                                        </Card.Body>
+                                    </Card>
+                                )
+                            })}
+                        </Container>
             </Container>
             <Container className='mt-5'>
                 <Form>
-                    <Form.Label>Range</Form.Label>
-                    <Form.Range />
-                    <FloatingLabel
 
-                        controlId="floatingInput"
-                        label="Delivery Method"
-                        className="m-3"
-                    >
-                        <Form.Control
-                           as="textarea"
-                           rows={5}
-                            placeholder=""
-                           style={{height: '200px'}}
-                            name="deliveryMethod"
-                            onChange={onChange}
-
-                        />
-                    </FloatingLabel>
-                    <Button  variant="primary" onClick={onSubmit}>
-                        Submit
-                    </Button>
                 </Form>
             </Container>
         </div>)
 };
 
-export default Jellies;
+export default Images;

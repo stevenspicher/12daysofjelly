@@ -72,7 +72,7 @@ const [show, setShow] = useState(false);
                             Logout
                         </Button>
                         <Button  variant="secondary" onClick={() => {
-                            navigate("/jellies", getState(location, currentUserDetails, location.state.id))
+                            navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
                         }}>
                             Jellies
                         </Button>

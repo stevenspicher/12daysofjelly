@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Container} from "react-bootstrap";
-import {Button, Card, Col, Row, Modal, Badge, Carousel} from "react-bootstrap";
+import {Button, Card, Col, Row, Modal, Badge, Carousel, Form} from "react-bootstrap";
 import {useLocation, useNavigate} from 'react-router-dom';
 
 import {getConsole, getState, getUsers, blink} from "../shared/utilities";
@@ -54,40 +54,61 @@ const [show, setShow] = useState(false);
                     </Col>
                     <Col>
                         <Button  variant="secondary" onClick={() => {
-                            navigate("/login", getState(location, currentUserDetails, location.state.id))
+                            navigate("/login", getState(location, location.state.currentUserDetails, location.state.id))
                         }}>
                             Logout
                         </Button>
                         <Button  variant="secondary" onClick={() => {
-                            navigate("/table", getState(location, currentUserDetails, location.state.id))
+                            navigate("/table", getState(location, location.state.currentUserDetails, location.state.id))
                         }}>
                             Family
+                        </Button>
+                        <Button  variant="secondary" onClick={() => {
+                            navigate("/firstratings", getState(location, location.state.currentUserDetails, location.state.id))
+                        }}>
+                            PreRate
                         </Button>
                     </Col>
                 </Row>
             </Container>
 
-            <Carousel className={"mt-5"} data-interval={0} fade variant="dark" indicators={false} >
+            <Carousel className={"mt-2"} interval={null} fade variant="dark" indicators={false} controls={false} >
                 {jellyList.map((jelly, index) => {
 
                             return (
-                <Carousel.Item key={index} onClick={() => {
-                                            getUsers(props.state.setUserList)
-                                            navigate("/jelly", getState(location, currentUserDetails, location.state.id, jelly, index))}}
-                    >
-                    <h3 className={"subtitle"}>{jelly.name}</h3>
-                    <img
+                <Carousel.Item key={index}>
+                    <h3 className={"subtitle"}>{jelly.id}: {jelly.name}</h3>
+                    <Row>
+                       <Col>
+                           {/*<Form>*/}
+                           {/*    {['most liked', 'least liked', 'most controvertial'].map((type) => (*/}
+                           {/*        <div key={type} className="mb-3">*/}
+                           {/*            <Form.Check*/}
+                           {/*                type={'checkbox'}*/}
+                           {/*                id={type}*/}
+                           {/*                label={type}*/}
+                           {/*            />*/}
+                           {/*        </div>*/}
+                           {/*    ))}*/}
+                           {/*</Form>*/}
+                       </Col>
+
+                    </Row>
+                    <img onClick={() => {
+                        navigate("/jelly", getState(location, currentUserDetails, location.state.id,jelly, index))
+                    }}
                         className="d-block w-100"
                         src={jelly.image}
                         alt="First slide"
                     />
+
                 </Carousel.Item>
                             )})}
 
             </Carousel>
 
-            <Button className={"mt-5"} variant="secondary" onClick={() => {
-                navigate("/table", getState(location, currentUserDetails, location.state.id))
+            <Button className={"mt-2"} variant="secondary" onClick={() => {
+                navigate("/images", getState(location, currentUserDetails, location.state.id))
             }}>
                 What's up with the images?
             </Button>

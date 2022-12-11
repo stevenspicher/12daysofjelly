@@ -11,6 +11,8 @@ import {getUsers, editUser} from "./shared/utilities";
 import {emptyUserDetails} from "./shared/containers";
 import JellyList from "./screens/JellyList";
 import Jellies from "./screens/Jellies";
+import Images from "./screens/images";
+import FirstRatings from "./screens/pre-ratings";
 
 function App() {
     const [userList, setUserList] = useState([undefined]);
@@ -37,6 +39,8 @@ function App() {
                 <Route path="table" element={<UserTable state={statePackage}/>}/>
                 <Route path="jellies" element={<JellyList state={statePackage}/>}/>
                 <Route path="jelly" element={<Jellies state={statePackage}/>}/>
+                <Route path="images" element={<Images state={statePackage}/>}/>
+                <Route path="firstratings" element={<FirstRatings state={statePackage}/>}/>
             </Routes>
         </Container>
     );
