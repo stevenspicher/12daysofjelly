@@ -51,7 +51,6 @@ export const editUser = (userData, state, id) => {
 }
 
 export const editRatings = (userData,jellyDetails, state, id) => {
-console.log(userData)
     userData.jellies[jellyDetails.id] = jellyDetails
     const requestOptions = {
         method: 'PATCH',
@@ -89,7 +88,7 @@ export const getConsole = (location, currentUserDetails, userList) => {
         } else {
             user.name = "no one is logged in"
         }
-        console.log(location.state)
+        // console.log(location.state)
         // console.log("***")
         //
         //
