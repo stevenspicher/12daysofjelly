@@ -12,7 +12,12 @@ export const getUsers = (setUserList) => {
                         favColor: data[key].favColor,
                         sizes: data[key].sizes,
                         wishes: data[key].wishes,
-                        quiz1: data[key].quiz1
+                        quiz1: data[key].quiz1,
+                        mostLiked: data[key].mostLiked,
+                        mostControversial: data[key].mostControversial,
+                        leastLiked: data[key].leastLiked,
+                        preRating: data[key].preRating,
+                        jellies: data[key].jellies
                     }
                 ))
                 setUserList(list)
@@ -30,7 +35,37 @@ export const editUser = (userData, state, id) => {
             favColor: userData.favColor,
             sizes: userData.sizes,
             wishes: userData.wishes,
-            quiz1: userData.quiz1
+            quiz1: userData.quiz1,
+            mostLiked: userData.mostLiked,
+            mostControversial: userData.mostControversial,
+            leastLiked: userData.leastLiked,
+            preRating: userData.preRating,
+            jellies: userData.jellies
+        })
+    };
+    //TODO: add error catching
+    fetch(`https://daysofjelly-default-rtdb.firebaseio.com/userList/${id}.json`, requestOptions)
+        .then(response => response.json())
+
+    getUsers(state.setUserList)
+}
+
+export const editRatings = (userData,jellyDetails, state, id) => {
+    userData.jellies[jellyDetails.id] = jellyDetails
+    const requestOptions = {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            name: userData.name,
+            favColor: userData.favColor,
+            sizes: userData.sizes,
+            wishes: userData.wishes,
+            quiz1: userData.quiz1,
+            mostLiked: userData.mostLiked,
+            mostControversial: userData.mostControversial,
+            leastLiked: userData.leastLiked,
+            preRating: userData.preRating,
+            jellies: userData.jellies
         })
     };
     //TODO: add error catching

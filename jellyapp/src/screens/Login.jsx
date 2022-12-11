@@ -6,7 +6,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import {useLocation} from 'react-router-dom';
 import {useNavigate} from "react-router-dom";
 import {emptyUserDetails} from "../shared/containers";
-import {getUsers, getConsole, getState, loginQuiz} from "../shared/utilities";
+import {getUsers, getConsole, getState, loginQuiz, blink} from "../shared/utilities";
 
 const Login = (props) => {
     const navigate = useNavigate();
@@ -25,22 +25,29 @@ const Login = (props) => {
         //TODO: add family quiz
 
 
-            if (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase())) {
-                const id = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()).id);
-                const userDetails = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()));
-                props.state.setCurrentUserDetails(userDetails)
-                if (loginQuiz(userDetails, props.state, id)) {
-                    navigate("/table", getState(location, props.state.currentUserDetails, id))
-                } else {alert('nope')}
+        if (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase())) {
+            const id = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()).id);
+            const userDetails = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()));
+            props.state.setCurrentUserDetails(userDetails)
+            if (loginQuiz(userDetails, props.state, id)) {
+                if (userDetails.preRating !== true) {
+                    navigate("/firstratings", getState(location, props.state.currentUserDetails, id))
+                } else {
+                    navigate("/jellies", getState(location, props.state.currentUserDetails, id))
+                }
             } else {
-                navigate("/invalid", getState(location, loginDetails, id))
+                alert('nope')
             }
+        } else {
+            navigate("/invalid", getState(location, loginDetails, id))
+        }
 
     }
 
 
     useEffect(() => {
         getConsole(location)
+        blink()
     }, []);
 
 
@@ -53,7 +60,7 @@ const Login = (props) => {
 
     return (
         <>
-            <Container className={"pt-4"} >
+            <Container className={"pt-4"}>
                 <div>
                     <h1 className="title">
                         <b className="blink">1</b>
@@ -81,7 +88,7 @@ const Login = (props) => {
                         <h2 className="subtitle">Welcome!</h2>
                     </Col>
                     <Col>
-                        <Button  variant="primary" onClick={onSubmit}>
+                        <Button variant="primary" onClick={onSubmit}>
                             Login
                         </Button>
                     </Col>
@@ -89,7 +96,7 @@ const Login = (props) => {
 
             </Container>
             <Container className='mt-5'>
-                <Form>
+                <Form onSubmit={onSubmit}>
                     <h2 className="subtitle-signup">Please enter your name:</h2>
                     <FloatingLabel
                         controlId="floatingInput"
@@ -98,10 +105,10 @@ const Login = (props) => {
                         name="name"
                     >
 
-                                <Form.Control type="text"
-                                              name="name"
-                                              onChange={onChange}
-                                              placeholder="your name here"/>
+                        <Form.Control type="text"
+                                      name="name"
+                                      onChange={onChange}
+                                      placeholder="your name here"/>
 
 
                     </FloatingLabel>
@@ -112,7 +119,7 @@ const Login = (props) => {
             <Container className="m-5 ">
 
                 <Row>
-<Col xs={6}></Col>
+                    <Col xs={6}></Col>
                     {/*<Col>*/}
                     {/*    <Badge bg="success" onClick={() => {*/}
                     {/*        navigate("/signup", getState(location, loginDetails, undefined))*/}
