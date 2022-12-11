@@ -34,10 +34,11 @@ const FirstRatings = (props) => {
     }
 
     const onSubmit = () => {
+        editUserDetails.preRating = true;
         console.log(editUserDetails)
-        //     editUser(editUserDetails, props.state, location.state.id)
-        // props.state.setCurrentUserDetails(editUserDetails)
-        // navigate("/jellies", getState(location, editUserDetails, location.state.id))
+            editUser(editUserDetails, props.state, location.state.id)
+        props.state.setCurrentUserDetails(editUserDetails)
+        navigate("/jellies", getState(location, editUserDetails, location.state.id))
     }
 
     useEffect(() => {
@@ -76,18 +77,6 @@ const FirstRatings = (props) => {
                 <Row>
                     <Col>
                 <h2 className="title-signup">Choose before your first Rating!</h2>
-                    </Col>
-                    <Col>
-                        <Button variant="secondary" onClick={() => {
-                            navigate("/login", getState(location, location.state.currentUserDetails, location.state.id))
-                        }}>
-                            Logout
-                        </Button>
-                        <Button  variant="secondary" onClick={() => {
-                            navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
-                        }}>
-                            Jellies
-                        </Button>
                     </Col>
                 </Row>
                          <Container className='mt-5'>

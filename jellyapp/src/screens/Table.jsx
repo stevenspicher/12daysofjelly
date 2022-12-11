@@ -86,7 +86,7 @@ const [show, setShow] = useState(false);
                             <Card key={index} className="cards">
                                 <Card.Header as="h5">
                                     <Row>
-                                        <Col xs={4} >{user.name}{user.quiz1 === true ? <Badge>quiz 1</Badge>: <></>}</Col>
+                                        <Col xs={4} >{user.name}{user.quiz1 === true ? <Badge>quiz 1</Badge>: <></>}{user.preRating=== true ? <Badge>PreRating</Badge>: <></>}</Col>
                                             <Col xs={4}></Col>
                                         <Col>
                                             {location.state.id === user.id ?

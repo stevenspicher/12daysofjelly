@@ -4,25 +4,27 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Container, Row, Col} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
-import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
+import {getConsole, getState, editRatings} from "../shared/utilities";
 
 
 const Jellies = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [canEdit, setCanEdit] = useState(false)
+    const [ value, setValue ] = useState(50);
     const [jellyDetails, setJellyDetails]= useState(location.state.user);
-    const [editUserDetails, setEditUserDetails] = useState(location.state.user);
 
     const onChange = (e) => {
-        const name = e.target.name
-        editUserDetails[name] = e.target.value
-        setEditUserDetails({...editUserDetails})
+
+        jellyDetails.deliveryMethod = e.target.value
+        setJellyDetails({...jellyDetails})
     }
 
     const onSubmit = () => {
-            editUser(editUserDetails, props.state, location.state.id);
-        props.state.setCurrentUserDetails(editUserDetails)
+        console.log(location.state.currentUserDetails)
+        console.log(jellyDetails)
+    jellyDetails.rating = value
+            editRatings(location.state.currentUserDetails, jellyDetails, props.state, location.state.id);
+        navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
     }
 
     useEffect(() => {
@@ -75,10 +77,13 @@ const Jellies = (props) => {
             </Container>
             <Container className='mt-5'>
                 <Form>
-                    <Form.Label>Range</Form.Label>
-                    <Form.Range />
+                    <Form.Label>Rating: {value/10}</Form.Label>
+                    <Form.Range
+                        value={value}
+                        onChange={e => setValue(e.target.value)}
+                        step={10}
+                    />
                     <FloatingLabel
-
                         controlId="floatingInput"
                         label="Delivery Method"
                         className="m-3"

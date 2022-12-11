@@ -63,11 +63,6 @@ const [show, setShow] = useState(false);
                         }}>
                             Family
                         </Button>
-                        <Button  variant="secondary" onClick={() => {
-                            navigate("/firstratings", getState(location, location.state.currentUserDetails, location.state.id))
-                        }}>
-                            PreRate
-                        </Button>
                     </Col>
                 </Row>
             </Container>
@@ -78,24 +73,8 @@ const [show, setShow] = useState(false);
                             return (
                 <Carousel.Item key={index}>
                     <h3 className={"subtitle"}>{jelly.id}: {jelly.name}</h3>
-                    <Row>
-                       <Col>
-                           {/*<Form>*/}
-                           {/*    {['most liked', 'least liked', 'most controvertial'].map((type) => (*/}
-                           {/*        <div key={type} className="mb-3">*/}
-                           {/*            <Form.Check*/}
-                           {/*                type={'checkbox'}*/}
-                           {/*                id={type}*/}
-                           {/*                label={type}*/}
-                           {/*            />*/}
-                           {/*        </div>*/}
-                           {/*    ))}*/}
-                           {/*</Form>*/}
-                       </Col>
-
-                    </Row>
                     <img onClick={() => {
-                        navigate("/jelly", getState(location, currentUserDetails, location.state.id,jelly, index))
+                        navigate("/jelly", getState(location, location.state.currentUserDetails, location.state.id,jelly, index))
                     }}
                         className="d-block w-100"
                         src={jelly.image}

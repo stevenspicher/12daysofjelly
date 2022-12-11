@@ -29,61 +29,59 @@ export const emptyUserDetails = {
     mostLiked: false,
     leastLiked: false,
     jellies: {
-        apricotAndPeach: {
-            id: 1,
+        1: {
             rating: undefined,
             deliveryMethod:""
         },
-        cherriesWithElderflower: {
-            id: 2,
+        2: {
             rating: undefined,
             deliveryMethod:""
         },
-        chestnutAndOrangeWithSpice: {
+        3: {
             id: 3,
             rating: undefined,
             deliveryMethod:""
         },
-        figsWithCardamom: {
+        4: {
             id: 4,
             rating: undefined,
             deliveryMethod:""
         },
-        grapefruitanddragonfruit: {
+        5: {
             id: 5,
             rating: undefined,
             deliveryMethod:""
         },
-        honey: {
+        6: {
             id: 6,
             rating: undefined,
             deliveryMethod:""
         },
-        mangoRaspberryAndLime: {
+        7: {
             id: 7,
             deliveryMethod:""
         },
-        mirabelleplumwithspice: {
+        8: {
             id: 8,
             rating: undefined,
             deliveryMethod:""
         },
-        orangeyuzuandgrapefruit: {
+        9: {
             id: 9,
             rating: undefined,
             deliveryMethod:""
         },
-        peachWithJasmine: {
+        10: {
             id: 10,
             rating: undefined,
             deliveryMethod:""
         },
-        rhubarbAndStrawberry: {
+        11: {
             id: 11,
             rating: undefined,
             deliveryMethod:""
         },
-        strawberryAndAnise: {
+        12: {
             id: 12,
             rating: undefined,
             deliveryMethod:""
