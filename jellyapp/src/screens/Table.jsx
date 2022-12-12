@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Container} from "react-bootstrap";
 import {Button, Card, Col, Row, Modal, Badge} from "react-bootstrap";
 import {useLocation, useNavigate} from 'react-router-dom';
-
+import {jellyList} from "../shared/containers";
 import {getConsole, getState, getUsers, blink} from "../shared/utilities";
 
 
@@ -72,7 +72,7 @@ const [show, setShow] = useState(false);
                             Logout
                         </Button>
                         <Button  variant="secondary" onClick={() => {
-                            navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
+                            navigate("/jellies", getState(location, currentUserDetails, location.state.id))
                         }}>
                             Jellies
                         </Button>
@@ -86,16 +86,22 @@ const [show, setShow] = useState(false);
                             <Card key={index} className="cards">
                                 <Card.Header as="h5">
                                     <Row>
-                                        <Col xs={4} >{user.name}{user.quiz1 === true ? <Badge>quiz 1</Badge>: <></>}{user.preRating=== true ? <Badge>PreRating</Badge>: <></>}</Col>
-                                            <Col xs={4}></Col>
+                                        <Col >{user.name}</Col>
                                         <Col>
-                                            {location.state.id === user.id ?
-                                                <Button onClick={() => {
-                                                    getUsers(props.state.setUserList)
-                                                    navigate("/user", getState(location, currentUserDetails, location.state.id, user, index))
-                                                }}>Edit</Button> :
-                                                <></>}
+                                            {user.quiz1 === true ? <h6><Badge>quiz 1</Badge></h6>: <></>}
                                         </Col>
+                                            <Col>
+                                                {/*//TODO: display ratings*/}
+                                                {user.preRating === true ? <h6><Badge>Prediction</Badge></h6>: <></>}
+                                                {/*{user.jellies !== undefined ?*/}
+                                                {/*    user.jellies[index].rating !== undefined ?*/}
+                                                {/*    jellyList.map((jelly, index) => (*/}
+                                                {/*    <h6><Badge>{jelly.name}: {user.jellies[index].rating}</Badge></h6>*/}
+                                                {/*    ))*/}
+                                                {/*    : <></>*/}
+                                                {/*    : <></>*/}
+                                                {/*       }*/}
+                                            </Col>
                                     </Row>
                                 </Card.Header>
                                 <Card.Body>
@@ -108,6 +114,14 @@ const [show, setShow] = useState(false);
                                     <Card.Text>
                                         Wish List: {user.wishes !== undefined ? user.wishes : <Badge bg="success">need</Badge>}
                                     </Card.Text>
+                                    <Row>
+                                        {location.state.id === user.id ?
+                                            <Button onClick={() => {
+                                                getUsers(props.state.setUserList)
+                                                navigate("/user", getState(location, currentUserDetails, location.state.id, user, index))
+                                            }}>Edit</Button> :
+                                            <></>}
+                                    </Row>
 
                                 </Card.Body>
                             </Card>

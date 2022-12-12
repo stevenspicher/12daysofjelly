@@ -30,10 +30,12 @@ export const emptyUserDetails = {
     leastLiked: false,
     jellies: {
         1: {
+            id: 1,
             rating: undefined,
             deliveryMethod:""
         },
         2: {
+            id: 2,
             rating: undefined,
             deliveryMethod:""
         },

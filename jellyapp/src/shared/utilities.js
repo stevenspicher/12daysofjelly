@@ -13,6 +13,9 @@ export const getUsers = (setUserList) => {
                         sizes: data[key].sizes,
                         wishes: data[key].wishes,
                         quiz1: data[key].quiz1,
+                        quiz2: data[key].quiz2,
+                        quiz3: data[key].quiz3,
+                        quiz5: data[key].quiz5,
                         mostLiked: data[key].mostLiked,
                         mostControversial: data[key].mostControversial,
                         leastLiked: data[key].leastLiked,
@@ -36,6 +39,8 @@ export const editUser = (userData, state, id) => {
             sizes: userData.sizes,
             wishes: userData.wishes,
             quiz1: userData.quiz1,
+            quiz2: userData.quiz2,
+            quiz3: userData.quiz3,
             mostLiked: userData.mostLiked,
             mostControversial: userData.mostControversial,
             leastLiked: userData.leastLiked,
@@ -97,7 +102,7 @@ export const getConsole = (location, currentUserDetails, userList) => {
         //     console.log("prevPath: " + location.state.prevPath);
         // }
         // console.log("***")
-        // console.log("location.state.currentUserDetails:");
+        console.log("location.state.currentUserDetails:");
         // console.log("favColor: " + user.favColor);
         // console.log("sizes: " + user.sizes);
         // console.log("wishes: " + user.wishes);
@@ -163,10 +168,21 @@ export const blink = () => {
 export const loginQuiz  = (userDetails, state, id) => {
     if (userDetails.quiz1 !== true) {
     let answer = prompt("What is keya's real (first) name?")
-    if (answer === "kenda" || answer === "Kenda") {
+    if (answer.toLowerCase() === "kenda")  {
         userDetails.quiz1 = true
         editUser(userDetails, state, id)
         return true
     }}
+    else {return true}
+}
+
+export const loginQuiz2  = (userDetails, state, id) => {
+    if (userDetails.quiz2 !== true) {
+        let answer = prompt("Where did Ernie work? (will accept 'the ...' or just '...' )")
+        if (answer.toLowerCase() === "post office" || answer === "the post office") {
+            userDetails.quiz2 = true
+            editUser(userDetails, state, id)
+            return true
+        }}
     else {return true}
 }

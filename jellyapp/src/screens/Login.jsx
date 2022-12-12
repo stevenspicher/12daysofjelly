@@ -6,7 +6,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import {useLocation} from 'react-router-dom';
 import {useNavigate} from "react-router-dom";
 import {emptyUserDetails} from "../shared/containers";
-import {getUsers, getConsole, getState, loginQuiz, blink} from "../shared/utilities";
+import {getUsers, getConsole, getState, loginQuiz, loginQuiz2, blink} from "../shared/utilities";
 
 const Login = (props) => {
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Login = (props) => {
             const id = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()).id);
             const userDetails = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()));
             props.state.setCurrentUserDetails(userDetails)
-            if (loginQuiz(userDetails, props.state, id)) {
+            if (loginQuiz(userDetails, props.state, id) && loginQuiz2(userDetails, props.state, id)) {
                 if (userDetails.preRating !== true) {
                     navigate("/firstratings", getState(location, props.state.currentUserDetails, id))
                 } else {
@@ -52,10 +52,10 @@ const Login = (props) => {
 
 
     useEffect(() => {
-        if (location.state !== null)
-            if (location.state.prevPath === "/signup") {
+        // if (location.state !== null)
+        //     if (location.state.prevPath === "/signup") {
                 getUsers(props.state.setUserList)
-            }
+            // }
     }, []);
 
     return (

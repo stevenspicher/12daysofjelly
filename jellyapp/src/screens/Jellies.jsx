@@ -20,9 +20,8 @@ const Jellies = (props) => {
     }
 
     const onSubmit = () => {
-        console.log(location.state.currentUserDetails)
-        console.log(jellyDetails)
-    jellyDetails.rating = value
+    jellyDetails.rating = value;
+    jellyDetails.rated = true;
             editRatings(location.state.currentUserDetails, jellyDetails, props.state, location.state.id);
         navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
     }

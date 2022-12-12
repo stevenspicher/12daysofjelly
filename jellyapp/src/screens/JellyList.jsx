@@ -72,7 +72,7 @@ const [show, setShow] = useState(false);
 
                             return (
                 <Carousel.Item key={index}>
-                    <h3 className={"subtitle"}>{jelly.id}: {jelly.name} {location.state.currentUserDetails.jellies[jelly.id].rating !== undefined ? " Rating: " + location.state.currentUserDetails.jellies[jelly.id].rating : " - not rated"}</h3>
+                    <h3 className={"subtitle"}>{jelly.id}: {jelly.name} </h3>
                     <img onClick={() => {
                         navigate("/jelly", getState(location, location.state.currentUserDetails, location.state.id,jelly, index))
                     }}
