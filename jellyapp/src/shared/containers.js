@@ -29,6 +29,7 @@ export const emptyUserDetails = {
     mostLiked: false,
     leastLiked: false,
     jellies: {
+0: {id: 0, rating: 1},
         1: {
             id: 1,
             rating: undefined,

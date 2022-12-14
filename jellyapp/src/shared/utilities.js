@@ -61,16 +61,27 @@ export const editRatings = (userData,jellyDetails, state, id) => {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            name: userData.name,
-            favColor: userData.favColor,
-            sizes: userData.sizes,
-            wishes: userData.wishes,
-            quiz1: userData.quiz1,
+            jellies: userData.jellies
+        })
+    };
+    //TODO: add error catching
+    fetch(`https://daysofjelly-default-rtdb.firebaseio.com/userList/${id}.json`, requestOptions)
+        .then(response => response.json())
+
+    getUsers(state.setUserList)
+};
+
+export const editPredictions = (userData, state, id) => {
+
+    const requestOptions = {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+
             mostLiked: userData.mostLiked,
             mostControversial: userData.mostControversial,
             leastLiked: userData.leastLiked,
             preRating: userData.preRating,
-            jellies: userData.jellies
         })
     };
     //TODO: add error catching
@@ -82,17 +93,17 @@ export const editRatings = (userData,jellyDetails, state, id) => {
 
 export const getConsole = (location, currentUserDetails, userList) => {
     // console.clear()
-    let user = {name: undefined};
-    if (location.pathname !== "/login") {
-        if (location.state.currentUserDetails !== undefined) {
-            user.name = location.state.currentUserDetails.name
-            user.wishes = location.state.currentUserDetails.wishes
-            user.sizes = location.state.currentUserDetails.sizes
-            user.favColor = location.state.currentUserDetails.favColor
-            user.id = location.state.id
-        } else {
-            user.name = "no one is logged in"
-        }
+    // let user = {name: undefined};
+    // if (location.pathname !== "/login") {
+    //     if (location.state.currentUserDetails !== undefined) {
+    //         user.name = location.state.currentUserDetails.name
+    //         user.wishes = location.state.currentUserDetails.wishes
+    //         user.sizes = location.state.currentUserDetails.sizes
+    //         user.favColor = location.state.currentUserDetails.favColor
+    //         user.id = location.state.id
+    //     } else {
+    //         user.name = "no one is logged in"
+    //     }
         // console.log(location.state)
         // console.log("***")
         //
@@ -102,7 +113,7 @@ export const getConsole = (location, currentUserDetails, userList) => {
         //     console.log("prevPath: " + location.state.prevPath);
         // }
         // console.log("***")
-        console.log("location.state.currentUserDetails:");
+        // console.log("location.state.currentUserDetails:");
         // console.log("favColor: " + user.favColor);
         // console.log("sizes: " + user.sizes);
         // console.log("wishes: " + user.wishes);
@@ -122,7 +133,7 @@ export const getConsole = (location, currentUserDetails, userList) => {
         // if (location.state.user !== undefined) {
             // console.log("viewing: " + location.state.user.id);
         // }
-    }
+    // }
 }
 
 

@@ -50,19 +50,32 @@ const [show, setShow] = useState(false);
                 </div>
                 <Row>
                     <Col>
-                        <h2 className="subtitle">swipe to change, click to rate</h2>
-                    </Col>
-                    <Col>
                         <Button  variant="secondary" onClick={() => {
                             navigate("/login", getState(location, location.state.currentUserDetails, location.state.id))
                         }}>
                             Logout
                         </Button>
+                    </Col>
+                    <Col>
                         <Button  variant="secondary" onClick={() => {
                             navigate("/table", getState(location, location.state.currentUserDetails, location.state.id))
                         }}>
                             Family
                         </Button>
+
+                    </Col>
+                    <Col>
+
+                    <Button  variant="secondary" onClick={() => {
+                        navigate("/chart", getState(location, location.state.currentUserDetails, location.state.id))
+                    }}>
+                        Chart
+                    </Button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <h2 className="subtitle">swipe to change, click to rate</h2>
                     </Col>
                 </Row>
             </Container>

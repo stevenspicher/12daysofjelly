@@ -14,13 +14,12 @@ const Jellies = (props) => {
     const [jellyDetails, setJellyDetails]= useState(location.state.user);
 
     const onChange = (e) => {
-
-        jellyDetails.deliveryMethod = e.target.value
+        jellyDetails.deliveryMethod = e.target.value;
         setJellyDetails({...jellyDetails})
     }
 
     const onSubmit = () => {
-    jellyDetails.rating = value;
+    jellyDetails.rating = value/10;
     jellyDetails.rated = true;
             editRatings(location.state.currentUserDetails, jellyDetails, props.state, location.state.id);
         navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
@@ -58,19 +57,30 @@ const Jellies = (props) => {
                 </div>
                 <Row>
                     <Col>
-                <h2 className="subtitle">{jellyDetails.name} </h2>
-                    </Col>
-                    <Col>
                         <Button variant="secondary" onClick={() => {
                             navigate("/login", getState(location, location.state.currentUserDetails, location.state.id))
                         }}>
                             Logout
                         </Button>
+                    </Col>
+                    <Col>
                         <Button  variant="secondary" onClick={() => {
                             navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
                         }}>
                             Jellies
                         </Button>
+                    </Col>
+                    <Col>
+                        <Button  variant="secondary" onClick={() => {
+                            navigate("/chart", getState(location, location.state.currentUserDetails, location.state.id))
+                        }}>
+                            Chart
+                        </Button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                <h2 className="subtitle">{jellyDetails.name} </h2>
                     </Col>
                 </Row>
             </Container>

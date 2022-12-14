@@ -13,6 +13,7 @@ import JellyList from "./screens/JellyList";
 import Jellies from "./screens/Jellies";
 import Images from "./screens/images";
 import FirstRatings from "./screens/pre-ratings";
+import RatingsChart from "./screens/chart";
 
 function App() {
     const [userList, setUserList] = useState([undefined]);
@@ -41,6 +42,7 @@ function App() {
                 <Route path="jelly" element={<Jellies state={statePackage}/>}/>
                 <Route path="images" element={<Images state={statePackage}/>}/>
                 <Route path="firstratings" element={<FirstRatings state={statePackage}/>}/>
+                <Route path="chart" element={<RatingsChart state={statePackage}/>}/>
             </Routes>
         </Container>
     );

@@ -31,9 +31,9 @@ const Login = (props) => {
             props.state.setCurrentUserDetails(userDetails)
             if (loginQuiz(userDetails, props.state, id) && loginQuiz2(userDetails, props.state, id)) {
                 if (userDetails.preRating !== true) {
-                    navigate("/firstratings", getState(location, props.state.currentUserDetails, id))
+                    navigate("/firstratings", getState(location, userDetails, id))
                 } else {
-                    navigate("/jellies", getState(location, props.state.currentUserDetails, id))
+                    navigate("/jellies", getState(location, userDetails, id))
                 }
             } else {
                 alert('nope')

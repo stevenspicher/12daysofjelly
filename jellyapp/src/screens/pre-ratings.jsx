@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Container, Row, Col, Card, Badge} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
-import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
+import {getConsole, getState, editPredictions} from "../shared/utilities";
 import {jellyList} from "../shared/containers";
 import {imageList} from "../shared/containers";
 
@@ -36,9 +36,9 @@ const FirstRatings = (props) => {
     const onSubmit = () => {
         editUserDetails.preRating = true;
         console.log(editUserDetails)
-            editUser(editUserDetails, props.state, location.state.id)
-        props.state.setCurrentUserDetails(editUserDetails)
-        navigate("/jellies", getState(location, editUserDetails, location.state.id))
+            editPredictions(editUserDetails, props.state, location.state.id)
+        // props.state.setCurrentUserDetails(editUserDetails)
+        navigate("/jellies", getState(location, props.state.currentUserDetails, location.state.id))
     }
 
     useEffect(() => {
