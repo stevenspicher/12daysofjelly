@@ -37,6 +37,19 @@ const RatingsChart = (props) => {
             )
         })
 
+    const yuzuTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 9
+            console.log(user.jellies[index])
+            return (
+                <tr key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
+
 
 
 
@@ -121,6 +134,16 @@ const RatingsChart = (props) => {
                     </thead>
                     <tbody>
                     {cherriesTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={3}>Orange, Yuzu, and Grapefruit </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {yuzuTable}
                     </tbody>
                 </Table>
             </Container>
