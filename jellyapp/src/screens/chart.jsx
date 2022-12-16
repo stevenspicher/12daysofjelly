@@ -50,6 +50,19 @@ const RatingsChart = (props) => {
             )
         })
 
+    const plumTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 8
+            console.log(user.jellies[index])
+            return (
+                <tr   key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
+
 
 
 
@@ -108,15 +121,15 @@ const RatingsChart = (props) => {
                             Jellies
                         </Button>
                     </Col>
-                    <Row>
+                    <Row className={"mt-5"}>
                         <Col>
                             <h2 className="subtitle">Current Ratings </h2>
                         </Col>
                     </Row>
                 </Row>
             </Container>
-            <Container>
-                <Table className={"mt-5"} size="sm">
+            <Container className={"mt-5"}>
+                <Table  size="sm">
                     <thead>
                     <tr>
                         <th className="title-signup" colSpan={3}>Apricots and Peaches</th>
@@ -144,6 +157,16 @@ const RatingsChart = (props) => {
                     </thead>
                     <tbody>
                     {yuzuTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={3}>Mirabelle Plum with Spice </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {plumTable}
                     </tbody>
                 </Table>
             </Container>
