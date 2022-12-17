@@ -63,9 +63,31 @@ const RatingsChart = (props) => {
             )
         })
 
+    const honeyTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 6
+            console.log(user.jellies[index])
+            return (
+                <tr   key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
 
-
-
+    const figTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 4
+            console.log(user.jellies[index])
+            return (
+                <tr   key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
     useEffect(() => {
         getUsers(props.state.setUserList)
         console.log(props.state.userList)
@@ -167,6 +189,26 @@ const RatingsChart = (props) => {
                     </thead>
                     <tbody>
                     {plumTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={6}>Honey </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {honeyTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={4}>Fig with Cardamom </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {figTable}
                     </tbody>
                 </Table>
             </Container>
