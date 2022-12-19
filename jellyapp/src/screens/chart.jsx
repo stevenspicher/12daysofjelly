@@ -88,6 +88,32 @@ const RatingsChart = (props) => {
                 </tr>
             )
         })
+
+    const rhubarbTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 11
+            console.log(user.jellies[index])
+            return (
+                <tr   key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
+
+    const dragonFruitTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 5
+            console.log(user.jellies[index])
+            return (
+                <tr   key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
     useEffect(() => {
         getUsers(props.state.setUserList)
         console.log(props.state.userList)
@@ -209,6 +235,25 @@ const RatingsChart = (props) => {
                     </thead>
                     <tbody>
                     {figTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={4}>Rhubarb and Strawberry </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {rhubarbTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={4}>Grapefruit and Dragonfruit </th>
+                    </tr>
+                    </thead>
+                    <tbody>{dragonFruitTable}
                     </tbody>
                 </Table>
             </Container>
