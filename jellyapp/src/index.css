@@ -122,3 +122,5 @@ table {
 .table-container {
   padding-left: 16.5rem;
 }
+
+.carousel .carousel-control { visibility: hidden; }

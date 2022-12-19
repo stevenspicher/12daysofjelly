@@ -60,7 +60,6 @@ const SignUp = (props) => {
                         <b className="blink">D</b>
                         <b className="blink">a</b>
                         <b className="blink">y</b>
-                        <b className="blink">'</b>
                         <b className="blink">s</b>
                         <b> </b>
                         <b className="blink">o</b>
