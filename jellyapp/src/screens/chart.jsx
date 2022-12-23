@@ -14,7 +14,6 @@ const RatingsChart = (props) => {
     const apricotTable =
         props.state.userList.map((user, userIndex) => {
             const index = 1
-            console.log(user.jellies[index])
             return (
                 <tr key={userIndex}>
                     <td>{user.name}</td>
@@ -27,7 +26,6 @@ const RatingsChart = (props) => {
     const cherriesTable =
         props.state.userList.map((user, userIndex) => {
             const index = 2
-            console.log(user.jellies[index])
             return (
                 <tr key={userIndex}>
                     <td>{user.name}</td>
@@ -40,7 +38,6 @@ const RatingsChart = (props) => {
     const yuzuTable =
         props.state.userList.map((user, userIndex) => {
             const index = 9
-            console.log(user.jellies[index])
             return (
                 <tr key={userIndex}>
                     <td>{user.name}</td>
@@ -53,7 +50,6 @@ const RatingsChart = (props) => {
     const plumTable =
         props.state.userList.map((user, userIndex) => {
             const index = 8
-            console.log(user.jellies[index])
             return (
                 <tr   key={userIndex}>
                     <td>{user.name}</td>
@@ -66,7 +62,6 @@ const RatingsChart = (props) => {
     const honeyTable =
         props.state.userList.map((user, userIndex) => {
             const index = 6
-            console.log(user.jellies[index])
             return (
                 <tr   key={userIndex}>
                     <td>{user.name}</td>
@@ -79,7 +74,6 @@ const RatingsChart = (props) => {
     const figTable =
         props.state.userList.map((user, userIndex) => {
             const index = 4
-            console.log(user.jellies[index])
             return (
                 <tr   key={userIndex}>
                     <td>{user.name}</td>
@@ -92,7 +86,6 @@ const RatingsChart = (props) => {
     const rhubarbTable =
         props.state.userList.map((user, userIndex) => {
             const index = 11
-            console.log(user.jellies[index])
             return (
                 <tr   key={userIndex}>
                     <td>{user.name}</td>
@@ -105,6 +98,42 @@ const RatingsChart = (props) => {
     const dragonFruitTable =
         props.state.userList.map((user, userIndex) => {
             const index = 5
+            return (
+                <tr   key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
+
+    const chestnutTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 3
+            return (
+                <tr   key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
+
+    const mangoTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 7
+            return (
+                <tr   key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
+
+    const aniseTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 12
             console.log(user.jellies[index])
             return (
                 <tr   key={userIndex}>
@@ -114,10 +143,22 @@ const RatingsChart = (props) => {
                 </tr>
             )
         })
+
+    const peachTable =
+        props.state.userList.map((user, userIndex) => {
+            const index = 10
+            return (
+                <tr   key={userIndex}>
+                    <td>{user.name}</td>
+                    <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].deliveryMethod}</td>
+                </tr>
+            )
+        })
+
     useEffect(() => {
         getUsers(props.state.setUserList)
-        console.log(props.state.userList)
-        console.log(jellyList)
+
 
     }, []);
     return (
@@ -254,6 +295,42 @@ const RatingsChart = (props) => {
                     </tr>
                     </thead>
                     <tbody>{dragonFruitTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={4}>Chestnut with Orange and Spice  </th>
+                    </tr>
+                    </thead>
+                    <tbody>{chestnutTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={4}>Mango, Raspberry, and Lime  </th>
+                    </tr>
+                    </thead>
+                    <tbody>{mangoTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={4}>Strawberry with Star Anise  </th>
+                    </tr>
+                    </thead>
+                    <tbody>{aniseTable}
+                    </tbody>
+                </Table>
+                <Table size="sm">
+                    <thead>
+                    <tr>
+                        <th className="title-signup" colSpan={4}>Peach with Jasmine </th>
+                    </tr>
+                    </thead>
+                    <tbody>{peachTable}
                     </tbody>
                 </Table>
             </Container>
