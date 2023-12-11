@@ -1,7 +1,7 @@
 export const getUsers = (setUserList) => {
     let list = []
     //TODO: add error catching
-    fetch("https://daysofjelly-default-rtdb.firebaseio.com/userList.json")
+    fetch("https://jelly-e1b63-default-rtdb.firebaseio.com/userList.json")
         .then(response => response.json())
         .then(data => {
             if (data !== null) {
@@ -49,7 +49,7 @@ export const editUser = (userData, state, id) => {
         })
     };
     //TODO: add error catching
-    fetch(`https://daysofjelly-default-rtdb.firebaseio.com/userList/${id}.json`, requestOptions)
+    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${id}.json`, requestOptions)
         .then(response => response.json())
 
     getUsers(state.setUserList)
@@ -65,7 +65,7 @@ export const editRatings = (userData,jellyDetails, state, id) => {
         })
     };
     //TODO: add error catching
-    fetch(`https://daysofjelly-default-rtdb.firebaseio.com/userList/${id}.json`, requestOptions)
+    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${id}.json`, requestOptions)
         .then(response => response.json())
 
     getUsers(state.setUserList)
@@ -85,7 +85,7 @@ export const editPredictions = (userData, state, id) => {
         })
     };
     //TODO: add error catching
-    fetch(`https://daysofjelly-default-rtdb.firebaseio.com/userList/${id}.json`, requestOptions)
+    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${id}.json`, requestOptions)
         .then(response => response.json())
 
     getUsers(state.setUserList)

@@ -9,6 +9,7 @@ import {emptyUserDetails} from "../shared/containers";
 import {getUsers, getConsole, getState, loginQuiz, loginQuiz2, blink} from "../shared/utilities";
 
 const Login = (props) => {
+    console.log(props)
     const navigate = useNavigate();
     const location = useLocation();
     const [id, setId] = useState(undefined)
@@ -29,18 +30,18 @@ const Login = (props) => {
             const id = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()).id);
             const userDetails = (props.state.userList.find((user) => user.name === loginDetails.name.toLowerCase()));
             props.state.setCurrentUserDetails(userDetails)
-            if (loginQuiz(userDetails, props.state, id) && loginQuiz2(userDetails, props.state, id)) {
-                if (userDetails.preRating !== true) {
-                    navigate("/firstratings", getState(location, userDetails, id))
-                } else {
-                    navigate("/jellies", getState(location, userDetails, id))
-                }
-            } else {
-                alert('nope')
-            }
-        } else {
-            navigate("/invalid", getState(location, loginDetails, id))
-        }
+            // if (loginQuiz(userDetails, props.state, id) && loginQuiz2(userDetails, props.state, id)) {
+            //     if (userDetails.preRating !== true) {
+            //         navigate("/firstratings", getState(location, userDetails, id))
+            //     } else {
+            //         navigate("/jellies", getState(location, userDetails, id))
+            //     }
+            // } else {
+            //     alert('nope')
+            // }
+
+                navigate("/table", getState(location, userDetails, id))
+
 
     }
 

@@ -30,7 +30,7 @@ const User = (props) => {
     }
 
     const userUpload = (userDetails) => {
-        fetch("https://daysofjelly-default-rtdb.firebaseio.com/userList.json", {
+        fetch("https://jelly-e1b63-default-rtdb.firebaseio.com/userList.json", {
             method: 'POST', headers: {
                 'Content-Type': 'application/json'
             }, body: JSON.stringify(userDetails)
