@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Container} from "react-bootstrap";
-import {Button, Card, Col, Row, Modal, Badge} from "react-bootstrap";
+import {Button, Card, Col, Row, Modal, Badge, Stack} from "react-bootstrap";
 import {useLocation, useNavigate} from 'react-router-dom';
 import {jellyList} from "../shared/containers";
 import {getConsole, getState, getUsers, blink} from "../shared/utilities";
@@ -37,57 +37,51 @@ const UserTable = (props) => {
     return (
         <>
             <Container className={"pt-4"}>
-                <div>
+                {/*<Row>*/}
+                {/*<div>*/}
+                {/*    <Col>*/}
 
-                    <h1 className="title">
-                        <b className="blink">1</b>
-                        <b className="blink">2</b>
-                        <b> </b>
-                        <b className="blink">D</b>
-                        <b className="blink">a</b>
-                        <b className="blink">y</b>
-                        <b className="blink">s</b>
-                        <b> </b>
-                        <b className="blink">o</b>
-                        <b className="blink">f</b>
-                        <b> </b>
-                        <b className="blink">S</b>
-                        <b className="blink">p</b>
-                        <b className="blink">r</b>
-                        <b className="blink">e</b>
-                        <b className="blink">a</b>
-                        <b className="blink">d</b>
-                        <b className="blink">s</b>
-                    </h1>
-                </div>
+
+                {/*    <h1 className="title">*/}
+                {/*        <b className="blink">1</b>*/}
+                {/*        <b className="blink">2</b>*/}
+                {/*        <b> </b>*/}
+                {/*        <b className="blink">D</b>*/}
+                {/*        <b className="blink">a</b>*/}
+                {/*        <b className="blink">y</b>*/}
+                {/*        <b className="blink">s</b>*/}
+                {/*        <b> </b>*/}
+                {/*        <b className="blink">o</b>*/}
+                {/*        <b className="blink">f</b>*/}
+                {/*        <b> </b>*/}
+                {/*        <b className="blink">S</b>*/}
+                {/*        <b className="blink">p</b>*/}
+                {/*        <b className="blink">r</b>*/}
+                {/*        <b className="blink">e</b>*/}
+                {/*        <b className="blink">a</b>*/}
+                {/*        <b className="blink">d</b>*/}
+                {/*        <b className="blink">s</b>*/}
+                {/*    </h1>*/}
+                {/*    </Col>*/}
+                {/*</div>*/}
+                {/*</Row>*/}
+                    <Stack>
                 <Row>
-                    <Col>
+                        <Col>
+
                         <Button variant="secondary" onClick={() => {
                             navigate("/login", getState(location, currentUserDetails, location.state.id))
                         }}>
                             Logout
                         </Button>
-                    </Col>
-                    <Col>
-                    <Button variant="secondary" onClick={() => {
-                        navigate("/jellies", getState(location, currentUserDetails, location.state.id))
-                    }}>
-                        Jellies
-                    </Button>
-                </Col>
-                    <Col>
-                    <Button variant="secondary" onClick={() => {
-                        navigate("/chart", getState(location, currentUserDetails, location.state.id))
-                    }}>
-                        Chart
-                    </Button>
-                </Col>
+                        </Col>
+                        <Col>
+                            <h2 className="subtitle">Family List</h2>
+                        </Col>
+
                 </Row>
-                <Row>
-                    <Col>
-                        <h2 className="subtitle">Family List</h2>
-                    </Col>
-                </Row>
+                    </Stack>
+
             </Container>
             {props.state.userList[0] === undefined ? <></> :
                 <Container className='mt-5'>
@@ -97,12 +91,12 @@ const UserTable = (props) => {
                                 <Card.Header as="h5">
                                     <Row>
                                         <Col>{user.name}</Col>
-                                        <Col>
-                                            {user.quiz1 === true ? <h6><Badge>quiz 1</Badge></h6> : <></>}
-                                        </Col>
+                                        {/*<Col>*/}
+                                        {/*    {user.quiz1 === true ? <h6><Badge>quiz 1</Badge></h6> : <></>}*/}
+                                        {/*</Col>*/}
                                         <Col>
                                             {/*//TODO: display ratings*/}
-                                            {user.preRating === true ? <h6><Badge>Prediction</Badge></h6> : <></>}
+                                            {/*{user.preRating === true ? <h6><Badge>Prediction</Badge></h6> : <></>}*/}
                                             {/*{user.jellies !== undefined ?*/}
                                             {/*    user.jellies[index].rating !== undefined ?*/}
                                             {/*    jellyList.map((jelly, index) => (*/}

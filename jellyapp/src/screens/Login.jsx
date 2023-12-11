@@ -40,9 +40,9 @@ const Login = (props) => {
             //     alert('nope')
             // }
 
-                navigate("/table", getState(location, userDetails, id))
+            navigate("/table", getState(location, userDetails, id))
 
-
+        }
     }
 
 
