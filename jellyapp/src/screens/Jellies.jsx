@@ -13,12 +13,13 @@ const Jellies = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [ value, setValue ] = useState(50);
+    const [ commentValue, setCommentValue ] = useState("");
     const [jellyDetails, setJellyDetails]= useState(location.state.user);
 
     const onChange = (e) => {
-        jellyDetails.deliveryMethod = e.target.value;
+        setCommentValue(e.target.value)
+        jellyDetails.comments = e.target.value;
         setJellyDetails({...jellyDetails})
-
     }
 
     const onSubmit = () => {
@@ -30,9 +31,13 @@ const Jellies = (props) => {
     }
 
     useEffect(() => {
-        getConsole(location, props.state.currentUserDetails)
-
+        // getConsole(location, props.state.currentUserDetails)
+        console.log(location.state.currentUserDetails.jellies[jellyDetails.id])
+        setJellyDetails(location.state.currentUserDetails.jellies[jellyDetails.id])
+    setValue(location.state.currentUserDetails.jellies[jellyDetails.id].rating*10)
+    setCommentValue(location.state.currentUserDetails.jellies[jellyDetails.id].comments)
     }, []);
+
     return (
         <Container >
             <SpeedDial/>
@@ -50,21 +55,22 @@ const Jellies = (props) => {
                         onChange={e => setValue(e.target.value)}
                         step={10}
                     />
-                    {/*<FloatingLabel*/}
-                    {/*    controlId="floatingInput"*/}
-                    {/*    label="Delivery Method"*/}
-                    {/*    className="m-3"*/}
-                    {/*>*/}
-                    {/*    <Form.Control*/}
-                    {/*       as="textarea"*/}
-                    {/*       rows={5}*/}
-                    {/*        placeholder=""*/}
-                    {/*       style={{height: '200px'}}*/}
-                    {/*        name="deliveryMethod"*/}
-                    {/*        onChange={onChange}*/}
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Comments"
+                        className="m-3"
+                    >
+                        <Form.Control
+                           as="textarea"
+                           rows={5}
+                            placeholder=""
+                           value={commentValue}
+                           style={{height: '200px'}}
+                            name="Comments"
+                            onChange={onChange}
 
-                    {/*    />*/}
-                    {/*</FloatingLabel>*/}
+                        />
+                    </FloatingLabel>
                     <Button  variant="primary" onClick={onSubmit}>
                         Submit
                     </Button>

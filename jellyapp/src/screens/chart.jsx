@@ -22,6 +22,7 @@ const RatingsChart = (props) => {
                 <tr key={userIndex}>
                     <td>{user.name}</td>
                     <td>{user.jellies[index].rating}</td>
+                    <td>{user.jellies[index].comments}</td>
                 </tr>
                 )
             })

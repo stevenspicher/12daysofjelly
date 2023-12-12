@@ -31,65 +31,65 @@ export const emptyUserDetails = {
     mostLiked: false,
     leastLiked: false,
     jellies: {
-0: {id: 0, rating: 1},
+0: {id: 1, rating: 1},
         1: {
-            id: 1,
-            rating: undefined,
-            deliveryMethod:""
-        },
-        2: {
             id: 2,
             rating: undefined,
-            deliveryMethod:""
+            comments:""
         },
-        3: {
+        2: {
             id: 3,
             rating: undefined,
-            deliveryMethod:""
+            comments:""
         },
-        4: {
+        3: {
             id: 4,
             rating: undefined,
-            deliveryMethod:""
+            comments:""
         },
-        5: {
+        4: {
             id: 5,
             rating: undefined,
-            deliveryMethod:""
+            comments:""
         },
-        6: {
+        5: {
             id: 6,
             rating: undefined,
-            deliveryMethod:""
+            comments:""
+        },
+        6: {
+            id: 7,
+            rating: undefined,
+            comments:""
         },
         7: {
-            id: 7,
-            deliveryMethod:""
+            id: 8,
+            comments:""
         },
         8: {
-            id: 8,
-            rating: undefined,
-            deliveryMethod:""
-        },
-        9: {
             id: 9,
             rating: undefined,
-            deliveryMethod:""
+            comments:""
         },
-        10: {
+        9: {
             id: 10,
             rating: undefined,
-            deliveryMethod:""
+            comments:""
         },
-        11: {
+        10: {
             id: 11,
             rating: undefined,
-            deliveryMethod:""
+            comments:""
         },
-        12: {
+        11: {
             id: 12,
             rating: undefined,
-            deliveryMethod:""
+            comments:""
+        },
+        12: {
+            id: 13,
+            rating: undefined,
+            comments:""
         },
 
     }
