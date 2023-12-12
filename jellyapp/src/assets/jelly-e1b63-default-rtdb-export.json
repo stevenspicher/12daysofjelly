@@ -1,0 +1,788 @@
+{
+  "userList": {
+    "-NIYGtjsjZKvRSzGpFR7": {
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "leastLiked": false,
+      "mostControversial": false,
+      "mostLiked": 12,
+      "name": "steven",
+      "preRating": true
+    },
+    "-NIYt0mHsZmwVLcOCwa6": {
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "name": "doris"
+    },
+    "-NIYtEsPenKIMXRSzG8s": {
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "name": "ernie"
+    },
+    "-NIYvrwPibmRiEE4R_9W": {
+      "favColor": "Green or grey",
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "name": "chris",
+      "sizes": "Medium",
+      "wishes": "Slippers\nBlack gloves\nBooks\nPuzzles\nSudoku (I’m weirdly obsessed with it right now)\nOrganizational bins/baskets for bathrooms and closets\nNew robe\nSilver or gold jewelry\n"
+    },
+    "-NIYvv8D6LP4MFxxt8Kp": {
+      "favColor": "",
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "leastLiked": 3,
+      "mostControversial": 7,
+      "mostLiked": 11,
+      "name": "jonah",
+      "preRating": true,
+      "quiz1": true
+    },
+    "-NIYvwmA1FB-3jeFGESF": {
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "leastLiked": 11,
+      "mostControversial": 5,
+      "mostLiked": 11,
+      "name": "ethan",
+      "preRating": true,
+      "quiz1": true
+    },
+    "-NIYw-Pu4_fAogMtqqU-": {
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "leastLiked": false,
+      "mostControversial": false,
+      "mostLiked": false,
+      "name": "jeff",
+      "preRating": false,
+      "quiz1": true
+    },
+    "-NIYw67ostgDh0yf5bXe": {
+      "favColor": "Black & gray",
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "leastLiked": 3,
+      "mostControversial": 5,
+      "mostLiked": 7,
+      "name": "oliver",
+      "preRating": true,
+      "quiz1": true,
+      "sizes": "Youth xl",
+      "wishes": "Samsung watch, Samsung earbuds,sweatshirts(Adidas) 3 in 1 charging station that I found on amazon, steelseries aerox 5 wireless mouse, razer goliathus mousepad elgato rgb light strip, elgato stream deck mini, moniter desk mount"
+    },
+    "-NIYwGdXfOCdlTq4_mQt": {
+      "favColor": "Green",
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "leastLiked": 12,
+      "mostControversial": 6,
+      "mostLiked": 12,
+      "name": "kenda",
+      "preRating": true,
+      "quiz1": true,
+      "sizes": "Large",
+      "wishes": "S/M (simple Modern) 40 oz water bottle with straw\nBoot socks\nLong sleeve tunics\nCardigans- rust, cream, do gray\nSilver jewelry-long necklaces, dangly earrings, rings, bracelets\nFace cloths\nOlive oil and random vinegars\nGood gf bread/salty snacks\nFun new Plants\nTurquoise, sunflower yellow, black, or cream pillows and blankets for couches\nGames\nArt supplies\nMusic stand\n\n"
+    },
+    "-NIYwIPEEtuNKarkQedz": {
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "id": 4
+        },
+        {
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "leastLiked": 4,
+      "mostControversial": 7,
+      "mostLiked": 5,
+      "name": "hannah",
+      "preRating": true,
+      "quiz1": true
+    },
+    "-NIYwRw8bTJPthKuyB1i": {
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "leastLiked": 4,
+      "mostControversial": 10,
+      "mostLiked": 9,
+      "name": "brian",
+      "preRating": true,
+      "quiz1": true
+    },
+    "-NIYwfKp3MSk_2e1-yd9": {
+      "favColor": "Blue",
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "id": 2
+        },
+        {
+          "id": 3
+        },
+        {
+          "id": 4
+        },
+        {
+          "id": 5
+        },
+        {
+          "id": 6
+        },
+        {
+          "id": 7
+        },
+        {
+          "id": 8
+        },
+        {
+          "id": 9
+        },
+        {
+          "id": 10
+        },
+        {
+          "id": 11
+        },
+        {
+          "id": 12
+        },
+        {
+          "id": 13
+        }
+      ],
+      "name": "annie",
+      "sizes": "Small",
+      "wishes": "Fridge bin organizers. Especially those egg trays. Silpat baking mats. I love games. Stationery, pens, notebooks. Clothes are always good- shirts, sweaters, sweatshirts, jogger sweatpants. Fun pretty drinking glasses. "
+    },
+    "-NIYwfKp3MSk_2e1-yfQ": {
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "name": "elliott",
+      "quiz1": true
+    },
+    "-NIYwfKp3MSk_2e1-h7w": {
+      "jellies": [
+        {
+          "deliveryMethod": "",
+          "id": 1
+        },
+        {
+          "deliveryMethod": "",
+          "id": 2
+        },
+        {
+          "deliveryMethod": "",
+          "id": 3
+        },
+        {
+          "deliveryMethod": "",
+          "id": 4
+        },
+        {
+          "deliveryMethod": "",
+          "id": 5
+        },
+        {
+          "deliveryMethod": "",
+          "id": 6
+        },
+        {
+          "deliveryMethod": "",
+          "id": 7
+        },
+        {
+          "deliveryMethod": "",
+          "id": 8
+        },
+        {
+          "deliveryMethod": "",
+          "id": 9
+        },
+        {
+          "deliveryMethod": "",
+          "id": 10
+        },
+        {
+          "deliveryMethod": "",
+          "id": 11
+        },
+        {
+          "deliveryMethod": "",
+          "id": 12
+        }
+      ],
+      "name": "bastian"
+    }
+  }
+}

@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
+import Header from "../components/Header"
 import {Container} from "react-bootstrap";
 import {Button, Card, Col, Row, Modal, Badge, Stack} from "react-bootstrap";
 import {useLocation, useNavigate} from 'react-router-dom';
 import {jellyList} from "../shared/containers";
 import {getConsole, getState, getUsers, blink} from "../shared/utilities";
+import SpeedDial from "../components/SpeedDial"
 
 
 const UserTable = (props) => {
@@ -35,54 +37,14 @@ const UserTable = (props) => {
     // }, []);
 
     return (
-        <>
-            <Container className={"pt-4"}>
-                {/*<Row>*/}
-                {/*<div>*/}
-                {/*    <Col>*/}
+        <Container>
 
+            <SpeedDial/>
 
-                {/*    <h1 className="title">*/}
-                {/*        <b className="blink">1</b>*/}
-                {/*        <b className="blink">2</b>*/}
-                {/*        <b> </b>*/}
-                {/*        <b className="blink">D</b>*/}
-                {/*        <b className="blink">a</b>*/}
-                {/*        <b className="blink">y</b>*/}
-                {/*        <b className="blink">s</b>*/}
-                {/*        <b> </b>*/}
-                {/*        <b className="blink">o</b>*/}
-                {/*        <b className="blink">f</b>*/}
-                {/*        <b> </b>*/}
-                {/*        <b className="blink">S</b>*/}
-                {/*        <b className="blink">p</b>*/}
-                {/*        <b className="blink">r</b>*/}
-                {/*        <b className="blink">e</b>*/}
-                {/*        <b className="blink">a</b>*/}
-                {/*        <b className="blink">d</b>*/}
-                {/*        <b className="blink">s</b>*/}
-                {/*    </h1>*/}
-                {/*    </Col>*/}
-                {/*</div>*/}
-                {/*</Row>*/}
-                    <Stack>
-                <Row>
-                        <Col>
-
-                        <Button variant="secondary" onClick={() => {
-                            navigate("/login", getState(location, currentUserDetails, location.state.id))
-                        }}>
-                            Logout
-                        </Button>
-                        </Col>
                         <Col>
                             <h2 className="subtitle">Family List</h2>
                         </Col>
 
-                </Row>
-                    </Stack>
-
-            </Container>
             {props.state.userList[0] === undefined ? <></> :
                 <Container className='mt-5'>
                     {props.state.userList.map((user, index) => {
@@ -135,24 +97,24 @@ const UserTable = (props) => {
                     })}
                 </Container>
             }
-            {/*<Modal show={show} onHide={handleClose}>*/}
-            {/*    <Modal.Header closeButton>*/}
-            {/*        <Modal.Title>Welcome!</Modal.Title>*/}
-            {/*    </Modal.Header>*/}
-            {/*    <Modal.Body>Items on your list are empty!</Modal.Body>*/}
-            {/*    <Modal.Footer>*/}
-            {/*        <Button variant="secondary" onClick={() => {*/}
-            {/*            const index = props.state.userList.indexOf(props.state.userList.find((user) => user.id === location.state.id).id)*/}
-            {/*            navigate("/user", getState(location, props.state.currentUserDetails, location.state.id, props.state.currentUserDetails, index))*/}
-            {/*        }}>*/}
-            {/*            Fill it*/}
-            {/*        </Button>*/}
-            {/*        <Button variant="primary" onClick={handleClose}>*/}
-            {/*            Do it Later*/}
-            {/*        </Button>*/}
-            {/*    </Modal.Footer>*/}
-            {/*</Modal>*/}
-        </>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Welcome!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Items on your list are empty!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => {
+                        const index = props.state.userList.indexOf(props.state.userList.find((user) => user.id === location.state.id).id)
+                        navigate("/user", getState(location, props.state.currentUserDetails, location.state.id, props.state.currentUserDetails, index))
+                    }}>
+                        Fill it
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Do it Later
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </Container>
     )
 };
 

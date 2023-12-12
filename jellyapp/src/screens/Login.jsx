@@ -40,14 +40,13 @@ const Login = (props) => {
             //     alert('nope')
             // }
 
-            navigate("/table", getState(location, userDetails, id))
+            navigate("/jellies", getState(location, userDetails, id))
 
         }
     }
 
 
     useEffect(() => {
-        getConsole(location)
         blink()
     }, []);
 
@@ -88,11 +87,6 @@ const Login = (props) => {
                     <Col>
                         <h2 className="subtitle">Welcome!</h2>
                     </Col>
-                    <Col>
-                        <Button variant="primary" onClick={onSubmit}>
-                            Login
-                        </Button>
-                    </Col>
                 </Row>
 
             </Container>
@@ -112,7 +106,11 @@ const Login = (props) => {
                                       placeholder="your name here"/>
 
 
+                        <Button style={{marginTop:"10px"}} variant="primary" onClick={onSubmit}>
+                            Login
+                        </Button>
                     </FloatingLabel>
+
 
                 </Form>
 

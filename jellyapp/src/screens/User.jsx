@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import {Container, Row, Col} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
+import SpeedDial from "../components/SpeedDial"
 
 
 const User = (props) => {
@@ -46,44 +47,9 @@ const User = (props) => {
 
     }, []);
     return (
-        <div>
-            <Container className={"pt-4"} >
-                <div>
-
-                    <h1 className="title">
-                        <b className="blink">1</b>
-                        <b className="blink">2</b>
-                        <b> </b>
-                        <b className="blink">D</b>
-                        <b className="blink">a</b>
-                        <b className="blink">y</b>
-                        <b className="blink">s</b>
-                        <b> </b>
-                        <b className="blink">o</b>
-                        <b className="blink">f</b>
-                        <b> </b>
-                        <b className="blink">S</b>
-                        <b className="blink">p</b>
-                        <b className="blink">r</b>
-                        <b className="blink">e</b>
-                        <b className="blink">a</b>
-                        <b className="blink">d</b>
-                        <b className="blink">s</b>
-                    </h1>
-                </div>
-                <Row>
-                    <Col>
+        <Container>
+          <SpeedDial/>
                 <h2 className="subtitle">{editUserDetails.name}'s Info</h2>
-                    </Col>
-                    <Col>
-                        <Button  variant="secondary" onClick={() => {
-                            navigate("/login", getState(location, undefined, location.state.id))
-                        }}>
-                            Logout
-                        </Button>
-                    </Col>
-                </Row>
-            </Container>
             <Container className='mt-5'>
                 <Form>
                     {/*<FloatingLabel*/}
@@ -164,7 +130,7 @@ const User = (props) => {
                     </Button>
                 </Form>
             </Container>
-        </div>)
+        </Container>)
 };
 
 export default User;

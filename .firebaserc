@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "daysofjelly"
-  }
+    "default": "daysofjelly",
+    "jelly2023": "jelly-e1b63"
+  },
+  "targets": {},
+  "etags": {}
 }

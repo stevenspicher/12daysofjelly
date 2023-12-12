@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Header from "../components/Header"
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Container, Row, Col} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getConsole, getState, editRatings} from "../shared/utilities";
+import SpeedDial from '../components/SpeedDial'
 
 
 const Jellies = (props) => {
@@ -16,11 +18,13 @@ const Jellies = (props) => {
     const onChange = (e) => {
         jellyDetails.deliveryMethod = e.target.value;
         setJellyDetails({...jellyDetails})
+
     }
 
     const onSubmit = () => {
     jellyDetails.rating = value/10;
     jellyDetails.rated = true;
+        console.log(jellyDetails)
             editRatings(location.state.currentUserDetails, jellyDetails, props.state, location.state.id);
         navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
     }
@@ -30,60 +34,14 @@ const Jellies = (props) => {
 
     }, []);
     return (
+        <Container >
+            <SpeedDial/>
         <div>
-            <Container className={"pt-4"} >
-                <div>
-
-                    <h1 className="title">
-                        <b className="blink">1</b>
-                        <b className="blink">2</b>
-                        <b> </b>
-                        <b className="blink">D</b>
-                        <b className="blink">a</b>
-                        <b className="blink">y</b>
-                        <b className="blink">s</b>
-                        <b> </b>
-                        <b className="blink">o</b>
-                        <b className="blink">f</b>
-                        <b> </b>
-                        <b className="blink">S</b>
-                        <b className="blink">p</b>
-                        <b className="blink">r</b>
-                        <b className="blink">e</b>
-                        <b className="blink">a</b>
-                        <b className="blink">d</b>
-                        <b className="blink">s</b>
-                    </h1>
-                </div>
-                <Row>
-                    <Col>
-                        <Button variant="secondary" onClick={() => {
-                            navigate("/login", getState(location, location.state.currentUserDetails, location.state.id))
-                        }}>
-                            Logout
-                        </Button>
-                    </Col>
-                    <Col>
-                        <Button  variant="secondary" onClick={() => {
-                            navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
-                        }}>
-                            Jellies
-                        </Button>
-                    </Col>
-                    <Col>
-                        <Button  variant="secondary" onClick={() => {
-                            navigate("/chart", getState(location, location.state.currentUserDetails, location.state.id))
-                        }}>
-                            Chart
-                        </Button>
-                    </Col>
-                </Row>
                 <Row>
                     <Col>
                 <h2 className="subtitle">{jellyDetails.name} </h2>
                     </Col>
                 </Row>
-            </Container>
             <Container className='mt-5'>
                 <Form>
                     <Form.Label>Rating: {value/10}</Form.Label>
@@ -92,27 +50,29 @@ const Jellies = (props) => {
                         onChange={e => setValue(e.target.value)}
                         step={10}
                     />
-                    <FloatingLabel
-                        controlId="floatingInput"
-                        label="Delivery Method"
-                        className="m-3"
-                    >
-                        <Form.Control
-                           as="textarea"
-                           rows={5}
-                            placeholder=""
-                           style={{height: '200px'}}
-                            name="deliveryMethod"
-                            onChange={onChange}
+                    {/*<FloatingLabel*/}
+                    {/*    controlId="floatingInput"*/}
+                    {/*    label="Delivery Method"*/}
+                    {/*    className="m-3"*/}
+                    {/*>*/}
+                    {/*    <Form.Control*/}
+                    {/*       as="textarea"*/}
+                    {/*       rows={5}*/}
+                    {/*        placeholder=""*/}
+                    {/*       style={{height: '200px'}}*/}
+                    {/*        name="deliveryMethod"*/}
+                    {/*        onChange={onChange}*/}
 
-                        />
-                    </FloatingLabel>
+                    {/*    />*/}
+                    {/*</FloatingLabel>*/}
                     <Button  variant="primary" onClick={onSubmit}>
                         Submit
                     </Button>
                 </Form>
             </Container>
-        </div>)
+        </div>
+        </Container>
+    )
 };
 
 export default Jellies;

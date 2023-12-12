@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import Header from "../components/Header"
+import SpeedDial from "../components/SpeedDial"
 import {Container} from "react-bootstrap";
 import {Button, Card, Col, Row, Modal, Badge, Carousel, Form} from "react-bootstrap";
 import {useLocation, useNavigate} from 'react-router-dom';
@@ -23,62 +25,13 @@ const [show, setShow] = useState(false);
     }, []);
 
     return (
-        <>
-            <Container className={"pt-4"} >
-                <div>
-
-                    <h1 className="title">
-                        <b className="blink">1</b>
-                        <b className="blink">2</b>
-                        <b> </b>
-                        <b className="blink">D</b>
-                        <b className="blink">a</b>
-                        <b className="blink">y</b>
-                        <b className="blink">s</b>
-                        <b> </b>
-                        <b className="blink">o</b>
-                        <b className="blink">f</b>
-                        <b> </b>
-                        <b className="blink">S</b>
-                        <b className="blink">p</b>
-                        <b className="blink">r</b>
-                        <b className="blink">e</b>
-                        <b className="blink">a</b>
-                        <b className="blink">d</b>
-                        <b className="blink">s</b>
-                    </h1>
-                </div>
-                <Row>
-                    <Col>
-                        <Button  variant="secondary" onClick={() => {
-                            navigate("/login", getState(location, location.state.currentUserDetails, location.state.id))
-                        }}>
-                            Logout
-                        </Button>
-                    </Col>
-                    <Col>
-                        <Button  variant="secondary" onClick={() => {
-                            navigate("/table", getState(location, location.state.currentUserDetails, location.state.id))
-                        }}>
-                            Family
-                        </Button>
-
-                    </Col>
-                    <Col>
-
-                    <Button  variant="secondary" onClick={() => {
-                        navigate("/chart", getState(location, location.state.currentUserDetails, location.state.id))
-                    }}>
-                        Chart
-                    </Button>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <h2 className="subtitle">swipe to change, click to rate</h2>
-                    </Col>
-                </Row>
-            </Container>
+        <Container>
+            <SpeedDial/>
+            <Row>
+                <Col>
+                    <h2 className="subtitle">swipe to change, click to rate</h2>
+                </Col>
+            </Row>
 
             <Carousel className={"mt-2"} interval={null} fade variant="dark" indicators={false} controls={false} >
                 {jellyList.map((jelly, index) => {
@@ -99,14 +52,14 @@ const [show, setShow] = useState(false);
 
             </Carousel>
 
-            <Button className={"mt-2"} variant="secondary" onClick={() => {
-                navigate("/images", getState(location, currentUserDetails, location.state.id))
-            }}>
-                What's up with the images?
-            </Button>
+            {/*<Button className={"mt-2"} variant="secondary" onClick={() => {*/}
+            {/*    navigate("/images", getState(location, currentUserDetails, location.state.id))*/}
+            {/*}}>*/}
+            {/*    What's up with the images?*/}
+            {/*</Button>*/}
 
 
-        </>
+        </Container>
     )
 };
 
