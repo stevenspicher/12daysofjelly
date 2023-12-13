@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import Button from 'react-bootstrap/Button';
-import {Container, Row, Col, Badge} from "react-bootstrap";
+import { Row, Col, Badge} from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import {useLocation} from 'react-router-dom';
 import {useNavigate} from "react-router-dom";
 import {emptyUserDetails} from "../shared/containers";
 import {getUsers, getConsole, getState, loginQuiz, loginQuiz2, blink} from "../shared/utilities";
-
+import {Container, Grow, Paper, Stack} from "@mui/material";
 const Login = (props) => {
     console.log(props)
     const navigate = useNavigate();
@@ -61,7 +61,7 @@ const Login = (props) => {
 
     return (
         <>
-            <Container className={"pt-4"}>
+            <Container>
                 <div>
                     <h1 className="title">
                         <b className="blink">1</b>
@@ -83,6 +83,7 @@ const Login = (props) => {
                         <b className="blink">d</b>
                         <b className="blink">s</b>
                     </h1>
+
                 </div>
                 <Row>
                     <Col>
@@ -109,27 +110,14 @@ const Login = (props) => {
 
                         <Button style={{marginTop:"10px"}} variant="primary" onClick={onSubmit}>
                             Login
-                        </Button>
+                        </Button><p style={{color: "blue"}}>v1</p>
                     </FloatingLabel>
 
 
                 </Form>
 
             </Container>
-            <Container className="m-5 ">
-
-                <Row>
-                    <Col xs={6}></Col>
-                    {/*<Col>*/}
-                    {/*    <Badge bg="success" onClick={() => {*/}
-                    {/*        navigate("/signup", getState(location, loginDetails, undefined))*/}
-                    {/*    }}>*/}
-                    {/*        Sign up*/}
-                    {/*    </Badge>*/}
-                    {/*</Col>*/}
-
-                </Row>
-            </Container>
+          
         </>
     )
 };

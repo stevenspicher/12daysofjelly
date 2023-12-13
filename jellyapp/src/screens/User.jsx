@@ -2,11 +2,11 @@ import React, {useEffect, useState} from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {Container, Row, Col} from "react-bootstrap";
+import { Row, Col} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
 import SpeedDial from "../components/SpeedDial"
-
+import {Container, Grow, Paper, Stack} from "@mui/material";
 
 const User = (props) => {
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ const User = (props) => {
         <Container>
           <SpeedDial/>
                 <h2 className="subtitle">{editUserDetails.name}'s Info</h2>
-            <Container className='mt-5'>
+            <Container >
                 <Form>
                     {/*<FloatingLabel*/}
                     {/*    controlId="floatingInput"*/}

@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
 import Header from "../components/Header"
-import {Container} from "react-bootstrap";
-import {Button, Card, Col, Row, Modal, Badge, Stack} from "react-bootstrap";
+import {Button, Card, Col, Row, Modal, Badge} from "react-bootstrap";
 import {useLocation, useNavigate} from 'react-router-dom';
 import {jellyList} from "../shared/containers";
 import {getConsole, getState, getUsers, blink} from "../shared/utilities";
 import SpeedDial from "../components/SpeedDial"
-
+import {Container, Grow, Paper, Stack} from "@mui/material";
 
 const UserTable = (props) => {
     const navigate = useNavigate();
@@ -46,7 +45,7 @@ const UserTable = (props) => {
                         </Col>
 
             {props.state.userList[0] === undefined ? <></> :
-                <Container className='mt-5'>
+                <Container >
                     {props.state.userList.map((user, index) => {
                         return (
                             <Card key={index} className="cards">

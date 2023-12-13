@@ -3,11 +3,11 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Header from "../components/Header"
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {Container, Row, Col} from "react-bootstrap";
+import { Row, Col} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getConsole, getState, editRatings} from "../shared/utilities";
 import SpeedDial from '../components/SpeedDial'
-
+import {Container, Grow, Paper, Stack} from "@mui/material";
 
 const Jellies = (props) => {
     console.log(props)
