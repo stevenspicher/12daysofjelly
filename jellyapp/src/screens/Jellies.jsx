@@ -10,6 +10,7 @@ import SpeedDial from '../components/SpeedDial'
 
 
 const Jellies = (props) => {
+    console.log(props)
     const navigate = useNavigate();
     const location = useLocation();
     const [ value, setValue ] = useState(50);
@@ -25,14 +26,11 @@ const Jellies = (props) => {
     const onSubmit = () => {
     jellyDetails.rating = value/10;
     jellyDetails.rated = true;
-        console.log(jellyDetails)
             editRatings(location.state.currentUserDetails, jellyDetails, props.state, location.state.id);
         navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
     }
 
     useEffect(() => {
-        // getConsole(location, props.state.currentUserDetails)
-        console.log(location.state.currentUserDetails.jellies[jellyDetails.id])
         setJellyDetails(location.state.currentUserDetails.jellies[jellyDetails.id])
     setValue(location.state.currentUserDetails.jellies[jellyDetails.id].rating*10)
     setCommentValue(location.state.currentUserDetails.jellies[jellyDetails.id].comments)

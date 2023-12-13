@@ -56,7 +56,7 @@ export const editUser = (userData, state, id) => {
 }
 
 export const editRatings = (userData,jellyDetails, state, id) => {
-    userData.jellies[jellyDetails.id] = jellyDetails
+    userData.jellies[jellyDetails.id-1] = jellyDetails
     const requestOptions = {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
