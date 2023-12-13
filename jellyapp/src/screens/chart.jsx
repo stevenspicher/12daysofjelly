@@ -45,8 +45,8 @@ const RatingsChart = (props) => {
     const options = {
         legend: "none",
         is3D: true,
-        fontSize: 15,
-        bar: {groupWidth: "10%"},
+        fontSize: 10,
+        bar: {groupWidth: "30%"},
     };
     const chartData = [
         ["Name", "Rating"]
@@ -54,9 +54,9 @@ const RatingsChart = (props) => {
     const cardData = [];
     const JellyData = (jellyName, userList, jellyIndex) => {
         props.state.userList.map((user, userIndex) => {
-            if (user.jellies[jellyIndex].rating !== undefined) {
+
             chartData.push([user.name, user.jellies[jellyIndex].rating])
-            }
+
             if (user.jellies[jellyIndex].comments !== undefined) {
             cardData.push([user.name, user.jellies[jellyIndex].comments])
             }
@@ -67,7 +67,6 @@ const RatingsChart = (props) => {
                     <Paper elevation={elevationHeight} sx={{marginTop: "10px", border: '1px solid black'}}>
                         <Container>
                             <Card>
-
                                 <CardHeader  title={jellyName}/>
                                 <CardMedia
                                     component="img"
@@ -79,7 +78,7 @@ const RatingsChart = (props) => {
                             <Chart
                                 chartType="BarChart"
                                 width="100%"
-                                height="100%"
+                                height="400px"
                                 data={chartData}
                                 options={options}
                             />
