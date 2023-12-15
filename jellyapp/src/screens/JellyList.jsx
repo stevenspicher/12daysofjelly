@@ -19,7 +19,6 @@ const [show, setShow] = useState(false);
     }
 
     useEffect(() => {
-        getConsole(location, currentUserDetails)
         setCurrentUserDetails(location.state.currentUserDetails)
     }, []);
 
@@ -32,9 +31,8 @@ const [show, setShow] = useState(false);
                 </Col>
             </Row>
 
-            <Carousel className={"mt-2"} interval={null} fade variant="dark" indicators={false} controls={false} >
+            <Carousel className={"mt-2"} interval={null} fade variant="dark" indicators={false} controls={true} >
                 {jellyList.map((jelly, index) => {
-
                             return (
                 <Carousel.Item key={index}>
                     <h3 className={"subtitle"}>{jelly.id}: {jelly.name} </h3>
@@ -50,14 +48,6 @@ const [show, setShow] = useState(false);
                             )})}
 
             </Carousel>
-
-            {/*<Button className={"mt-2"} variant="secondary" onClick={() => {*/}
-            {/*    navigate("/images", getState(location, currentUserDetails, location.state.id))*/}
-            {/*}}>*/}
-            {/*    What's up with the images?*/}
-            {/*</Button>*/}
-
-
         </Container>
     )
 };
