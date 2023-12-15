@@ -12,27 +12,25 @@ import {Container, Grow, Paper, Stack} from "@mui/material";
 const Jellies = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [ value, setValue ] = useState(50);
+    const [jellyDetails, setJellyDetails]= useState(location.state.jelly);
+    const [ value, setValue ] = useState(location.state.currentUserDetails.jellies[jellyDetails.id].rating ? location.state.currentUserDetails.jellies[jellyDetails.id].rating*10 : 50);
     const [ commentValue, setCommentValue ] = useState("");
-    const [jellyDetails, setJellyDetails]= useState(location.state.user);
-    console.log(location.state)
 
     const onChange = (e) => {
-        setCommentValue(e.target.value)
-        jellyDetails.comments = e.target.value;
-        setJellyDetails({...jellyDetails})
+            setCommentValue(e.target.value)
     }
 
     const onSubmit = () => {
     jellyDetails.rating = value/10;
     jellyDetails.rated = true;
+    jellyDetails.comments = commentValue;
+    setJellyDetails({...jellyDetails})
             editRatings(location.state.currentUserDetails, jellyDetails, props.state, location.state.id);
-        navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id))
+        navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id, jellyDetails, location.state.id))
     }
 
     useEffect(() => {
-        setJellyDetails(location.state.currentUserDetails.jellies[jellyDetails.id])
-    setValue(location.state.currentUserDetails.jellies[jellyDetails.id].rating*10)
+    setValue(location.state.currentUserDetails.jellies[jellyDetails.id].rating ? location.state.currentUserDetails.jellies[jellyDetails.id].rating*10 : 50)
     setCommentValue(location.state.currentUserDetails.jellies[jellyDetails.id].comments)
     }, []);
 

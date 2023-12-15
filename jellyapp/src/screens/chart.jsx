@@ -264,7 +264,6 @@ const RatingsChart = (props) => {
 
 
     const JellyData = (jellyName, userList, jellyIndex) => {
-
         const chartData = [["Name", "Rating"]]
         const cardData = [];
 
@@ -307,8 +306,14 @@ const RatingsChart = (props) => {
 
                         <Card>
                             <CardHeader title={jellyName}/>
-                            <Button sx={{margin: "10px"}} variant="contained" onClick={handleClick}>CLick for results</Button>
-                            <Button sx={{margin: "10px"}} variant="outlined"  onClick={handleClick1}>CLick for Explanation</Button>
+                            {jellyName === "Apricot Banana" ?
+                                <>
+                                <Button sx={{margin: "10px"}} variant="contained" onClick={handleClick}>CLick for results</Button>
+                                <Button sx={{margin: "10px"}} variant="outlined"  onClick={handleClick1}>CLick for Explanation</Button>
+                                </>
+                                :
+                                <></>
+                            }
                             <CardMedia
                                 component="img"
                                 height="194"
@@ -370,7 +375,7 @@ const RatingsChart = (props) => {
         <Container>
             <SpeedDial/>
             {JellyData("Apricot Banana", props.state.userList, 1)}
-            {/*{JellyData("Orange Guava Lime Spread ", props.state.userList, 2)}*/}
+            {JellyData("Orange Guava Lime Spread ", props.state.userList, 2)}
         </Container>
 
     )

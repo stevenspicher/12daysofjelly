@@ -56,7 +56,7 @@ export const editUser = (userData, state, id) => {
 }
 
 export const editRatings = (userData,jellyDetails, state, id) => {
-    userData.jellies[jellyDetails.id-1] = jellyDetails
+    userData.jellies[jellyDetails.id] = jellyDetails
     const requestOptions = {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
@@ -138,6 +138,7 @@ export const getConsole = (location, currentUserDetails, userList) => {
 
 
 export const getState = (location, currentUser, id, user, index) => {
+    console.log(user)
     if (user === undefined) {
         return ({
                 state:
@@ -155,7 +156,7 @@ export const getState = (location, currentUser, id, user, index) => {
                         prevPath: location.pathname,
                         currentUserDetails: currentUser,
                         id: id,
-                        user: user,
+                        jelly: user,
                         index: index
                     }
             }

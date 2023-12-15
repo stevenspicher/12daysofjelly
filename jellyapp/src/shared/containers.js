@@ -96,7 +96,7 @@ export const emptyUserDetails = {
 }
 export const jellyList = [
     {name: "Apricot-Banana", image: apricotAndBanana, id: 1},
-    {name: "Strawberry Lime Guava Spread", image: apricotAndBanana , id: 2},
+    {name: "Orange Lime Guava Spread", image: apricotAndBanana , id: 2},
     // {name: "Chestnut and Orange with Spice", image: chestnutAndOrangeWithSpice, id: 3},
     // {name: "Fig with Cardamom", image: figsWithCardamom, id: 4},
     // {name: "Grapefruit and Dragonfruit", image: grapefruitAndDragonfruit, id: 5},
