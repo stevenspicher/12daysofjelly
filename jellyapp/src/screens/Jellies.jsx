@@ -10,12 +10,12 @@ import SpeedDial from '../components/SpeedDial'
 import {Container, Grow, Paper, Stack} from "@mui/material";
 
 const Jellies = (props) => {
-    console.log(props)
     const navigate = useNavigate();
     const location = useLocation();
     const [ value, setValue ] = useState(50);
     const [ commentValue, setCommentValue ] = useState("");
     const [jellyDetails, setJellyDetails]= useState(location.state.user);
+    console.log(location.state)
 
     const onChange = (e) => {
         setCommentValue(e.target.value)
