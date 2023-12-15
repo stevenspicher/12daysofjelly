@@ -21,7 +21,6 @@ import IconButton from '@mui/material/IconButton';
 import {styled} from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import Box from "@mui/material/Box";
-import ReactTextFormat from 'react-text-format';
 
 const style = {
     position: 'absolute',
