@@ -4,32 +4,26 @@ import SpeedDial from '@mui/material/SpeedDial';
 import Container from "@mui/material/Container";
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import Backdrop from '@mui/material/Backdrop';
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-import PrintIcon from '@mui/icons-material/Print';
-import ShareIcon from '@mui/icons-material/Share';
-import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ListIcon from '@mui/icons-material/List';
 import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import {useLocation, useNavigate} from "react-router-dom";
-import {getState} from "../shared/utilities";
+import { useNavigate} from "react-router-dom";
+
 import Header from "../components/Header";
 
 
 
 export default function BasicSpeedDial() {
     const navigate = useNavigate();
-    const location = useLocation();
+
 
     const navigateToPage = (page) => {
-        navigate(page, getState(location, location.state.currentUserDetails, location.state.id))
+        navigate(page)
     }
 
     const actions = [
-        { icon: <ThumbsUpDownIcon fontSize={"small"}/>, name: 'Rate!', onClick: () => navigateToPage("/jellies") },
+        { icon: <ThumbsUpDownIcon fontSize={"small"}/>, name: 'Rate!', onClick: () => navigateToPage("/jellylist") },
         { icon: <BarChartIcon />, name: 'Ratings', onClick: () => navigateToPage("/chart") },
         { icon: <ListIcon />, name: 'WishList', onClick: () => navigateToPage("/table") },
         { icon: <LogoutIcon />, name: 'Logout', onClick: () => navigateToPage("/login") },

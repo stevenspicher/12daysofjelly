@@ -18,9 +18,6 @@ import orangeguavalime from "../assets/orangeguavelime.jpg"
 // import mirabelleplumwithspicechoices from "../assets/mirabelle plum wth spice choices.jpg"
 
 
-
-
-
 export const emptyUserDetails = {
     name: undefined,
     favColor: undefined,
@@ -32,72 +29,72 @@ export const emptyUserDetails = {
     mostLiked: false,
     leastLiked: false,
     jellies: {
-0: {id: 1, rating: 1},
+        0: {id: 1, rating: 1},
         1: {
             id: 2,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         2: {
             id: 3,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         3: {
             id: 4,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         4: {
             id: 5,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         5: {
             id: 6,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         6: {
             id: 7,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         7: {
             id: 8,
-            comments:""
+            comments: ""
         },
         8: {
             id: 9,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         9: {
             id: 10,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         10: {
             id: 11,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         11: {
             id: 12,
             rating: undefined,
-            comments:""
+            comments: ""
         },
         12: {
             id: 13,
             rating: undefined,
-            comments:""
+            comments: ""
         },
 
     }
 }
 export const jellyList = [
     {name: "Apricot-Banana", image: apricotAndBanana, id: 1},
-    {name: "Orange Lime Guava Spread", image: orangeguavalime , id: 2},
+    {name: "Orange Lime Guava Spread", image: orangeguavalime, id: 2},
     // {name: "Chestnut and Orange with Spice", image: chestnutAndOrangeWithSpice, id: 3},
     // {name: "Fig with Cardamom", image: figsWithCardamom, id: 4},
     // {name: "Grapefruit and Dragonfruit", image: grapefruitAndDragonfruit, id: 5},
@@ -112,7 +109,8 @@ export const jellyList = [
 
 export const imageList = [
     {
-        name: "apricot and peach spread flavored jelly being spread on a large piece of whole wheat toast by a tall thin sweet christmas elf", image: apricotAndBanana,
+        name: "apricot and peach spread flavored jelly being spread on a large piece of whole wheat toast by a tall thin sweet christmas elf",
+        image: apricotAndBanana,
     },
     // {name: "a woman with cherries and elderflower in her hair", image: cherriesWithElderflower},
     // {name: "Chestnut and Orange with Spice, preset style: Photo", image: chestnutAndOrangeWithSpice},

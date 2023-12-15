@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Row, Col} from "react-bootstrap";
-import {useLocation, useNavigate} from "react-router-dom";
-import {getConsole, getState, getUsers, editUser} from "../shared/utilities";
+import {useNavigate} from "react-router-dom";
+import { editUser} from "../shared/utilities";
 import SpeedDial from "../components/SpeedDial"
 import {Container, Grow, Paper, Stack} from "@mui/material";
+import {currentUser, userEdit} from "../store/signalsStore";
 
-const User = (props) => {
+const User = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const [canEdit, setCanEdit] = useState(false)
-    const [editUserDetails, setEditUserDetails] = useState(location.state.user);
+    const [editUserDetails, setEditUserDetails] = useState(currentUser.value);
 
     const onChange = (e) => {
         const name = e.target.name
@@ -21,51 +20,19 @@ const User = (props) => {
     }
 
     const onSubmit = () => {
-        if (location.state.prevPath === "/signup") {
-            userUpload(editUserDetails);
-        } else {
-            editUser(editUserDetails, props.state, location.state.id);
-        }
-        props.state.setCurrentUserDetails(editUserDetails)
-        canEdit ? navigate("/table", getState(location, editUserDetails, location.state.id)) : navigate("/table", getState(location, props.state.currentUserDetails, location.state.id))
+        editUser(editUserDetails);
+        currentUser.value = editUserDetails
+        navigate("/table")
     }
 
-    const userUpload = (userDetails) => {
-        fetch("https://jelly-e1b63-default-rtdb.firebaseio.com/userList.json", {
-            method: 'POST', headers: {
-                'Content-Type': 'application/json'
-            }, body: JSON.stringify(userDetails)
-        })
-    }
-
-    useEffect(() => {
-        getConsole(location, props.state.currentUserDetails)
-        if (location.state.id === location.state.user.id) {
-            setCanEdit(true)
-        }
 
 
-    }, []);
     return (
         <Container>
           <SpeedDial/>
                 <h2 className="subtitle">{editUserDetails.name}'s Info</h2>
             <Container >
                 <Form>
-                    {/*<FloatingLabel*/}
-                    {/*    controlId="floatingInput"*/}
-                    {/*    label="Name"*/}
-                    {/*    className="mb-3"*/}
-                    {/*>*/}
-                    {/*    <Form.Control*/}
-                    {/*        type="text"*/}
-                    {/*        placeholder="rudolph"*/}
-                    {/*        name="name"*/}
-                    {/*        disabled={!canEdit}*/}
-                    {/*        onChange={onChange}*/}
-                    {/*        value={editUserDetails.name}*/}
-                    {/*    />*/}
-                    {/*</FloatingLabel>*/}
                     <Row>
                         <Col>
                     <FloatingLabel
@@ -75,7 +42,7 @@ const User = (props) => {
                     >
                         <Form.Control
                             as="textarea"
-                            disabled={!canEdit}
+                            disabled={!userEdit.value}
                             placeholder="Favorite Colors?"
                             name="favColor"
                             onChange={onChange}
@@ -93,7 +60,7 @@ const User = (props) => {
                         <Form.Control
                             as="textarea"
                             placeholder="Clothing Sizes?"
-                            disabled={!canEdit}
+                            disabled={!userEdit.value}
                             onChange={onChange}
                             name="sizes"
                             value={editUserDetails.sizes}
@@ -115,16 +82,16 @@ const User = (props) => {
                             style={{height: '400px'}}
                             onChange={onChange}
                             name={"wishes"}
-                            disabled={!canEdit}
+                            disabled={!userEdit.value}
                             value={editUserDetails.wishes}
                         />
                     </FloatingLabel>
 </Row>
-                    {canEdit ? <Button variant="primary" onClick={onSubmit}>
+                    {!userEdit.value ? <Button variant="primary" onClick={onSubmit}>
                         Submit
                     </Button> : <></>}
                     <Button variant="secondary" onClick={(e) => {
-                        navigate("/table", getState(location, location.state.currentUserDetails, location.state.id))
+                        navigate("/table")
                     }}>
                         Cancel
                     </Button>

@@ -1,38 +1,37 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Header from "../components/Header"
+
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Row, Col} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
-import {getConsole, getState, editRatings} from "../shared/utilities";
+import {editRatings} from "../shared/utilities";
 import SpeedDial from '../components/SpeedDial'
-import {Container, Grow, Paper, Stack} from "@mui/material";
-
-const Jellies = (props) => {
+import {Container, } from "@mui/material";
+import {currentUser, jellyId, signalJellyList} from "../store/signalsStore";
+const user = currentUser.value
+const Jellies = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const [jellyDetails, setJellyDetails]= useState(location.state.jelly);
-    const [ value, setValue ] = useState(location.state.currentUserDetails.jellies[jellyDetails.id].rating ? location.state.currentUserDetails.jellies[jellyDetails.id].rating*10 : 50);
-    const [ commentValue, setCommentValue ] = useState("");
+    const [jellyDetails, setJellyDetails]= useState(signalJellyList.value[jellyId.value]);
+    console.log(user)
+    const [ratingValue, setRatingValue] = useState(user.jellies[jellyId.value -1].rating ?? 0);
+    const [commentValue, setCommentValue ] = useState(user.jellies[jellyId.value -1].comment ?? "" );
 
-    const onChange = (e) => {
+    const onCommentChange = (e) => {
             setCommentValue(e.target.value)
+    }
+    const onRatingChange = (e) => {
+        setRatingValue(e.target.value)
     }
 
     const onSubmit = () => {
-    jellyDetails.rating = value/10;
-    jellyDetails.rated = true;
+    jellyDetails.rating = ratingValue;
     jellyDetails.comments = commentValue;
     setJellyDetails({...jellyDetails})
-            editRatings(location.state.currentUserDetails, jellyDetails, props.state, location.state.id);
-        navigate("/jellies", getState(location, location.state.currentUserDetails, location.state.id, jellyDetails, location.state.id))
+            editRatings(user, jellyDetails);
+        navigate("/jellylist")
     }
 
-    useEffect(() => {
-    setValue(location.state.currentUserDetails.jellies[jellyDetails.id].rating ? location.state.currentUserDetails.jellies[jellyDetails.id].rating*10 : 50)
-    setCommentValue(location.state.currentUserDetails.jellies[jellyDetails.id].comments)
-    }, []);
 
     return (
         <Container >
@@ -45,10 +44,10 @@ const Jellies = (props) => {
                 </Row>
             <Container className='mt-5'>
                 <Form>
-                    <Form.Label>Rating: {value/10}</Form.Label>
+                    <Form.Label>Rating: {ratingValue/10}</Form.Label>
                     <Form.Range
-                        value={value}
-                        onChange={e => setValue(e.target.value)}
+                        value={ratingValue}
+                        onChange={onRatingChange}
                         step={10}
                     />
                     <FloatingLabel
@@ -63,7 +62,7 @@ const Jellies = (props) => {
                            value={commentValue}
                            style={{height: '200px'}}
                             name="Comments"
-                            onChange={onChange}
+                            onChange={onCommentChange}
 
                         />
                     </FloatingLabel>

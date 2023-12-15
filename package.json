@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@preact/signals": "^1.2.2",
     "firebase": "^9.14.0"
   }
 }
