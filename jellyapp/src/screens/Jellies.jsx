@@ -45,7 +45,7 @@ const Jellies = () => {
         jellyData.value.rating = Number(rating.value) / 10
         jellyData.value.comments = comments.value
         editRatings(storedUserList.value[id], jellyData.value);
-        navigate("/jellylist")
+        navigate("/chart")
     }
     useEffect(() => {
         getUsers();

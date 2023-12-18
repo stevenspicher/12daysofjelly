@@ -46,7 +46,6 @@ export const editUser =  (userData) => {
 }
 
 export const editRatings =  (userData, jellyData) => {
-    console.log(jellyData)
     const id = JSON.parse(localStorage.getItem("id"))
     const jellyId = JSON.parse(localStorage.getItem("jellyid"))
     userData.jellies[jellyId] = jellyData

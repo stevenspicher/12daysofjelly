@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {Button, Container, Grow, Paper} from "@mui/material";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -28,6 +29,7 @@ let userList,
 
 
 const JellyChartData = (jellyId) => {
+    const navigate = useNavigate();
 const id = JSON.parse(localStorage.getItem("id"))
 
     const jelly = storedJellyList.value[jellyId + 1] ?? {};
@@ -86,10 +88,6 @@ const id = JSON.parse(localStorage.getItem("id"))
             jellyList = storedJellyList.value;
     }, [storedUserList.value, storedJellyList.value]);
 
-
-
-console.log(chartData)
-    console.log(cardData)
     return (
         <Grow in={true} timeout={1000}>
             <Paper elevation={elevationHeight} sx={{marginTop: "10px", border: '1px solid black'}}>
@@ -97,11 +95,15 @@ console.log(chartData)
 
                     <Card>
                         <CardHeader title={jelly.name}/>
+                        <p>(click image to rate)</p>
                         <CardMedia
                             component="img"
                             height="194"
                             image={jelly.image}
                             alt={jelly.name}
+                            onClick={() => {
+                                localStorage.setItem("jellyid", jelly.id)
+                                navigate("/jelly")}}
 
                         />
 

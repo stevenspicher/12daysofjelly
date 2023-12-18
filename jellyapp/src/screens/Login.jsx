@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from "react";
 import Button from 'react-bootstrap/Button';
 import { Row, Col, Badge} from "react-bootstrap";
-import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 import {useNavigate} from "react-router-dom";
 import {emptyUserDetails} from "../shared/containers";
 import { blink, getUsers} from "../shared/utilities";
-import {Container} from "@mui/material";
+import {Container, FormControl, Input, InputLabel, FormHelperText, Box, Stack} from "@mui/material";
 
 //state
 import {computed, signal} from "@preact/signals-react";
@@ -23,7 +22,7 @@ const Login = () => {
         if (userList !== undefined)
             if (userList.find((user) => user.name === login.value)) {
                     localStorage.setItem("id", userList.map( e => e.name).indexOf(login.value))
-                navigate("/jellylist")
+                navigate("/chart")
                 } else {
                 navigate("/invalid")
                 }
@@ -42,7 +41,7 @@ const Login = () => {
     return (
         <>
             <Container>
-                <div>
+                <Stack direction={"row"}>
                     <h1 className="title">
                         <b className="blink">1</b>
                         <b className="blink">2</b>
@@ -63,8 +62,9 @@ const Login = () => {
                         <b className="blink">d</b>
                         <b className="blink">s</b>
                     </h1>
+                        <p style={{color: "blue", fontSize:"10px"}}>v2</p>
 
-                </div>
+                </Stack>
                 <Row>
                     <Col>
                         <h2 className="subtitle">Welcome!</h2>
@@ -72,30 +72,25 @@ const Login = () => {
                 </Row>
 
             </Container>
-            <Container className='mt-5'>
-                <Form onSubmit={onSubmit}>
-                    <h2 className="subtitle-signup">Please enter your name:</h2>
-                    <FloatingLabel
-                        controlId="floatingInput"
-                        className="m-5"
-                        name="name"
-                    >
-
-                        <Form.Control type="text"
-                                      name="name"
-                                      onChange={onChange}
-                                      placeholder="your name here"/>
+            <Box
+                component="form"
+                sx={{
+                    '& > :not(style)': { m: 1 },
+                }}
+                className={"mt-5"}
+                onSubmit={onSubmit}
+                noValidate
+                autoComplete="off"
+            >
 
 
-                        <Button style={{marginTop:"10px"}} variant="primary" onClick={onSubmit}>
-                            Login
-                        </Button><p style={{color: "blue"}}>v1</p>
-                    </FloatingLabel>
+                        <FormControl >
+                            <InputLabel htmlFor="my-input">Login</InputLabel>
+                            <Input id="my-input" aria-describedby="my-helper-text" onChange={onChange}/>
+                            <FormHelperText id="my-helper-text">enter your name</FormHelperText>
+                        </FormControl>
 
-
-                </Form>
-
-            </Container>
+            </Box>
           
         </>
     )
