@@ -1,5 +1,6 @@
 import apricotAndBanana from "../assets/apricot-banana.jpg"
 import orangeguavalime from "../assets/orangeguavelime.jpg"
+import mirabelleplumspice from "../assets/mirabelleplumspice.jpg"
 
 // import rhubarbAndStrawberry from "../assets/rhubarbandstrawberry.jpg";
 // import cherriesWithElderflower from "../assets/cherriesWithElderflower.jpg";
@@ -95,7 +96,7 @@ export const emptyUserDetails = {
 export const jellyList = [
     {name: "Apricot-Banana", image: apricotAndBanana, id: 1},
     {name: "Orange Lime Guava Spread", image: orangeguavalime, id: 2},
-    // {name: "Chestnut and Orange with Spice", image: chestnutAndOrangeWithSpice, id: 3},
+     {name: "Mirabelle Plum Spice", image: mirabelleplumspice, id: 3},
     // {name: "Fig with Cardamom", image: figsWithCardamom, id: 4},
     // {name: "Grapefruit and Dragonfruit", image: grapefruitAndDragonfruit, id: 5},
     // {name: "Honey", image: honey, id: 6},
