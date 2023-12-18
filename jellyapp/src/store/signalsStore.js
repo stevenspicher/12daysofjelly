@@ -12,15 +12,22 @@ export const alert = signal({
     loading: false
 });
 
+
+//state
+
+// export const stateImport = signal(storedCurrentUser, storedUserList, storedUserId)
 // Users
 
-export const userList = signal([]);
-export const currentUser = signal({});
+export const storedUserList = signal();
+export const storedUserId = signal();
+export const storedCurrentUser = signal();
 export const userEdit = signal(false);
 //Jelly
 
-export const jellyId = signal(0)
-export const signalJellyList = signal([
+// export const storedJelly = computed (() => {storedJellyList.value[storedJellyId.value]})
+export const storedJellyId = signal(0)
+export const storedJellyList = signal([
+    {},
         {name: "Apricot-Banana", image: apricotAndBanana, id: 1, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
         {name: "Orange Lime Guava Spread", image: orangeguavalime , id: 2, openResult: false, openPrompt: false,rating: undefined,

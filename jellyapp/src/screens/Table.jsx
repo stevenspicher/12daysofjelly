@@ -3,8 +3,9 @@ import {Button, Card, Col, Row, Modal, Badge} from "react-bootstrap";
 import {useNavigate} from 'react-router-dom';
 import SpeedDial from "../components/SpeedDial"
 import {Container} from "@mui/material";
-import {currentUser, userEdit, userList} from "../store/signalsStore";
-
+import {storedCurrentUser, userEdit, storedUserList} from "../store/signalsStore";
+const currentUser = storedCurrentUser.value;
+const userList = storedUserList.value;
 
 const UserTable = () => {
     const navigate = useNavigate();
@@ -18,9 +19,9 @@ const UserTable = () => {
                             <h2 className="subtitle">Family List</h2>
                         </Col>
 
-            {userList.value[0] === undefined ? <></> :
+            {storedUserList[0] === undefined ? <></> :
                 <Container >
-                    {userList.value.map((user, index) => {
+                    {userList.map((user, index) => {
                         return (
                             <Card key={index} className="cards">
                                 <Card.Header as="h5">
@@ -41,7 +42,7 @@ const UserTable = () => {
                                         <Badge bg="success">need</Badge>}
                                     </Card.Text>
                                     <Row>
-                                        {currentUser.value.id === user.id ?
+                                        {currentUser.id === user.id ?
                                             <Button onClick={() => {
                                                 userEdit.value = true
                                                 navigate("/user")

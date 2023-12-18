@@ -6,33 +6,42 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 import {useNavigate} from "react-router-dom";
 import {emptyUserDetails} from "../shared/containers";
-import { blink} from "../shared/utilities";
+import { blink, getUsers} from "../shared/utilities";
 import {Container} from "@mui/material";
-import {currentUser, userList} from "../store/signalsStore";
+
+//state
+import {computed, signal} from "@preact/signals-react";
+import {storedCurrentUser, storedUserList, storedUserId} from "../store/signalsStore";
+let currentUser, userList, userId;
+
 const Login = () => {
+    const login = signal("")
     const navigate = useNavigate();
-    const [loginDetails, setLoginDetails] = useState(emptyUserDetails);
-    const onChange = (e) => {
-        const name = e.target.name
-        loginDetails[name] = e.target.value
-        setLoginDetails({...loginDetails})
-    }
+    const onChange = (e) => {login.value = e.target.value.toLowerCase()}
 
-    const onSubmit = () => {
-        if (userList.value.find((user) => user.name === loginDetails.name.toLowerCase())) {
-            const userDetails = (userList.value.find((user) => user.name === loginDetails.name.toLowerCase()));
-            currentUser.value = userDetails
-            navigate("/jellylist")
-        } else {
-            navigate("/invalid")
-        }
-    }
-
+    const onSubmit = async () => {
+        if (userList !== undefined)
+            if (userList.find((user) => user.name === login.value)) {
+                storedCurrentUser.value = userList.find((user) => user.name === login.value);
+                    storedUserId.value = userList.map( e => e.name).indexOf(login.value);
+                    localStorage.setItem("id", storedUserId.value)
+                navigate("/jellylist")
+                } else {
+                navigate("/invalid")
+                }
+            }
 
     useEffect(() => {
-        blink()
+        blink();
+        getUsers();
     }, []);
 
+
+    useEffect(() =>{
+       currentUser = storedCurrentUser.value;
+       userList = storedUserList.value;
+       userId = storedUserId.value;
+    }, [storedCurrentUser.value, storedUserList.value, storedUserId.value]);
 
     return (
         <>

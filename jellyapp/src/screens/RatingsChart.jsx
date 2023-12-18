@@ -5,11 +5,7 @@ import JellyChartData from "../components/JellyChartData";
 
 import {Container} from "@mui/material";
 
-
-
 const RatingsChart = () => {
-
-
 
     return (
         <Container>
@@ -17,7 +13,6 @@ const RatingsChart = () => {
             {JellyChartData(0)}
             {JellyChartData(1)}
         </Container>
-
     )
 };
 

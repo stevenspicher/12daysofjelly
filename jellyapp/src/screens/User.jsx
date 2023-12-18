@@ -7,11 +7,12 @@ import {useNavigate} from "react-router-dom";
 import { editUser} from "../shared/utilities";
 import SpeedDial from "../components/SpeedDial"
 import {Container, Grow, Paper, Stack} from "@mui/material";
-import {currentUser, userEdit} from "../store/signalsStore";
+import {storedCurrentUser, userEdit} from "../store/signalsStore";
 
+const currentUser = storedCurrentUser.value
 const User = () => {
     const navigate = useNavigate();
-    const [editUserDetails, setEditUserDetails] = useState(currentUser.value);
+    const [editUserDetails, setEditUserDetails] = useState(currentUser);
 
     const onChange = (e) => {
         const name = e.target.name
@@ -21,7 +22,7 @@ const User = () => {
 
     const onSubmit = () => {
         editUser(editUserDetails);
-        currentUser.value = editUserDetails
+        currentUser = editUserDetails
         navigate("/table")
     }
 

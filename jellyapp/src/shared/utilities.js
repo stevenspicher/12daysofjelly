@@ -1,13 +1,16 @@
-import {currentUser, jellyId, userList} from "../store/signalsStore";
+import {storedCurrentUser, storedJellyId, storedUserList} from "../store/signalsStore";
 
-export const getUsers = () => {
+const currentUser = storedCurrentUser.value;
+let jellyId = storedJellyId.value;
+let userList = storedUserList.value;
+export const getUsers = async () => {
     let list = []
     //TODO: add error catching
-    fetch("https://jelly-e1b63-default-rtdb.firebaseio.com/userList.json")
+    await fetch("https://jelly-e1b63-default-rtdb.firebaseio.com/userList.json")
         .then(response => response.json())
         .then(data => {
             if (data !== null) {
-                list = Object.keys(data).map((key) => (
+                return Object.keys(data).map((key) => (
                     {
                         id: key,
                         name: data[key].name,
@@ -17,11 +20,12 @@ export const getUsers = () => {
                         jellies: data[key].jellies
                     }
                 ))
-                userList.value = list
-                console.log(list)
+
             }
-        })
-                console.log("list received")
+        }).then(data => {
+            storedUserList.value = data
+        }
+        )
 }
 
 export const editUser = (userData) => {
@@ -38,14 +42,14 @@ export const editUser = (userData) => {
         })
     };
     //TODO: add error catching
-    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${currentUser.value.id}.json`, requestOptions)
+    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${currentUser.id}.json`, requestOptions)
         .then(response => response.json())
 
     getUsers()
 }
 
 export const editRatings = (userData, jellyDetails) => {
-    userData.jellies[jellyId.value] = jellyDetails
+    userData.jellies[jellyId] = jellyDetails
     const requestOptions = {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
@@ -54,7 +58,7 @@ export const editRatings = (userData, jellyDetails) => {
         })
     };
     //TODO: add error catching
-    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${currentUser.value.id}.json`, requestOptions)
+    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${currentUser.id}.json`, requestOptions)
         .then(response => response.json())
 
     getUsers()

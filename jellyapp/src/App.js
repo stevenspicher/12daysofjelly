@@ -14,9 +14,7 @@ import {getUsers} from "./shared/utilities";
 
 function App() {
 
-    useEffect(() => {
-        getUsers();
-    }, []);
+
 
     return (
         <Container fluid className="frame">
