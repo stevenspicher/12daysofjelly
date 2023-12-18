@@ -19,6 +19,15 @@ const RatingsChart = () => {
             {JellyChartData(1)}
             {JellyChartData(2)}
             {JellyChartData(3)}
+            {JellyChartData(4)}
+            {JellyChartData(5)}
+            {JellyChartData(6)}
+            {JellyChartData(7)}
+            {JellyChartData(8)}
+            {JellyChartData(9)}
+            {JellyChartData(10)}
+            {JellyChartData(11)}
+            {JellyChartData(12)}
         </Container>
     )
 };

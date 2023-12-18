@@ -48,15 +48,17 @@ const id = JSON.parse(localStorage.getItem("id"))
             const jellyRatings = {};
             let rating, comment, wishes;
             // rating = 1;
-            rating = user.jellies[jellyId + 1].rating ?? undefined;
-            comment = user.jellies[jellyId + 1].comments ?? undefined;
+            rating = user.jellies[jellyId + 1]=== undefined ? undefined : user.jellies[jellyId + 1].rating;
+            comment = user.jellies[jellyId + 1]=== undefined ? undefined : user.jellies[jellyId + 1].comments;
             // comment = "test";
             wishes = user.wishes ?? undefined;
-            if (user.jellies[jellyId + 1].rating !== undefined) {
+            if (user.jellies[jellyId + 1] !== undefined) {
+                if (user.jellies[jellyId + 1].rating !== undefined)
                 chartData.push([user.name, user.jellies[jellyId + 1].rating])
             }
-            if (user.jellies[jellyId + 1].comments !== undefined) {
-                cardData.push([user.name, comment])
+            if (user.jellies[jellyId + 1] !== undefined) {
+                if (user.jellies[jellyId + 1].comments !== undefined)
+                    cardData.push([user.name, comment])
             }
             jellyRatings[user.name] = {comment: comment, rating: rating, wishes: wishes}
         })

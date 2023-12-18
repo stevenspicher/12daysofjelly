@@ -3,7 +3,16 @@ import {computed, signal} from "@preact/signals-react";
 
 import apricotAndBanana from "../assets/apricot-banana.jpg";
 import orangeguavalime from "../assets/orangeguavelime.jpg";
-import mirabellePlumWithSpice from "../assets/mirabellePlumWithSpice.jpg"
+import mirabellePlumWithSpice from "../assets/mirabellePlumWithSpice.jpg";
+import peachjasmineflower from '../assets/peachjasmineflower.jpg';
+import grapefruitdragonfruit from '../assets/grapefruitdragonfruit.jpg';
+import RhubarbStrawberry from "../assets/Rhubarb Strawberry.jpg";
+import FigCardamom from "../assets/Fig Cardamom.jpg";
+import CaramelCinnamon from "../assets/Caramel Cinnamon.jpg";
+import Strawberryguava from "../assets/Strawberryguava.jpg";
+import Mangoraspberry from "../assets/Mango Raspberry Lime.jpg";
+import cherrychristmas from "../assets/cherrychristmasspice.jpg";
+import quince from "../assets/quince.jpg";
 
 //AlertBox
 export const alert = signal({
@@ -35,23 +44,23 @@ export const storedJellyList = signal([
             comment:""},
         {name: "Mirabelle Plum-Spice", image: mirabellePlumWithSpice, id: 3, openResult: false, openPrompt: false, rating: undefined,
     comment:""},
-        {name: "Peach Jasmine Flower", image: orangeguavalime, id: 4, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Peach Jasmine Flower", image: peachjasmineflower, id: 4, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
-        {name: "Grapefruit and Dragonfruit", image: apricotAndBanana, id: 5, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Grapefruit and Dragonfruit", image: grapefruitdragonfruit, id: 5, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
-        {name: "Rhubarb Strawberry", image: orangeguavalime, id: 6, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Rhubarb Strawberry", image: RhubarbStrawberry, id: 6, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
-        {name: "Fig Cardamom", image: apricotAndBanana, id: 7, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Fig Cardamom", image: FigCardamom, id: 7, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
-        {name: "Caramel Cinnamon", image: orangeguavalime, id: 8, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Caramel Cinnamon", image: CaramelCinnamon, id: 8, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
-        {name: "Quince", image: apricotAndBanana, id: 9, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Quince", image: quince, id: 9, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
-        {name: "Strawberry Guava", image: orangeguavalime, id: 10, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Strawberry Guava", image: Strawberryguava, id: 10, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
-        {name: "Mango Raspberry Lime", image: apricotAndBanana, id: 11, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Mango Raspberry Lime", image: Mangoraspberry, id: 11, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
-        {name: "Cherry Christmas Spice", image: orangeguavalime, id: 12, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Cherry Christmas Spice", image: cherrychristmas, id: 12, openResult: false, openPrompt: false, rating: undefined,
             comment:""},
     ]
 )
