@@ -17,17 +17,15 @@ const style = {
 
 };
 
-const ExplanationModal = (props) => {
-    const {onClose, open} = props;
+const ABExplanationModal = (props) => {
+    const {open} = props;
 
-    const handleClose = () => {
-        onClose()
-    };
+
 
     return (
         <Modal
-            open={open}
-            onClose={handleClose}
+            open={open.value}
+            onClose={() => open.value = false}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
@@ -90,4 +88,4 @@ const ExplanationModal = (props) => {
     )
 }
 
-export default ExplanationModal;
+export default ABExplanationModal;

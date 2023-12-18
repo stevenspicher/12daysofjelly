@@ -20,8 +20,8 @@ const style = {
 
 };
 
-const ResultsModal = (props) => {
-    const {jellyId, open} = props;
+const ABResultsModal = (props) => {
+    const {open} = props;
 
     return (
         <Modal
@@ -126,4 +126,4 @@ const ResultsModal = (props) => {
     )
 }
 
-export default ResultsModal;
+export default ABResultsModal;

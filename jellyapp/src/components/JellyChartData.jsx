@@ -4,8 +4,10 @@ import {Button, Container, Grow, Paper} from "@mui/material";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import ResultsModal from "./Modals/ResultsModal";
-import ExplanationModal from "./Modals/ResultsModal";
+import ABResultsModal from "./Modals/ABResultsModal";
+import ABExplanationModal from "./Modals/ABExplanationModal";
+import OLGPromptsModal from "./Modals/OLGExplanationModal";
+import OLGResultsModal from "./Modals/OLGResultsModal";
 import {Chart} from "react-google-charts";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
@@ -63,6 +65,7 @@ const id = JSON.parse(localStorage.getItem("id"))
                     cardData.push([user.name, comment])
             }
             jellyRatings[user.name] = {comment: comment, rating: rating, wishes: wishes}
+            console.log(jellyRatings)
         })
     }
 
@@ -160,27 +163,34 @@ export default JellyChartData;
 
 const ModalButtons = ({jelly}) => {
     let resultsModalOpen =  useSignal(false)
+    let explanationModalOpen =  useSignal(false)
 
-    const handleOpen = () => {
-        resultsModalOpen.value  = true
-    };
 
- if (jelly.id === 1)
+
+ if (jelly.id === 1) {
+     return (
+         <>
+             <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value = true}>CLick
+                 for results</Button>
+             <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
+                 for Explanation</Button>
+
+             <ABResultsModal open={resultsModalOpen}/>
+             <ABExplanationModal open={explanationModalOpen}/>
+         </>
+     )
+ } else if (jelly.id === 2) {
     return (
+             <>
+                 <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value  = true}>CLick
+                     for results</Button>
+                 <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
+                     for Explanation</Button>
 
-        <>
-            <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value  = true}>CLick
-                for results</Button>
-            <Button sx={{margin: "10px"}} variant="outlined" onClick={() => openPromptModal.value[jelly.id] = true}>CLick
-                for Explanation</Button>
+                 <OLGResultsModal open={resultsModalOpen}/>
+                 <OLGPromptsModal open={explanationModalOpen}/>
+             </>
+         )
 
-            <ResultsModal
-                jellyId = {jelly.id} open={resultsModalOpen}
-            />
-            {/*<ExplanationModal*/}
-            {/*    open={openPromptModal}*/}
-            {/*    onClose={() => {openPromptModal.value[jelly.id] = false}}*/}
-            {/*/>*/}
-        </>
-    )
+ }
 };
