@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import {openResultModal} from "../../store/signalsStore";
+import {useSignal} from "@preact/signals-react";
 
 
 const style = {
@@ -20,16 +21,12 @@ const style = {
 };
 
 const ResultsModal = (props) => {
-    const {jelly} = props;
-console.log(jelly.id)
-    // const handleClose = () => {
-    //    openResultModal.value[jelly.id] = false
-    // };
+    const {jellyId, open} = props;
 
     return (
         <Modal
-            open={openResultModal.value[jelly.id]}
-            onClose={() => openResultModal.value[jelly.id] = false}
+            open={open.value}
+            onClose={() => open.value = false}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >

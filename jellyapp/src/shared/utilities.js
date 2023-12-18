@@ -26,7 +26,7 @@ export const getUsers = async () => {
         )
 }
 
-export const editUser = (userData) => {
+export const editUser =  (userData) => {
     const id = JSON.parse(localStorage.getItem("id"))
     const requestOptions = {
         method: 'PATCH',
@@ -45,7 +45,7 @@ export const editUser = (userData) => {
     getUsers()
 }
 
-export const editRatings = (userData, jellyData) => {
+export const editRatings =  (userData, jellyData) => {
     console.log(jellyData)
     const id = JSON.parse(localStorage.getItem("id"))
     const jellyId = JSON.parse(localStorage.getItem("jellyid"))
@@ -61,7 +61,7 @@ export const editRatings = (userData, jellyData) => {
     fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${storedUserList.value[id].id}.json`, requestOptions)
         .then(response => response.json())
 
-    getUsers()
+     getUsers()
 };
 
 export const blink = () => {

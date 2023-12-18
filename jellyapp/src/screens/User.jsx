@@ -7,7 +7,14 @@ import {useNavigate} from "react-router-dom";
 import { editUser} from "../shared/utilities";
 import SpeedDial from "../components/SpeedDial"
 import {Container, Grow, Paper, Stack} from "@mui/material";
-import {userEdit, storedUserList} from "../store/signalsStore";
+import {computed, signal, useSignal} from "@preact/signals-react";
+import {
+    storedUserList,
+    storedJellyList,
+    userEdit
+} from "../store/signalsStore";
+
+let userList = storedUserList.value;
 
 
 const User = () => {
@@ -30,7 +37,7 @@ const User = () => {
     useEffect(() => {
           setEditUserDetails(storedUserList.value[id]);
     }, [storedUserList.value]);
-
+if (editUserDetails !== undefined)
     return (
         <Container>
           <SpeedDial/>
@@ -91,7 +98,7 @@ const User = () => {
                         />
                     </FloatingLabel>
 </Row>
-                    {!userEdit.value ? <Button variant="primary" onClick={onSubmit}>
+                    {userEdit.value ? <Button variant="primary" onClick={onSubmit}>
                         Submit
                     </Button> : <></>}
                     <Button variant="secondary" onClick={(e) => {

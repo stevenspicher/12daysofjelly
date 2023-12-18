@@ -3,6 +3,7 @@ import {computed, signal} from "@preact/signals-react";
 
 import apricotAndBanana from "../assets/apricot-banana.jpg";
 import orangeguavalime from "../assets/orangeguavelime.jpg";
+import mirabellePlumWithSpice from "../assets/mirabellePlumWithSpice.jpg"
 
 //AlertBox
 export const alert = signal({
@@ -32,7 +33,7 @@ export const storedJellyList = signal([
             comment:""},
         {name: "Orange Lime Guava Spread", image: orangeguavalime , id: 2, openResult: false, openPrompt: false,rating: undefined,
             comment:""},
-        {name: "Mirabelle Plum-Spice", image: apricotAndBanana, id: 3, openResult: false, openPrompt: false, rating: undefined,
+        {name: "Mirabelle Plum-Spice", image: mirabellePlumWithSpice, id: 3, openResult: false, openPrompt: false, rating: undefined,
     comment:""},
         {name: "Peach Jasmine Flower", image: orangeguavalime, id: 4, openResult: false, openPrompt: false, rating: undefined,
             comment:""},

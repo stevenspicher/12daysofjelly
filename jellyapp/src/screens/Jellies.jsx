@@ -8,14 +8,13 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {editRatings} from "../shared/utilities";
 import SpeedDial from '../components/SpeedDial'
 import {Container,} from "@mui/material";
+import {getUsers} from "../shared/utilities"
 //state
 import {computed, signal, useSignal} from "@preact/signals-react";
 import {
     storedUserList,
     storedJellyList,
-    storedJellyData,
-    storedRating,
-    storedComments
+
 } from "../store/signalsStore";
 
 
@@ -48,6 +47,9 @@ const Jellies = () => {
         editRatings(storedUserList.value[id], jellyData.value);
         navigate("/jellylist")
     }
+    useEffect(() => {
+        getUsers();
+    }, []);
 
     if (jellyData.value !== undefined)
         return (

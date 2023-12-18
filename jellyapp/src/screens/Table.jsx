@@ -1,15 +1,26 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, Card, Col, Row, Modal, Badge} from "react-bootstrap";
 import {useNavigate} from 'react-router-dom';
 import SpeedDial from "../components/SpeedDial"
 import {Container} from "@mui/material";
-import {userEdit, storedUserList} from "../store/signalsStore";
+import {getUsers} from "../shared/utilities"
 
-const userList = storedUserList.value;
+import {computed, signal, useSignal} from "@preact/signals-react";
+import {
+    storedUserList,
+    storedJellyList,
+    userEdit
+} from "../store/signalsStore";
+
+let userList = storedUserList.value;
 
 const UserTable = () => {
     const id = JSON.parse(localStorage.getItem("id"))
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getUsers();
+    }, []);
 
     return (
         <Container>
@@ -20,9 +31,9 @@ const UserTable = () => {
                             <h2 className="subtitle">Family List</h2>
                         </Col>
 
-            {storedUserList[0] === undefined ? <></> :
+            {storedUserList.value[0] === undefined ? <></> :
                 <Container >
-                    {userList.map((user, index) => {
+                    {storedUserList.value.map((user, index) => {
                         return (
                             <Card key={index} className="cards">
                                 <Card.Header as="h5">
@@ -43,7 +54,7 @@ const UserTable = () => {
                                         <Badge bg="success">need</Badge>}
                                     </Card.Text>
                                     <Row>
-                                        {id === user.id ?
+                                        {id === index ?
                                             <Button onClick={() => {
                                                 userEdit.value = true
                                                 navigate("/user")

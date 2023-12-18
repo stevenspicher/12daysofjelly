@@ -15,7 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 //state
-import {computed, signal} from "@preact/signals-react";
+import {computed, signal, useSignal} from "@preact/signals-react";
 import {
     openPromptModal,
     openResultModal,
@@ -27,11 +27,10 @@ let userList,
     jellyList;
 
 
-const JellyChartData = () => {
+const JellyChartData = (jellyId) => {
 const id = JSON.parse(localStorage.getItem("id"))
-const jellyId = JSON.parse(localStorage.getItem("jellyid"))
 
-    const jelly = storedJellyList.value[jellyId] ?? {};
+    const jelly = storedJellyList.value[jellyId + 1] ?? {};
 
     const elevationHeight = 12;
     const chartData = [["Name", "Rating"]]
@@ -48,19 +47,19 @@ const jellyId = JSON.parse(localStorage.getItem("jellyid"))
 
             const jellyRatings = {};
             let rating, comment, wishes;
-            console.log(user.jellies[jellyId])
-            rating = 1;
-            // rating = user.jellies[jellyId].rating ?? undefined;
-            // comment = user.jellies[jellyId - 1].comments ?? undefined;
-            comment = "test";
+            // rating = 1;
+            rating = user.jellies[jellyId + 1].rating ?? undefined;
+            comment = user.jellies[jellyId + 1].comments ?? undefined;
+            // comment = "test";
             wishes = user.wishes ?? undefined;
-            chartData.push([user.name, user.jellies[jellyId].rating])
-            if (user.jellies[jellyId].comments !== undefined) {
+            chartData.push([user.name, user.jellies[jellyId + 1].rating])
+            if (user.jellies[jellyId + 1].comments !== undefined) {
                 cardData.push([user.name, comment])
             }
             jellyRatings[user.name] = {comment: comment, rating: rating, wishes: wishes}
         })
     }
+
     const ExpandMore = styled((props) => {
         const {expand, ...other} = props;
         return <IconButton {...other} />;
@@ -111,7 +110,9 @@ const jellyId = JSON.parse(localStorage.getItem("jellyid"))
                             options={options}
                         />
                         <Divider/>
-                        <Typography sx={{marginTop: "20px"}}>Comments</Typography>
+                        {cardData[0] !== undefined ?
+                            <>
+                            <Typography sx={{marginTop: "20px"}}>Comments</Typography>
                         <ExpandMore
                             expand={expanded}
                             onClick={handleExpandClick}
@@ -139,6 +140,8 @@ const jellyId = JSON.parse(localStorage.getItem("jellyid"))
                                 })}
                             </CardContent>
                         </Collapse>
+                            </>
+                            : <></>}
                     </Card>
                 </Container>
             </Paper>
@@ -148,19 +151,25 @@ const jellyId = JSON.parse(localStorage.getItem("jellyid"))
 
 export default JellyChartData;
 
-const ModalButtons = (jelly) => {
-    const jellyId = JSON.parse(localStorage.getItem("jellyid"))
+const ModalButtons = ({jelly}) => {
+    let resultsModalOpen =  useSignal(false)
+
+    const handleOpen = () => {
+        resultsModalOpen.value  = true
+    };
+
+ if (jelly.id === 1)
     return (
 
         <>
-            <Button sx={{margin: "10px"}} variant="contained" onClick={() => openResultModal.value[jellyId] = true}>CLick
+            <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value  = true}>CLick
                 for results</Button>
-            <Button sx={{margin: "10px"}} variant="outlined" onClick={() => openPromptModal.value[jellyId] = true}>CLick
+            <Button sx={{margin: "10px"}} variant="outlined" onClick={() => openPromptModal.value[jelly.id] = true}>CLick
                 for Explanation</Button>
 
-            {/*<ResultsModal*/}
-            {/*    jellyId = {jelly.id}*/}
-            {/*/>*/}
+            <ResultsModal
+                jellyId = {jelly.id} open={resultsModalOpen}
+            />
             {/*<ExplanationModal*/}
             {/*    open={openPromptModal}*/}
             {/*    onClose={() => {openPromptModal.value[jelly.id] = false}}*/}
