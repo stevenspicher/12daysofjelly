@@ -1,7 +1,5 @@
-import {storedCurrentUser, storedJellyId, storedUserList} from "../store/signalsStore";
+import { storedJellyId, storedUserList} from "../store/signalsStore";
 
-const currentUser = storedCurrentUser.value;
-let jellyId = storedJellyId.value;
 let userList = storedUserList.value;
 export const getUsers = async () => {
     let list = []
@@ -29,7 +27,7 @@ export const getUsers = async () => {
 }
 
 export const editUser = (userData) => {
-
+    const id = JSON.parse(localStorage.getItem("id"))
     const requestOptions = {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
@@ -42,14 +40,16 @@ export const editUser = (userData) => {
         })
     };
     //TODO: add error catching
-    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${currentUser.id}.json`, requestOptions)
+    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${storedUserList.value[id].id}.json`, requestOptions)
         .then(response => response.json())
-
     getUsers()
 }
 
-export const editRatings = (userData, jellyDetails) => {
-    userData.jellies[jellyId] = jellyDetails
+export const editRatings = (userData, jellyData) => {
+    console.log(jellyData)
+    const id = JSON.parse(localStorage.getItem("id"))
+    const jellyId = JSON.parse(localStorage.getItem("jellyid"))
+    userData.jellies[jellyId] = jellyData
     const requestOptions = {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
@@ -58,7 +58,7 @@ export const editRatings = (userData, jellyDetails) => {
         })
     };
     //TODO: add error catching
-    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${currentUser.id}.json`, requestOptions)
+    fetch(`https://jelly-e1b63-default-rtdb.firebaseio.com/userList/${storedUserList.value[id].id}.json`, requestOptions)
         .then(response => response.json())
 
     getUsers()

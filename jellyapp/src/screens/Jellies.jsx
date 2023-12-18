@@ -3,80 +3,73 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Row, Col} from "react-bootstrap";
+import {Row, Col} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
 import {editRatings} from "../shared/utilities";
 import SpeedDial from '../components/SpeedDial'
-import {Container, } from "@mui/material";
+import {Container,} from "@mui/material";
 //state
-import {computed, signal} from "@preact/signals-react";
+import {computed, signal, useSignal} from "@preact/signals-react";
 import {
-    storedCurrentUser,
-    storedJellyList,
-    storedJellyId,
     storedUserList,
-    storedUserId
+    storedJellyList,
+    storedJellyData,
+    storedRating,
+    storedComments
 } from "../store/signalsStore";
 
-const id = JSON.parse(localStorage.getItem("id"))
-let
-    currentUser = storedCurrentUser.value,
-    userList = storedUserList.value,
-    userId = storedUserId.value ?? id,
-    jellyId = storedJellyId.value,
-    jellyList = storedJellyList.value;
+
 
 
 const Jellies = () => {
-    console.log(storedJellyList.value)
-    console.log(storedUserList.value)
+    const id = JSON.parse(localStorage.getItem("id"))
+    const jellyId = JSON.parse(localStorage.getItem("jellyid"))
+    let jellyData = useSignal({rating: 0, comments: ""})
+    if (storedUserList.value !== undefined) {
+        jellyData.value = storedUserList.value[id].jellies[jellyId];
+    }
+    let rating = useSignal(jellyData.value.rating * 10);
+    let comments = useSignal(jellyData.value.comments);
+    // let jellyData = useSignal(storedJellyData.value)
     const location = useLocation()
     const navigate = useNavigate();
-    const [jellyDetails, setJellyDetails]= useState(storedJellyList.value[storedJellyId.value]);
-    const [ratingValue, setRatingValue] = useState(storedCurrentUser.value.jellies[storedJellyId.value].rating ?? 0);
-    const [commentValue, setCommentValue ] = useState(storedCurrentUser.value.jellies[storedJellyId.value].comments ?? "" );
 
 
     const onCommentChange = (e) => {
-        setCommentValue(e.target.value)
+        comments.value = (e.target.value)
     }
     const onRatingChange = (e) => {
-        setRatingValue(e.target.value/10)
+        rating.value = (e.target.value)
     }
 
     const onSubmit = () => {
-        jellyDetails.rating = ratingValue;
-        jellyDetails.comments = commentValue;
-        setJellyDetails({...jellyDetails})
-        editRatings(currentUser, jellyDetails);
-        storedJellyList.value = jellyDetails
+        jellyData.value.rating = Number(rating.value) / 10
+        jellyData.value.comments = comments.value
+        editRatings(storedUserList.value[id], jellyData.value);
         navigate("/jellylist")
     }
-    // useEffect(() => {
-    //     storedCurrentUser.value = currentUser;
-    //     storedUserList.value = userList;
-    //     storedUserId.value = userId;
-    //     storedJellyId.value = jellyId;
-    //     storedJellyList.value = jellyList;
-    // }, [currentUser, userList, jellyId, jellyList]);
 
+    if (jellyData.value !== undefined)
         return (
-            <Container >
+            <Container>
                 <SpeedDial/>
                 <div>
                     <Row>
                         <Col>
-                            <h2 className="subtitle">{jellyDetails.name} </h2>
+                            <h2 className="subtitle">{storedJellyList.value[jellyId].name} </h2>
                         </Col>
                     </Row>
                     <Container className='mt-5'>
                         <Form>
-                            <Form.Label>Rating: {ratingValue}</Form.Label>
+
+                            <Form.Label>Rating: {rating.value / 10}</Form.Label>
                             <Form.Range
-                                value={ratingValue*10}
+                                value={rating.value}
                                 onChange={onRatingChange}
                                 step={10}
                             />
+
+
                             <FloatingLabel
                                 controlId="floatingInput"
                                 label="Comments"
@@ -86,14 +79,14 @@ const Jellies = () => {
                                     as="textarea"
                                     rows={5}
                                     placeholder=""
-                                    value={commentValue}
+                                    value={comments.value}
                                     style={{height: '200px'}}
                                     name="Comments"
                                     onChange={onCommentChange}
 
                                 />
                             </FloatingLabel>
-                            <Button  variant="primary" onClick={onSubmit}>
+                            <Button variant="primary" onClick={onSubmit}>
                                 Submit
                             </Button>
                         </Form>

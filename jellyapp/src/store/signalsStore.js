@@ -19,13 +19,13 @@ export const alert = signal({
 // Users
 
 export const storedUserList = signal();
-export const storedUserId = signal();
-export const storedCurrentUser = signal();
+
 export const userEdit = signal(false);
 //Jelly
-
+export const storedJellyData = signal();
+export const storedRating = signal();
+export const storedComments = signal();
 // export const storedJelly = computed (() => {storedJellyList.value[storedJellyId.value]})
-export const storedJellyId = signal(0)
 export const storedJellyList = signal([
     {},
         {name: "Apricot-Banana", image: apricotAndBanana, id: 1, openResult: false, openPrompt: false, rating: undefined,

@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, {useEffect, useState} from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -7,12 +7,13 @@ import {useNavigate} from "react-router-dom";
 import { editUser} from "../shared/utilities";
 import SpeedDial from "../components/SpeedDial"
 import {Container, Grow, Paper, Stack} from "@mui/material";
-import {storedCurrentUser, userEdit} from "../store/signalsStore";
+import {userEdit, storedUserList} from "../store/signalsStore";
 
-const currentUser = storedCurrentUser.value
+
 const User = () => {
+    const id = JSON.parse(localStorage.getItem("id"))
     const navigate = useNavigate();
-    const [editUserDetails, setEditUserDetails] = useState(currentUser);
+    const [editUserDetails, setEditUserDetails] = useState();
 
     const onChange = (e) => {
         const name = e.target.name
@@ -22,11 +23,13 @@ const User = () => {
 
     const onSubmit = () => {
         editUser(editUserDetails);
-        currentUser = editUserDetails
         navigate("/table")
     }
+;
 
-
+    useEffect(() => {
+          setEditUserDetails(storedUserList.value[id]);
+    }, [storedUserList.value]);
 
     return (
         <Container>

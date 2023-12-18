@@ -3,11 +3,12 @@ import {Button, Card, Col, Row, Modal, Badge} from "react-bootstrap";
 import {useNavigate} from 'react-router-dom';
 import SpeedDial from "../components/SpeedDial"
 import {Container} from "@mui/material";
-import {storedCurrentUser, userEdit, storedUserList} from "../store/signalsStore";
-const currentUser = storedCurrentUser.value;
+import {userEdit, storedUserList} from "../store/signalsStore";
+
 const userList = storedUserList.value;
 
 const UserTable = () => {
+    const id = JSON.parse(localStorage.getItem("id"))
     const navigate = useNavigate();
 
     return (
@@ -42,7 +43,7 @@ const UserTable = () => {
                                         <Badge bg="success">need</Badge>}
                                     </Card.Text>
                                     <Row>
-                                        {currentUser.id === user.id ?
+                                        {id === user.id ?
                                             <Button onClick={() => {
                                                 userEdit.value = true
                                                 navigate("/user")

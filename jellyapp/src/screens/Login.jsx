@@ -11,8 +11,8 @@ import {Container} from "@mui/material";
 
 //state
 import {computed, signal} from "@preact/signals-react";
-import {storedCurrentUser, storedUserList, storedUserId} from "../store/signalsStore";
-let currentUser, userList, userId;
+import {storedUserList} from "../store/signalsStore";
+let userList;
 
 const Login = () => {
     const login = signal("")
@@ -22,9 +22,7 @@ const Login = () => {
     const onSubmit = async () => {
         if (userList !== undefined)
             if (userList.find((user) => user.name === login.value)) {
-                storedCurrentUser.value = userList.find((user) => user.name === login.value);
-                    storedUserId.value = userList.map( e => e.name).indexOf(login.value);
-                    localStorage.setItem("id", storedUserId.value)
+                    localStorage.setItem("id", userList.map( e => e.name).indexOf(login.value))
                 navigate("/jellylist")
                 } else {
                 navigate("/invalid")
@@ -38,10 +36,8 @@ const Login = () => {
 
 
     useEffect(() =>{
-       currentUser = storedCurrentUser.value;
        userList = storedUserList.value;
-       userId = storedUserId.value;
-    }, [storedCurrentUser.value, storedUserList.value, storedUserId.value]);
+    }, [storedUserList.value]);
 
     return (
         <>

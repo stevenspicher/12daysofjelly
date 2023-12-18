@@ -10,11 +10,14 @@ import JellyList from "./screens/JellyList";
 import Jellies from "./screens/Jellies";
 import RatingsChart from "./screens/RatingsChart";
 import {getUsers} from "./shared/utilities";
+import {storedUserList} from "./store/signalsStore"
 
 
 function App() {
 
-
+    useEffect(() => {
+        getUsers();
+    }, []);
 
     return (
         <Container fluid className="frame">

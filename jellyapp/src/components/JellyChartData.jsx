@@ -17,27 +17,21 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //state
 import {computed, signal} from "@preact/signals-react";
 import {
-    storedCurrentUser,
     openPromptModal,
     openResultModal,
     storedJellyList,
-    storedJellyId,
     storedUserList,
-    storedUserId
 } from "../store/signalsStore";
 
-const id = JSON.parse(localStorage.getItem("id"))
-let
-    currentUser = storedCurrentUser.value,
-    userList = storedUserList.value,
-    userId = storedUserId.value ?? id,
-    jellyId = storedJellyId.value,
-    jellyList = storedJellyList.value;
-
+let userList,
+    jellyList;
 
 
 const JellyChartData = () => {
-    const jelly = storedJellyList.value[storedJellyId.value] ?? {};
+const id = JSON.parse(localStorage.getItem("id"))
+const jellyId = JSON.parse(localStorage.getItem("jellyid"))
+
+    const jelly = storedJellyList.value[jellyId] ?? {};
 
     const elevationHeight = 12;
     const chartData = [["Name", "Rating"]]
@@ -54,14 +48,14 @@ const JellyChartData = () => {
 
             const jellyRatings = {};
             let rating, comment, wishes;
-            console.log(user.jellies[storedJellyId.value])
+            console.log(user.jellies[jellyId])
             rating = 1;
-            // rating = user.jellies[storedJellyId.value].rating ?? undefined;
-            // comment = user.jellies[storedJellyId.value - 1].comments ?? undefined;
+            // rating = user.jellies[jellyId].rating ?? undefined;
+            // comment = user.jellies[jellyId - 1].comments ?? undefined;
             comment = "test";
             wishes = user.wishes ?? undefined;
-            chartData.push([user.name, user.jellies[storedJellyId.value].rating])
-            if (user.jellies[storedJellyId.value].comments !== undefined) {
+            chartData.push([user.name, user.jellies[jellyId].rating])
+            if (user.jellies[jellyId].comments !== undefined) {
                 cardData.push([user.name, comment])
             }
             jellyRatings[user.name] = {comment: comment, rating: rating, wishes: wishes}
@@ -85,12 +79,9 @@ const JellyChartData = () => {
 
     useEffect(() => {
         let
-            currentUser = storedCurrentUser.value,
             userList = storedUserList.value,
-            userId = storedUserId.value ?? id,
-            jellyId = storedJellyId.value,
             jellyList = storedJellyList.value;
-    }, [storedCurrentUser.value, storedUserList.value, storedUserId.value, storedJellyId.value, storedJellyList.value]);
+    }, [storedUserList.value, storedJellyList.value]);
 
 
 
@@ -158,12 +149,13 @@ const JellyChartData = () => {
 export default JellyChartData;
 
 const ModalButtons = (jelly) => {
+    const jellyId = JSON.parse(localStorage.getItem("jellyid"))
     return (
 
         <>
-            <Button sx={{margin: "10px"}} variant="contained" onClick={() => openResultModal.value[jelly.id] = true}>CLick
+            <Button sx={{margin: "10px"}} variant="contained" onClick={() => openResultModal.value[jellyId] = true}>CLick
                 for results</Button>
-            <Button sx={{margin: "10px"}} variant="outlined" onClick={() => openPromptModal.value[jelly.id] = true}>CLick
+            <Button sx={{margin: "10px"}} variant="outlined" onClick={() => openPromptModal.value[jellyId] = true}>CLick
                 for Explanation</Button>
 
             {/*<ResultsModal*/}
