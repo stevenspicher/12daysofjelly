@@ -1,76 +1,27 @@
-# 12daysofjelly
+# 12daysofjelly - 2023
 
-Simple site for tallying our family's ratings during the yearly jelly tasting 
+Simple site for tallying our family's ratings during the yearly jelly tasting.
+I upgrade it each year and use it as a testing ground for new stuff. 
+## Specs/concept
+This version is hosted locally on a zimaboard running debian with the casaos desktop and docker wrapper. The build is served via Nginx, and is currently pointed to a firebase real time database but will be moved to a docker running mongo. 
 
-## Setup:
+The front end is React (vite) with mostly Material UI. 
 
-```
-cd server 
-npm install
-```
+Working with Preact signals as a global state replacement. 
 
-To run:
+I throw the jelly names in to an online art generator for the images.
 
-```
-cd server
-npm start
- ```
-(starts express server)
+I generate an array of user data containing each user's jelly ratings, comments, and their wish list items, then run that through a prompt 
+in either Google's Bard or a locally running LLM (https://github.com/Mozilla-Ocho/llamafile and https://lmstudio.ai/) to generate comments. 
 
-or
+Next steps: 
 
-```
-cd server
-npm run dev
-```
-(starts in dev mode, edits to index.js update automatically)
+Move to mongo
 
-## current file structure:
-### server/index.js
-*Very basic express server* 
-* app.use (line 10) serves **index.html** out of public/ 
-* app.get (line 13) gets data from **ratings.json**
-* log (line 28) writes name, jelly, rating and ip to **log.json** (I was playing...)
-* app.post (line 36) write rating data to **ratings.json**
-* app.post (line 45) clears **ratings.json**
+automate the data input into the LLM and then the output into the front end:
 
-### public/index.html 
-*not a lot here other than loading **script.js*** 
-* Title
-* Subtitle
-* **script.js** 
+Current plan is to run the llm via command line which will allow me to:
+1. prepend the prompt with the dataset and submit on dataset change 
+2. run the llm via command line and wrap that command in a script that forwards the output to the front end
 
-### public/script.js
-*This is where all of the magic happens, and most of it will need to be redone*
-* Create flashing pill (line 22 - 29)
-* Add users to pills (line 32 - 52)
-* create table (line 53 - 110)
-* drag/drop/place pill functions (line 118 -161)
-* fetch functions (line 166 - 212) 
 
-### public/style.css
-*site wide styling*
-
-### public/log.json & ratings.json
-*this is where the data was stored, will replace with database collections*
-
-### .idea/* 
-*ignore this, IDE related files*
-
-### server/node_modules, package.json, package-lock
-*npm package manager related files, ignore for the most part (**package.json** is helpful)* 
-
-## Planned updates:
-* redesign for phone (UI and style)
-* move all data to database (firebase or a simple db?)
-* host either on firebase or google cloud vm
-* incorporate award tracking
-* display results on main page table
-* 'Rate currant (sic) Jelly' button with simple input  (slider? wheel?)
-* add christmas list page for each user?
-
-### Notes
-Installed a python wrapper for node:
-[python](https://www.npmjs.com/package/python)
-
-This might be enough to use the scripts from last year?
