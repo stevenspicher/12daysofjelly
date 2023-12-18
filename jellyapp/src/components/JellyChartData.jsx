@@ -52,7 +52,9 @@ const id = JSON.parse(localStorage.getItem("id"))
             comment = user.jellies[jellyId + 1].comments ?? undefined;
             // comment = "test";
             wishes = user.wishes ?? undefined;
-            chartData.push([user.name, user.jellies[jellyId + 1].rating])
+            if (user.jellies[jellyId + 1].rating !== undefined) {
+                chartData.push([user.name, user.jellies[jellyId + 1].rating])
+            }
             if (user.jellies[jellyId + 1].comments !== undefined) {
                 cardData.push([user.name, comment])
             }
@@ -84,7 +86,8 @@ const id = JSON.parse(localStorage.getItem("id"))
 
 
 
-
+console.log(chartData)
+    console.log(cardData)
     return (
         <Grow in={true} timeout={1000}>
             <Paper elevation={elevationHeight} sx={{marginTop: "10px", border: '1px solid black'}}>
@@ -101,14 +104,14 @@ const id = JSON.parse(localStorage.getItem("id"))
                         />
 
                         <ModalButtons jelly={jelly}/>
-
+                        {chartData[1] !== undefined ?
                         <Chart
                             chartType="BarChart"
                             width="100%"
                             height="400px"
                             data={chartData}
                             options={options}
-                        />
+                        /> :<></>}
                         <Divider/>
                         {cardData[0] !== undefined ?
                             <>

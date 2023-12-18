@@ -36,6 +36,7 @@ if (jellyList !== undefined)
             <Carousel className={"mt-2"} interval={null} fade variant="dark" indicators={false} controls={true} >
                 {storedJellyList.value.map((jelly, index) => {
                     if (jelly.name !== undefined)
+                        if (index < 5)
                             return (
                 <Carousel.Item key={index}>
                     <h3 className={"subtitle"}>{jelly.id}: {jelly.name} </h3>
