@@ -1,4 +1,4 @@
-import {Modal} from "@mui/material";
+import {Button, Modal} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -35,6 +35,8 @@ const OLGPromptModal = (props) => {
                     <Typography variant="h4">
                         Orange Lime Guava Spread Prompts
                     </Typography>
+                    <Button onClick={() => open.value = false}>Close</Button>
+
                     <br></br>
                     <Typography variant="h6">
                        The image was generated here: <a href="https://deepai.org/machine-learning-model/text2img">Deepai.org text2img</a> with the prompt "A christmas tree with orange, Lime and Guava ornaments"

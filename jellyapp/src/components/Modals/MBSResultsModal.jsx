@@ -1,4 +1,4 @@
-import {Modal} from "@mui/material";
+import {Button, Modal} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -33,8 +33,9 @@ const MBSResultsModal = (props) => {
             <Box sx={style} className="scroll-component">
                 <div className="scroll-content">
                     <Typography variant="h3">
-                        A Grumpy Elf's Guide to the Orange-Lime-Guava Jamboree:
+                        A Grumpy Elf's Guide to the Mirabelle Plum Spice:
                     </Typography>
+                    <Button onClick={() => open.value = false}>Close</Button>
                     <br></br>
                         <Typography sx={{fontSize: 14}}>
                         Ah, Grumbles the Elf here, back with more festive grumpiness to sprinkle on your jelly reviews! Let's see what this Mirabelle Plum-Spice concoction has stirred up in these folks' taste buds, shall we?

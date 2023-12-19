@@ -1,4 +1,4 @@
-import {Modal} from "@mui/material";
+import {Button, Modal} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -34,6 +34,7 @@ const ABExplanationModal = (props) => {
                     <Typography variant="h4">
                         Apricot Banana Prompts
                     </Typography>
+                    <Button onClick={() => open.value = false}>Close</Button>
                     <br></br>
                     <Typography variant="h6">
                         The image was generated here: <a href="https://deepai.org/machine-learning-model/renaissance-painting-generator">Deepai.org renaissance-painting-generator</a> with the prompt "A Grumpy Christmas Elf under an Aprict tree holding a banana"

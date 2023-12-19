@@ -1,4 +1,4 @@
-import {Modal} from "@mui/material";
+import {Button, Modal} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -32,6 +32,10 @@ const ABResultsModal = (props) => {
         >
             <Box sx={style} className="scroll-component">
                 <div className="scroll-content">
+                    <Typography variant="h3">
+                        A Grumpy Elf's Guide to Apricot-Banana:
+                    </Typography>
+                    <Button onClick={() => open.value = false}>Close</Button>
                     <Typography variant="h4">
                         Alright, listen up, you sugarplum-stuffed santas! Gather 'round, 'cause this grumpy elf's got
                         somethin' to say about your fruity fancies!

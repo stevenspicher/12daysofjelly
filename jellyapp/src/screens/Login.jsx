@@ -1,12 +1,9 @@
-import React, {useState, useEffect} from "react";
-import Button from 'react-bootstrap/Button';
-import { Row, Col, Badge} from "react-bootstrap";
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import React, { useEffect} from "react";
+import { Row, Col} from "react-bootstrap";
 
 import {useNavigate} from "react-router-dom";
-import {emptyUserDetails} from "../shared/containers";
 import { blink, getUsers} from "../shared/utilities";
-import {Container, FormControl, Input, InputLabel, FormHelperText, Box, Stack} from "@mui/material";
+import {Container, FormControl, Input, InputLabel, FormHelperText, Box, Stack, Button} from "@mui/material";
 
 //state
 import {computed, signal} from "@preact/signals-react";
@@ -85,11 +82,11 @@ const Login = () => {
 
 
                         <FormControl >
-                            <InputLabel htmlFor="my-input">Login</InputLabel>
+                            <InputLabel htmlFor="my-input">username</InputLabel>
                             <Input id="my-input" aria-describedby="my-helper-text" onChange={onChange}/>
                             <FormHelperText id="my-helper-text">enter your name</FormHelperText>
                         </FormControl>
-
+<Button onClick={onSubmit}>Login</Button>
             </Box>
           
         </>

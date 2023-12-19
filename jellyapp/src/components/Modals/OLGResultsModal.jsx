@@ -1,4 +1,4 @@
-import {Modal} from "@mui/material";
+import {Button, Modal} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -35,6 +35,8 @@ const OLGResultsModal = (props) => {
                     <Typography variant="h3">
                         A Grumpy Elf's Guide to the Orange-Lime-Guava Jamboree:
                     </Typography>
+                    <Button onClick={() => open.value = false}>Close</Button>
+
                     <br></br>
                     <Typography variant="h4">
                         Alright, sugarplums, gather 'round! Grumbles the Elf here, ready to sprinkle some sassy snowflakes on your family's jelly reviews. Buckle up, because this Citrus Tango's got more twists than a mistletoe-laden candy cane!

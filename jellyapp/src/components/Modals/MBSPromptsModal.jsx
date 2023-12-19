@@ -1,4 +1,4 @@
-import {Modal} from "@mui/material";
+import {Button, Modal} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -35,6 +35,7 @@ const MBSPromptsModal = (props) => {
                     <Typography variant="h4">
                         Mirabelle Plum Spice Spread Prompts
                     </Typography>
+                    <Button onClick={() => open.value = false}>Close</Button>
                     <br></br>
                     <Typography variant="h6">
                        The image was generated here: <a href="https://deepai.org/machine-learning-model/cyberpunk-generator">deepai.org cyberpunk-generator</a> with the prompt "Mirabelle Plum Spice"
