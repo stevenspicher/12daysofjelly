@@ -5,13 +5,13 @@ import {getAnalytics, setUserProperties} from "firebase/analytics";
 
 //For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyD_mOwsGifO6yOlelFdIbCraVs62bz0ha0",
-    authDomain: "daysofjelly.firebaseapp.com",
-    projectId: "daysofjelly",
-    storageBucket: "daysofjelly.appspot.com",
-    messagingSenderId: "531136390454",
-    appId: "1:531136390454:web:a53846f62d12a35c9b7f97",
-    measurementId: "G-FYCWD0ZMN1"
+    apiKey: "AIzaSyBLuN6WJ_PUNaydUbg2WPiB8IAbOETi934",
+    authDomain: "jelly-e1b63.firebaseapp.com",
+    projectId: "jelly-e1b63",
+    storageBucket: "jelly-e1b63.appspot.com",
+    messagingSenderId: "1098022312406",
+    appId: "1:1098022312406:web:b96ad5791f508d14daec77",
+    measurementId: "G-7YTVW1ZSZB"
 };
 
 const USE_FIREBASE_EMULATORS = false;

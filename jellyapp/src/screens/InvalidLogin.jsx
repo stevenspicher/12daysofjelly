@@ -2,40 +2,12 @@ import React, {useState, useEffect} from "react";
 import Button from 'react-bootstrap/Button';
 import {Col, Container, Row} from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
-import {useNavigate, useLocation} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-import {emptyUserDetails} from "../shared/containers";
-import {getConsole, getState} from "../shared/utilities";
 
-const InvalidLogin = (props) => {
+
+const InvalidLogin = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-
-    const [isLoginCorrect, setIsLoginCorrect] = useState(true);
-    const [loginDetails, setLoginDetails] = useState(emptyUserDetails);
-    const onChange = (e) => {
-        const name = e.target.name
-        loginDetails[name] = e.target.value
-        setLoginDetails({...loginDetails})
-    }
-
-    const onSubmit = () => {
-        //     if (userList.find((user) => user.name === loginDetails.name) &&
-        //         userList.find((user) => user.password === loginDetails.password)) {
-        //         const id = userList.find((user) => user.name === loginDetails.name) &&
-        //             Object.values(userList).find((user) => user.password === loginDetails.password).id
-        //         const userData = userList.find((user) => user.name === loginDetails.name) &&
-        //             Object.values(userList).find((user) => user.password === loginDetails.password)
-        //         // localStorage.setItem('userId', JSON.stringify(id))
-        navigate("/table", getState(location, props.userList, loginDetails, location.state.id))
-        //     } else {
-        //         setIsLoginCorrect(false)
-        //     }
-    }
-
-    useEffect(() => {
-        getConsole(location)
-    }, []);
 
     return (
         <>
@@ -48,7 +20,6 @@ const InvalidLogin = (props) => {
                         <b className="blink">D</b>
                         <b className="blink">a</b>
                         <b className="blink">y</b>
-                        <b className="blink">'</b>
                         <b className="blink">s</b>
                         <b> </b>
                         <b className="blink">o</b>
@@ -69,7 +40,7 @@ const InvalidLogin = (props) => {
                     </Col>
                     <Col>
                         <Button  variant="primary" onClick={() => {
-                            navigate("/login", getState(location, undefined, undefined))
+                            navigate("/login")
                         }}>
                             Return to login
                         </Button>

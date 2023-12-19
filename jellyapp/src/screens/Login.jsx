@@ -1,62 +1,44 @@
-import React, {useState, useEffect} from "react";
-import Button from 'react-bootstrap/Button';
-import {Container, Row, Col, Badge} from "react-bootstrap";
-import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import {useLocation} from 'react-router-dom';
+import React, { useEffect} from "react";
+import { Row, Col} from "react-bootstrap";
+
 import {useNavigate} from "react-router-dom";
-import {emptyUserDetails} from "../shared/containers";
-import {getUsers, getConsole, getState} from "../shared/utilities";
+import { blink, getUsers} from "../shared/utilities";
+import {Container, FormControl, Input, InputLabel, FormHelperText, Box, Stack, Button} from "@mui/material";
 
-const Login = (props) => {
+//state
+import {computed, signal} from "@preact/signals-react";
+import {storedUserList} from "../store/signalsStore";
+let userList;
+
+const Login = () => {
+    const login = signal("")
     const navigate = useNavigate();
-    const location = useLocation();
-    const [id, setId] = useState(undefined)
-    const [isLoginCorrect, setIsLoginCorrect] = useState(true);
-    const [loginDetails, setLoginDetails] = useState(emptyUserDetails);
-    const onChange = (e) => {
-        const name = e.target.name
-        loginDetails[name] = e.target.value
-        setLoginDetails({...loginDetails})
-    }
+    const onChange = (e) => {login.value = e.target.value.toLowerCase()}
 
-    const onSubmit = () => {
-        //*****      LoginCheck - add family quiz question
-        //TODO: add family quiz
-        let answer = prompt("What is keya's real (first) name?")
-        if (answer === "kenda" || answer === "Kenda") {
-
-            if (props.state.userList.find((user) => user.name === loginDetails.name)) {
-                const id = (props.state.userList.find((user) => user.name === loginDetails.name).id);
-                const userDetails = (props.state.userList.find((user) => user.name === loginDetails.name));
-                props.state.setCurrentUserDetails(userDetails)
-                navigate("/table", getState(location, props.state.currentUserDetails, id))
-            } else {
-                navigate("/invalid", getState(location, loginDetails, id))
+    const onSubmit = async () => {
+        if (userList !== undefined)
+            if (userList.find((user) => user.name === login.value)) {
+                    localStorage.setItem("id", userList.map( e => e.name).indexOf(login.value))
+                navigate("/chart")
+                } else {
+                navigate("/invalid")
+                }
             }
-        } else
-        {
-            navigate("/invalid", getState(location, loginDetails, id))
-        }
-    }
-
 
     useEffect(() => {
-        getConsole(location)
+        blink();
+        getUsers();
     }, []);
 
 
-    useEffect(() => {
-        if (location.state !== null)
-            if (location.state.prevPath === "/signup") {
-                getUsers(props.state.setUserList)
-            }
-    }, []);
+    useEffect(() =>{
+       userList = storedUserList.value;
+    }, [storedUserList.value]);
 
     return (
         <>
-            <Container className={"pt-4"} >
-                <div>
+            <Container>
+                <Stack direction={"row"}>
                     <h1 className="title">
                         <b className="blink">1</b>
                         <b className="blink">2</b>
@@ -64,7 +46,6 @@ const Login = (props) => {
                         <b className="blink">D</b>
                         <b className="blink">a</b>
                         <b className="blink">y</b>
-                        <b className="blink">'</b>
                         <b className="blink">s</b>
                         <b> </b>
                         <b className="blink">o</b>
@@ -78,56 +59,39 @@ const Login = (props) => {
                         <b className="blink">d</b>
                         <b className="blink">s</b>
                     </h1>
-                </div>
+                        <p style={{color: "blue", fontSize:"10px"}}>v2</p>
+
+                </Stack>
                 <Row>
                     <Col>
                         <h2 className="subtitle">Welcome!</h2>
                     </Col>
-                    <Col>
-                        <Button  variant="primary" onClick={onSubmit}>
-                            Login
-                        </Button>
-                    </Col>
                 </Row>
 
             </Container>
-            <Container className='mt-5'>
-                <Form>
-                    <h2 className="subtitle-signup">Please enter your name:</h2>
-                    <FloatingLabel
-                        controlId="floatingInput"
-                        // label="Name"
-                        className="m-5"
-                        name="name"
-                    >
-
-                                <Form.Control type="text"
-                                              name="name"
-                                              onChange={onChange}
-                                              placeholder="your name here"/>
+            <Box
+                component="form"
+                sx={{
+                    '& > :not(style)': { m: 1 },
+                }}
+                className={"mt-5"}
+                onSubmit={onSubmit}
+                noValidate
+                autoComplete="off"
+            >
 
 
-                    </FloatingLabel>
-
-                </Form>
-
-            </Container>
-            <Container className="m-5 ">
-
-                <Row>
-<Col xs={6}></Col>
-                    <Col>
-                        <Badge bg="success" onClick={() => {
-                            navigate("/signup", getState(location, loginDetails, undefined))
-                        }}>
-                            Sign up
-                        </Badge>
-                    </Col>
-
-                </Row>
-            </Container>
+                        <FormControl >
+                            <InputLabel htmlFor="my-input">username</InputLabel>
+                            <Input id="my-input" aria-describedby="my-helper-text" onChange={onChange}/>
+                            <FormHelperText id="my-helper-text">enter your name</FormHelperText>
+                        </FormControl>
+<Button onClick={onSubmit}>Login</Button>
+            </Box>
+          
         </>
     )
 };
 
 export default Login;
+
