@@ -33,26 +33,26 @@ const OLGPromptModal = (props) => {
                 <div className="scroll-content">
 
                     <Typography variant="h4">
-                        The Grumpy Elf comments were generated using a (you guessed it...) LLM AI from google called "Bard".
+                        Orange Lime Guava Spread Prompts
                     </Typography>
                     <br></br>
                     <Typography variant="h6">
-                        LLM = Large Language Model. It's basically playing a complicated version of "next word", but
-                        Bard has been trained with a massive amount of text so it does a REALLY good job of it. It can
-                        be prompted to perform exercises, and the results can be tailored through an ongoing dialogue.
+                       The image was generated here: <a href="https://deepai.org/machine-learning-model/text2img">Deepai.org text2img</a> with the prompt "A christmas tree with orange, Lime and Guava ornaments"
                     </Typography>
                     <br></br>
                     <Typography variant="h5">
-                        Here's a trimmed down version of the prompting to create these results:
+                      Grumpy Elf Prompt:
                     </Typography>
                     <br></br>
                     <Typography sx={{fontSize: 14}}>
-                        Here is some data about a group of people's jelly preference.
-                        The jelly is Apricot-Banana, and each person rated the jelly on a scale of 1-10.
-                        1 means it nearly killed the person and 10 resulted in laugh out loud laughter.
+                        "Below is some data about a family of people's jelly preferences. The jelly is Orange Lime Guava Spread, and they rated the jelly on a scale of 1-10. 1 means they absolutely hated it and 10 means they would marry it if that were legal. Some people commented on the jelly's flavor and their experience, and some people provided a list of Christmas gift wishes.
+                        Take on the persona of a grumpy but loveable christmas elf, and provide humorous commentary on each person’s like or dislike for the jelly based on their rating and comments. The comments should focus on one person at a time, and make references to their comments and their christmas wish list, and describe an early childhood moment involving an item on their list that may explain their rating for this jelly."
                     </Typography>
                     <br></br>
-
+                    <Typography sx={{fontSize: 14}}>
+                        Notice it ignored the origin story.
+                        It also REPEATEDLY responded with "I'm a text-based AI and can't assist with that." or something similar until I located the problem. Still have no idea why, but once I changed "Silver jewelrey" on Kenda's wish list to "jewelry that is silver" it was fine with it.
+                    </Typography>
                 </div>
             </Box>
         </Modal>

@@ -31,8 +31,15 @@ const ABExplanationModal = (props) => {
         >
             <Box sx={style} className="scroll-component">
                 <div className="scroll-content">
-
                     <Typography variant="h4">
+                        Apricot Banana Prompts
+                    </Typography>
+                    <br></br>
+                    <Typography variant="h6">
+                        The image was generated here: <a href="https://deepai.org/machine-learning-model/renaissance-painting-generator">Deepai.org renaissance-painting-generator</a> with the prompt "A Grumpy Christmas Elf under an Aprict tree holding a banana"
+                    </Typography>
+                    <br></br>
+                    <Typography variant="h5">
                         The Grumpy Elf comments were generated using a (you guessed it...) LLM AI from google called "Bard".
                     </Typography>
                     <br></br>

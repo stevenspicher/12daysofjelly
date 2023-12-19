@@ -3,7 +3,7 @@ import {computed, signal} from "@preact/signals-react";
 
 import apricotAndBanana from "../assets/apricot-banana.jpg";
 import orangeguavalime from "../assets/orangeguavelime.jpg";
-import mirabellePlumWithSpice from "../assets/mirabellePlumWithSpice.jpg";
+import mirabellePlumWithSpice from "../assets/mirabelleplumspice.jpg";
 import peachjasmineflower from '../assets/peachjasmineflower.jpg';
 import grapefruitdragonfruit from '../assets/grapefruitdragonfruit.jpg';
 import RhubarbStrawberry from "../assets/Rhubarb Strawberry.jpg";

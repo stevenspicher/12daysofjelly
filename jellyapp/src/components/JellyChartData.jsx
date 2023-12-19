@@ -8,6 +8,8 @@ import ABResultsModal from "./Modals/ABResultsModal";
 import ABExplanationModal from "./Modals/ABExplanationModal";
 import OLGPromptsModal from "./Modals/OLGExplanationModal";
 import OLGResultsModal from "./Modals/OLGResultsModal";
+import MBSResultsModal from "./Modals/MBSResultsModal";
+import MBSPromptsModal from "./Modals/MBSPromptsModal";
 import {Chart} from "react-google-charts";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
@@ -46,27 +48,34 @@ const id = JSON.parse(localStorage.getItem("id"))
         fontSize: 10,
         bar: {groupWidth: "30%"},
     };
+            const jellyRatings = {};
+            let jellyPrompt = "";
+            let rating, comment, wishes;
     if (storedUserList.value !== undefined) {
         storedUserList.value.map((user) => {
 
-            const jellyRatings = {};
-            let rating, comment, wishes;
-            // rating = 1;
             rating = user.jellies[jellyId + 1]=== undefined ? undefined : user.jellies[jellyId + 1].rating;
             comment = user.jellies[jellyId + 1]=== undefined ? undefined : user.jellies[jellyId + 1].comments;
-            // comment = "test";
             wishes = user.wishes ?? undefined;
             if (user.jellies[jellyId + 1] !== undefined) {
                 if (user.jellies[jellyId + 1].rating !== undefined)
                 chartData.push([user.name, user.jellies[jellyId + 1].rating])
-            }
-            if (user.jellies[jellyId + 1] !== undefined) {
                 if (user.jellies[jellyId + 1].comments !== undefined)
                     cardData.push([user.name, comment])
             }
+
             jellyRatings[user.name] = {comment: comment, rating: rating, wishes: wishes}
-            console.log(jellyRatings)
         })
+        Object.entries(jellyRatings).forEach((user) => {
+            let ratingText = user[1].rating === undefined ?  "did not rate the jelly" : `rated the jelly a ${user[1].rating}`;
+            let commentText = user[1].comment === undefined ?  "did not comment." : `said this: "${user[1].comment}"`;
+            let wishText = user[1].wishes === undefined ?  "They did not have an Christmas Wishes." : `They wished for : "${user[1].wishes}"`;
+            jellyPrompt = jellyPrompt.concat(`${user[0]} ${ratingText} and ${commentText}. ${wishText}`)
+        })
+            jellyPrompt = `Below is some data about a person’s jelly preferences. The jelly is Mirabelle Plum Spice Spread, and this person rated the jelly on a scale of 1-10. 1 means they did not like it and 10 means they loved it. Some people commented on the jelly's flavor and their experience, and some people provided a list of Christmas gift wishes.
+Take on the persona of a grumpy but loveable christmas elf, and comment on this person’s like or dislike for the jelly based on their rating then describe an early childhood moment involving an item on their list that may explain their rating for this jelly. The Jelly is ${jelly.name} and ${jellyPrompt}`
+console.log(jelly.name)
+        if (jelly.name === "Mirabelle Plum-Spice") {console.log(jellyPrompt)}
     }
 
     const ExpandMore = styled((props) => {
@@ -162,35 +171,47 @@ const id = JSON.parse(localStorage.getItem("id"))
 export default JellyChartData;
 
 const ModalButtons = ({jelly}) => {
-    let resultsModalOpen =  useSignal(false)
-    let explanationModalOpen =  useSignal(false)
+    let resultsModalOpen = useSignal(false)
+    let explanationModalOpen = useSignal(false)
 
 
+    if (jelly.id === 1) {
+        return (
+            <>
+                <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value = true}>CLick
+                    for results</Button>
+                <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
+                    for Explanation</Button>
 
- if (jelly.id === 1) {
-     return (
-         <>
-             <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value = true}>CLick
-                 for results</Button>
-             <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
-                 for Explanation</Button>
+                <ABResultsModal open={resultsModalOpen}/>
+                <ABExplanationModal open={explanationModalOpen}/>
+            </>
+        )
+    } else if (jelly.id === 2) {
+        return (
+            <>
+                <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value = true}>CLick
+                    for results</Button>
+                <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
+                    for Explanation</Button>
 
-             <ABResultsModal open={resultsModalOpen}/>
-             <ABExplanationModal open={explanationModalOpen}/>
-         </>
-     )
- } else if (jelly.id === 2) {
-    return (
-             <>
-                 <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value  = true}>CLick
-                     for results</Button>
-                 <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
-                     for Explanation</Button>
+                <OLGResultsModal open={resultsModalOpen}/>
+                <OLGPromptsModal open={explanationModalOpen}/>
+            </>
+        )
 
-                 <OLGResultsModal open={resultsModalOpen}/>
-                 <OLGPromptsModal open={explanationModalOpen}/>
-             </>
-         )
+    } else if (jelly.id === 3) {
+        return (
+            <>
+                <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value = true}>CLick
+                    for results</Button>
+                <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
+                    for Explanation</Button>
 
- }
+                <MBSResultsModal open={resultsModalOpen}/>
+                <MBSPromptsModal open={explanationModalOpen}/>
+            </>
+        )
+    }
+
 };
