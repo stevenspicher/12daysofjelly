@@ -27,7 +27,6 @@ const RatingsChart = () => {
             {JellyChartData(9)}
             {JellyChartData(10)}
             {JellyChartData(11)}
-            {JellyChartData(12)}
         </Container>
     )
 };

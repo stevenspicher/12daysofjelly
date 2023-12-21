@@ -32,7 +32,7 @@ export const storedUserList = signal();
 
 export const userEdit = signal(false);
 //Jelly
-export const storedJellyData = signal();
+export const storedJellyData = signal({});
 export const storedRating = signal();
 export const storedComments = signal();
 // export const storedJelly = computed (() => {storedJellyList.value[storedJellyId.value]})
