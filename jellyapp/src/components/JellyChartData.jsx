@@ -160,10 +160,10 @@ const JellyChartData = (jellyId) => {
                                 data={chartData}
                                 options={options}
                             /> : <></>}
-                        <Button sx={{margin: "10px"}} variant="outlined" onClick={() => {
-                            ratingSummary.value = <CircularProgress />
-                            getRatingsData(jellyRatings.value[0], jellyRatings.value[1], jellyRatings.value[2]);
-                        }}>CLick for Rating Summary</Button>
+                        {/*<Button sx={{margin: "10px"}} variant="outlined" onClick={() => {*/}
+                        {/*    ratingSummary.value = <CircularProgress />*/}
+                        {/*    getRatingsData(jellyRatings.value[0], jellyRatings.value[1], jellyRatings.value[2]);*/}
+                        {/*}}>CLick for Rating Summary</Button>*/}
                         <Typography className="subtitle" sx={{fontSize: 15}}>
                             {ratingSummary.value}
                         </Typography>
