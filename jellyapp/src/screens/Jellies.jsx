@@ -91,6 +91,7 @@ const Jellies = () => {
                             <Button variant="primary" onClick={onSubmit}>
                                 Submit
                             </Button>
+                            <Button variant={"secondary"} onClick={() => navigate("/chart")}>Back</Button>
                         </Form>
                     </Container>
                 </div>

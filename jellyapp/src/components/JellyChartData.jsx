@@ -64,9 +64,17 @@ const JellyChartData = (jellyId) => {
 
     const options = {
         legend: "none",
-        is3D: true,
+        //is3D: true,
         fontSize: 10,
         bar: {groupWidth: "30%"},
+        hAxis: {
+            viewWindowMode: "explicit",
+            viewWindow: {
+                max: 10,
+                min: 0,
+            ticks: [0, 2, 4, 6, 8, 10]
+            },
+        },
     };
 
     let jellyPrompt = "";
@@ -292,7 +300,7 @@ const getRatingsData = async (chartData, ratingSummary, jellyName) => {
     console.log(chartData)
     if (chartData[1] !== undefined) {
         const messageContent = `The following data is a javascript object describing ratings for ${jellyName}. The format is as follows: "Name: name of the person who rated the jelly", "rating": the rating on a scale of 1-10 with 1 being extreme dislike and 10 being extreme enjoyment. `
-        const response = await fetch("http://143.109.173.29:1234/v1/chat/completions", {
+        const response = await fetch("http://10.42.1.38:1234/v1/chat/completions", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
