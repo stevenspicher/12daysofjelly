@@ -10,6 +10,7 @@ import OLGPromptsModal from "./Modals/OLGExplanationModal";
 import OLGResultsModal from "./Modals/OLGResultsModal";
 import MBSResultsModal from "./Modals/MBSResultsModal";
 import MBSPromptsModal from "./Modals/MBSPromptsModal";
+import HaikuModal from "./Modals/haikuModal";
 import {Chart} from "react-google-charts";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
@@ -34,10 +35,11 @@ let userList,
 
 const JellyChartData = (jellyId) => {
     const navigate = useNavigate();
-const id = JSON.parse(localStorage.getItem("id"))
+const userId = JSON.parse(localStorage.getItem("id"))
 
     const jelly = storedJellyList.value[jellyId + 1] ?? {};
-
+    let haikuModalOpen = useSignal(false)
+    let haiku = useSignal("Working...")
     const elevationHeight = 12;
     const chartData = [["Name", "Rating"]]
     const cardData = [];
@@ -72,10 +74,10 @@ const id = JSON.parse(localStorage.getItem("id"))
             let wishText = user[1].wishes === undefined ?  "They did not have an Christmas Wishes." : `They wished for : "${user[1].wishes}"`;
             jellyPrompt = jellyPrompt.concat(`${user[0]} ${ratingText} and ${commentText}. ${wishText}`)
         })
-            jellyPrompt = `Below is some data about a person’s jelly preferences. The jelly is Mirabelle Plum Spice Spread, and this person rated the jelly on a scale of 1-10. 1 means they did not like it and 10 means they loved it. Some people commented on the jelly's flavor and their experience, and some people provided a list of Christmas gift wishes.
+            jellyPrompt = `Below is some data about some  people’s jelly preferences. The jelly is Mirabelle Plum Spice Spread, and this person rated the jelly on a scale of 1-10. 1 means they did not like it and 10 means they loved it. Some people commented on the jelly's flavor and their experience, and some people provided a list of Christmas gift wishes.
 Take on the persona of a grumpy but loveable christmas elf, and comment on this person’s like or dislike for the jelly based on their rating then describe an early childhood moment involving an item on their list that may explain their rating for this jelly. The Jelly is ${jelly.name} and ${jellyPrompt}`
-console.log(jelly.name)
-        if (jelly.name === "Mirabelle Plum-Spice") {console.log(jellyPrompt)}
+// console.log(jelly.name)
+//         if (jelly.name === "Mirabelle Plum-Spice") {console.log(jellyPrompt)}
     }
 
     const ExpandMore = styled((props) => {
@@ -119,7 +121,14 @@ console.log(jelly.name)
 
                         />
 
-                        <ModalButtons jelly={jelly}/>
+                        <ModalButtons jelly={jelly} />
+                        <Button sx={{margin: "10px"}} variant="outlined" onClick={() => {
+                            getData(jelly.id, haiku);
+                            haikuModalOpen.value = true
+                            jellyId = jelly.id
+                        }}>CLick
+                            for Poem</Button>
+                        <HaikuModal open={haikuModalOpen} haiku={haiku}  />
                         {chartData[1] !== undefined ?
                         <Chart
                             chartType="BarChart"
@@ -170,6 +179,30 @@ console.log(jelly.name)
 
 export default JellyChartData;
 
+const getData = async (jellyId, haiku) => {
+    const userId = JSON.parse(localStorage.getItem("id"))
+
+    console.log(storedJellyList.value[jellyId])
+    console.log(storedUserList.value[userId])
+    const messageContent =  `${storedUserList.value[userId].name} rated ${storedJellyList.value[jellyId].name} a ${storedUserList.value[userId].jellies[jellyId].rating} and their comments were: ${storedUserList.value[userId].jellies[jellyId].comments}.`
+    const response = await fetch("http://192.168.4.63:1234/v1/chat/completions", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"messages": [
+                // { "role": "system", "content": "respond with a haiku" },
+                { "role": "user", "content": `$${messageContent}. respond with a haiku` }
+            ],
+            "temperature": 0.7,
+            "max_tokens": -1,
+            "stream": false
+        })
+    });
+    const data = await response.json();
+    haiku.value = data.choices[0].message.content
+}
+
 const ModalButtons = ({jelly}) => {
     let resultsModalOpen = useSignal(false)
     let explanationModalOpen = useSignal(false)
@@ -182,6 +215,7 @@ const ModalButtons = ({jelly}) => {
                     for results</Button>
                 <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
                     for Explanation</Button>
+
 
                 <ABResultsModal open={resultsModalOpen}/>
                 <ABExplanationModal open={explanationModalOpen}/>
