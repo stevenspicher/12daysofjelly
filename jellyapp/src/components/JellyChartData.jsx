@@ -10,6 +10,12 @@ import OLGPromptsModal from "./Modals/OLGExplanationModal";
 import OLGResultsModal from "./Modals/OLGResultsModal";
 import MBSResultsModal from "./Modals/MBSResultsModal";
 import MBSPromptsModal from "./Modals/MBSPromptsModal";
+import PJFResultsModal from "./Modals/PJFResultsModal";
+import PJFPromptsModal from "./Modals/PJFPromptsModal";
+import GDResultsModal from "./Modals/GDResultsModal";
+import GDPromptsModal from "./Modals/GDPromptsModal";
+import RSResultsModal from "./Modals/RSResultsModal";
+import RSPromptsModal from "./Modals/RSPromptsModal";
 import HaikuModal from "./Modals/haikuModal";
 import {Chart} from "react-google-charts";
 import Divider from "@mui/material/Divider";
@@ -77,14 +83,52 @@ const JellyChartData = (jellyId) => {
         },
     };
 
+//     let jellyPrompt = "";
+//     let jellyRatings= {};
+//     let rating, comment, wishes;
+//     if (storedUserList.value !== undefined) {
+//         storedUserList.value.map((user) => {
+//
+//             rating = user.jellies[jellyId + 1] === undefined ? undefined : user.jellies[jellyId + 1].rating;
+//             comment = user.jellies[jellyId + 1] === undefined ? undefined : user.jellies[jellyId + 1].comments;
+//             wishes = user.wishes ?? undefined;
+//             if (user.jellies[jellyId + 1] !== undefined) {
+//                 if (user.jellies[jellyId + 1].rating !== undefined)
+//                     chartData.push([user.name, user.jellies[jellyId + 1].rating])
+//                 if (user.jellies[jellyId + 1].comments !== undefined)
+//                     cardData.push([user.name, comment])
+//             }
+//
+//             jellyRatings = {comment: comment, rating: rating, wishes: wishes}
+//             console.log(jellyRatings)
+//         })
+//         // Object.entries(jellyRatings).forEach((user) => {
+//         //     if (user !== undefined) {
+//         //         let ratingText = user[1].rating === undefined ? "did not rate the jelly" : `rated the jelly a ${user[1].rating}`;
+//         //         let commentText = user[1].comment === undefined ? "did not comment." : `said this: "${user[1].comment}"`;
+//         //         let wishText = user[1].wishes === undefined ? "They did not have an Christmas Wishes." : `They wished for : "${user[1].wishes}"`;
+//         //         jellyPrompt = jellyPrompt.concat(`${user[0]} ${ratingText} and ${commentText}. ${wishText}`)
+//         //     }
+//         // })
+//         jellyPrompt = `Below is some data about some  people’s jelly preferences. The jelly is Mirabelle Plum Spice Spread, and this person rated the jelly on a scale of 1-10. 1 means they did not like it and 10 means they loved it. Some people commented on the jelly's flavor and their experience, and some people provided a list of Christmas gift wishes.
+// Take on the persona of a grumpy but loveable christmas elf, and comment on this person’s like or dislike for the jelly based on their rating then describe an early childhood moment involving an item on their list that may explain their rating for this jelly. The Jelly is ${jelly.name} and ${jellyPrompt}`
+// // console.log(jelly.name)
+//         if (jelly.name === "Peach Jasmine Flower") {console.log(jellyPrompt)}
+//         // getRatingData(chartData, ratingSummary, storedJellyList.value[jellyId + 1].name)
+//         // jellyRatings.value=[chartData, ratingSummary, storedJellyList.value[jellyId + 1].name]
+//     }
+//
+
+
+    /*old function*/
+    const jellyRatings = {};
     let jellyPrompt = "";
-    let jellyRatings= {};
     let rating, comment, wishes;
     if (storedUserList.value !== undefined) {
         storedUserList.value.map((user) => {
 
-            rating = user.jellies[jellyId + 1] === undefined ? undefined : user.jellies[jellyId + 1].rating;
-            comment = user.jellies[jellyId + 1] === undefined ? undefined : user.jellies[jellyId + 1].comments;
+            rating = user.jellies[jellyId + 1]=== undefined ? undefined : user.jellies[jellyId + 1].rating;
+            comment = user.jellies[jellyId + 1]=== undefined ? undefined : user.jellies[jellyId + 1].comments;
             wishes = user.wishes ?? undefined;
             if (user.jellies[jellyId + 1] !== undefined) {
                 if (user.jellies[jellyId + 1].rating !== undefined)
@@ -93,21 +137,19 @@ const JellyChartData = (jellyId) => {
                     cardData.push([user.name, comment])
             }
 
-            // jellyRatings = {comment: comment, rating: rating, wishes: wishes}
+            jellyRatings[user.name] = {comment: comment, rating: rating, wishes: wishes}
         })
-//         Object.entries(jellyRatings).forEach((user) => {
-//             let ratingText = user[1].rating === undefined ? "did not rate the jelly" : `rated the jelly a ${user[1].rating}`;
-//             let commentText = user[1].comment === undefined ? "did not comment." : `said this: "${user[1].comment}"`;
-//             let wishText = user[1].wishes === undefined ? "They did not have an Christmas Wishes." : `They wished for : "${user[1].wishes}"`;
-//             jellyPrompt = jellyPrompt.concat(`${user[0]} ${ratingText} and ${commentText}. ${wishText}`)
-//         })
-//         jellyPrompt = `Below is some data about some  people’s jelly preferences. The jelly is Mirabelle Plum Spice Spread, and this person rated the jelly on a scale of 1-10. 1 means they did not like it and 10 means they loved it. Some people commented on the jelly's flavor and their experience, and some people provided a list of Christmas gift wishes.
-// Take on the persona of a grumpy but loveable christmas elf, and comment on this person’s like or dislike for the jelly based on their rating then describe an early childhood moment involving an item on their list that may explain their rating for this jelly. The Jelly is ${jelly.name} and ${jellyPrompt}`
-// // console.log(jelly.name)
-//         if (jelly.name === "Mirabelle Plum-Spice") {console.log(jellyPrompt)}
-//         getRatingData(chartData, ratingSummary, storedJellyList.value[jellyId + 1].name)
-        jellyRatings.value=[chartData, ratingSummary, storedJellyList.value[jellyId + 1].name]
+        Object.entries(jellyRatings).forEach((user) => {
+            let ratingText = user[1].rating === undefined ?  "did not rate the jelly" : `rated the jelly a ${user[1].rating}`;
+            let commentText = user[1].comment === undefined ?  "did not comment." : `said this: "${user[1].comment}"`;
+            let wishText = user[1].wishes === undefined ?  "They did not have an Christmas Wishes." : `They wished for : "${user[1].wishes}"`;
+            jellyPrompt = jellyPrompt.concat(`${user[0]} ${ratingText} and ${commentText}. ${wishText}`)
+        })
+        jellyPrompt = `Below is some data about a person’s jelly preferences. The jelly is Rhubarb Strawberry, and this person rated the jelly on a scale of 1-10. 1 means they did not like it and 10 means they loved it. Some people commented on the jelly's flavor and their experience, and some people provided a list of Christmas gift wishes.
+Take on the persona of a grumpy but loveable christmas elf, and comment on this person’s like or dislike for the jelly based on their rating then describe an early childhood moment involving an item on their list that may explain their rating for this jelly. The Jelly is ${jelly.name} and ${jellyPrompt}`
+        if (jelly.name === "Rhubarb Strawberry") {console.log(jellyPrompt)}
     }
+
 
     const ExpandMore = styled((props) => {
         const {expand, ...other} = props;
@@ -131,10 +173,10 @@ const JellyChartData = (jellyId) => {
             jellyList = storedJellyList.value;
     }, [storedUserList.value, storedJellyList.value]);
 
-    useEffect(() => {
-        if (storedUserList.value !== undefined)
-            getData(jelly.id, haiku)
-    }, [storedUserList.value]);
+    // useEffect(() => {
+    //     if (storedUserList.value !== undefined)
+    //         getData(jelly.id, haiku)
+    // }, [storedUserList.value]);
     return (
         <Grow in={true} timeout={1000}>
             <Paper elevation={elevationHeight} sx={{marginTop: "10px", border: '1px solid black'}}>
@@ -154,9 +196,9 @@ const JellyChartData = (jellyId) => {
                             }}
 
                         />
-                        <Typography className="subtitle" sx={{fontSize: 30, fontFamily: "sofia",}}>
-                            {haiku}
-                        </Typography>
+                        {/*<Typography className="subtitle" sx={{fontSize: 30, fontFamily: "sofia",}}>*/}
+                        {/*    {haiku}*/}
+                        {/*</Typography>*/}
 
 
 
@@ -290,6 +332,42 @@ const ModalButtons = ({jelly}) => {
 
                 <MBSResultsModal open={resultsModalOpen}/>
                 <MBSPromptsModal open={explanationModalOpen}/>
+            </>
+        )
+    } else if (jelly.id === 4) {
+        return (
+            <>
+                <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value = true}>CLick
+                    for results</Button>
+                <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
+                    for Explanation</Button>
+
+                <PJFResultsModal open={resultsModalOpen}/>
+                <PJFPromptsModal open={explanationModalOpen}/>
+            </>
+        )
+    } else if (jelly.id === 5) {
+        return (
+            <>
+                <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value = true}>CLick
+                    for results</Button>
+                <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
+                    for Explanation</Button>
+
+                <GDResultsModal open={resultsModalOpen}/>
+                <GDPromptsModal open={explanationModalOpen}/>
+            </>
+        )
+    } else if (jelly.id === 6) {
+        return (
+            <>
+                <Button sx={{margin: "10px"}} variant="contained" onClick={() => resultsModalOpen.value = true}>CLick
+                    for results</Button>
+                <Button sx={{margin: "10px"}} variant="outlined" onClick={() => explanationModalOpen.value = true}>CLick
+                    for Explanation</Button>
+
+                <RSResultsModal open={resultsModalOpen}/>
+                <RSPromptsModal open={explanationModalOpen}/>
             </>
         )
     }

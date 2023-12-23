@@ -8,6 +8,7 @@ import React, {useEffect} from "react";
 import InvalidLogin from "./screens/InvalidLogin";
 import JellyList from "./screens/JellyList";
 import Jellies from "./screens/Jellies";
+import JellyRollout from "./screens/JellyRollout";
 import RatingsChart from "./screens/RatingsChart";
 import {getUsers} from "./shared/utilities";
 import {storedUserList} from "./store/signalsStore"
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/" element={<Navigate replace to="login"/>}/>
                 <Route path="login" element={<Login />}/>
                 <Route path="invalid" element={<InvalidLogin />}/>
+                <Route path="rollout" element={<JellyRollout />}/>
                 <Route path="user" element={<User />}/>
                 <Route path="table" element={<UserTable />}/>
                 <Route path="jellylist" element={<JellyList />}/>
