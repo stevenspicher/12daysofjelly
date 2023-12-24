@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Button, Container, Grow, Paper, Box} from "@mui/material";
+import {Button, Container, Grow, Paper, Box, Stack} from "@mui/material";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -147,7 +147,7 @@ const JellyChartData = (jellyId) => {
         })
         jellyPrompt = `Below is some data about a person’s jelly preferences. The jelly is Rhubarb Strawberry, and this person rated the jelly on a scale of 1-10. 1 means they did not like it and 10 means they loved it. Some people commented on the jelly's flavor and their experience, and some people provided a list of Christmas gift wishes.
 Take on the persona of a grumpy but loveable christmas elf, and comment on this person’s like or dislike for the jelly based on their rating then describe an early childhood moment involving an item on their list that may explain their rating for this jelly. The Jelly is ${jelly.name} and ${jellyPrompt}`
-        if (jelly.name === "Rhubarb Strawberry") {console.log(jellyPrompt)}
+        // if (jelly.name === "Rhubarb Strawberry") {console.log(jellyPrompt)}
     }
 
 
@@ -175,7 +175,7 @@ Take on the persona of a grumpy but loveable christmas elf, and comment on this 
 
     // useEffect(() => {
     //     if (storedUserList.value !== undefined)
-    //         getData(jelly.id, haiku)
+    //         getHaikuData(jelly.id, haiku)
     // }, [storedUserList.value]);
     return (
         <Grow in={true} timeout={1000}>
@@ -196,10 +196,28 @@ Take on the persona of a grumpy but loveable christmas elf, and comment on this 
                             }}
 
                         />
-                        {/*<Typography className="subtitle" sx={{fontSize: 30, fontFamily: "sofia",}}>*/}
-                        {/*    {haiku}*/}
-                        {/*</Typography>*/}
+                        <Typography className="subtitle" sx={{fontSize: 30, fontFamily: "sofia",}}>
+                            {haiku}
+                        </Typography>
+                        <Stack direction={"row"}>
 
+                        <Button sx={{margin: "10px"}} variant="contained" onClick={() => {
+                            haiku.value = <CircularProgress />
+                            getInsultData(jelly.id, haiku)
+                        }}>CLick
+
+                            for Insult</Button>
+                            <Button sx={{margin: "10px"}} variant="contained" onClick={() => {
+                                haiku.value = <CircularProgress />
+                                getHaikuData(jelly.id, haiku)
+                            }}>CLick
+                                for Haiku</Button>
+                            {/*<Button sx={{margin: "10px"}} variant="contained" onClick={() => {*/}
+                            {/*    haiku.value = <CircularProgress />*/}
+                            {/*    getFortuneCookieData(jelly.id, haiku)*/}
+                            {/*}}>CLick*/}
+                            {/*    for Fortune</Button>*/}
+                        </Stack>
 
 
                         {chartData[1] !== undefined ?
@@ -260,12 +278,14 @@ Take on the persona of a grumpy but loveable christmas elf, and comment on this 
 
 export default JellyChartData;
 
-const getData = async (jellyId, haiku) => {
+const getHaikuData = async (jellyId, haiku) => {
     const userId = JSON.parse(localStorage.getItem("id"))
     if (storedUserList.value[userId].jellies[jellyId] !== undefined) {
         if (storedUserList.value[userId].jellies[jellyId].comments !== undefined) {
-            const messageContent = `${storedUserList.value[userId].name} rated ${storedJellyList.value[jellyId].name} a ${storedUserList.value[userId].jellies[jellyId].rating} and their comments were: ${storedUserList.value[userId].jellies[jellyId].comments}.`
-            const response = await fetch("http://143.109.173.29:1234/v1/chat/completions", {
+            console.log(storedUserList.value[userId].name)
+            console.log(storedUserList.value[userId].jellies[jellyId])
+            console.log(storedUserList.value[userId].jellies[jellyId].comments)
+            const response = await fetch("http://100.120.48.74:1234/v1/chat/completions", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -275,9 +295,37 @@ const getData = async (jellyId, haiku) => {
                         // { "role": "system", "content": `You are a grumpy but loveable christmas elf who acts like he dislikes ${storedUserList.value[userId].name}. Direct your comments to ${storedUserList.value[userId].name}` },
                         {
                             "role": "user",
-                            "content": `Compose a haiku for ${storedUserList.value[userId].name} about ${storedJellyList.value[jellyId].name} using this information: ${storedUserList.value[userId].jellies[jellyId].comments}. Respond with only the haikiu. Do not add additional comments. `
+                            "content": `Compose a haiku for ${storedUserList.value[userId].name} about ${storedJellyList.value[jellyId].name} using this information: ${storedUserList.value[userId].jellies[jellyId].comments}. Respond with only the haiku. Do not add additional comments. `
                         }
-                        // { "role": "user", "content": `Compose a haiku for ${storedUserList.value[userId].name} using this information: ${messageContent}. Respond with only the haikiu. Do not add additional comments. ` }
+                    ],
+                    "temperature": 7,
+                    "max_tokens": -1,
+                    "stream": false
+                })
+            });
+            const data = await response.json();
+            haiku.value = data.choices[0].message.content
+        }
+    }
+}
+
+const getInsultData = async (jellyId, haiku) => {
+    const userId = JSON.parse(localStorage.getItem("id"))
+    if (storedUserList.value[userId].jellies[jellyId] !== undefined && storedJellyList.value !== undefined) {
+        if (storedUserList.value[userId].jellies[jellyId].comments !== undefined ) {
+            console.log(storedJellyList.value[jellyId])
+            const response = await fetch("http://100.120.48.74/:1234/v1/chat/completions", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "messages": [
+                        // { "role": "system", "content": `You are a grumpy but loveable christmas elf who acts like he dislikes ${storedUserList.value[userId].name}. Direct your comments to ${storedUserList.value[userId].name}` },
+                        {
+                            "role": "user",
+                            "content": `Compose a short and nasty insult for ${storedUserList.value[userId].name} using this list of christmas gift ideas: ${storedUserList.value[userId].wishes}. Respond with only the insult. Do not add additional comments. `
+                        }
                     ],
                     "temperature": 7,
                     "max_tokens": -1,
@@ -378,7 +426,7 @@ const getRatingsData = async (chartData, ratingSummary, jellyName) => {
     console.log(chartData)
     if (chartData[1] !== undefined) {
         const messageContent = `The following data is a javascript object describing ratings for ${jellyName}. The format is as follows: "Name: name of the person who rated the jelly", "rating": the rating on a scale of 1-10 with 1 being extreme dislike and 10 being extreme enjoyment. `
-        const response = await fetch("http://10.42.1.38:1234/v1/chat/completions", {
+        const response = await fetch("http://100.120.48.74:1234/v1/chat/completions", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
